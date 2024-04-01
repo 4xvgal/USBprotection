@@ -20,31 +20,29 @@ namespace UsbSecurity
     {
         private List<string> usbDeviceId = new List<string>(); // USB 장치 ID 가 저장되는 List 제너릭 
 
-        public static List<string> GetExternalDrivePNPDeviceIDs()
+
+        public static List<string> GetConnectedUSBDevicesHardwareIDs()
         {
             List<string> pnpDeviceIDs = new List<string>();
 
-            // 'Win32_DiskDrive'에서 이동식 드라이브만 필터링합니다.
-            var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
+            // 'Win32_PnPEntity'에서 USB 저장 장치만 필터링합니다.
+            var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Service = 'USBSTOR'");
 
-            // 'Win32_DiskDrive'의 PNPDeviceID를 가져옵니다.
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                var isRemovable = queryObj["MediaType"] != null && queryObj["MediaType"].ToString().Contains("Removable");
-
-                // 이동식 미디어를 가진 디스크 드라이브의 PNPDeviceID를 추출합니다.
-                if (isRemovable)
+                string deviceId = queryObj["PNPDeviceID"].ToString();
+                if (!string.IsNullOrEmpty(deviceId))
                 {
-                    // PNPDeviceID 속성 값을 리스트에 추가
-                    pnpDeviceIDs.Add(queryObj["PNPDeviceID"].ToString());
+                    pnpDeviceIDs.Add(deviceId);
                 }
             }
+
             return pnpDeviceIDs;
         }
 
         public void InsertData()
         {
-            var externalDriveIDs = GetExternalDrivePNPDeviceIDs(); // 이동식 드라이브 인스턴스 ID를 가져옴 자료형은 
+            var externalDriveIDs = GetConnectedUSBDevicesHardwareIDs(); // 이동식 드라이브 인스턴스 ID를 가져옴 자료형은 
             foreach (var id in externalDriveIDs) // 왜 VAR 형인가 ? 
             {
                 usbDeviceId.Add(id); //usb 장치 목록에 추출된 아이디를 추가한다.
@@ -60,8 +58,9 @@ namespace UsbSecurity
                 Console.WriteLine(number);
             }
         }
-
     }
-
-
 }
+
+    
+
+
