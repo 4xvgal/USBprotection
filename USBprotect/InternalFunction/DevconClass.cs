@@ -1,4 +1,4 @@
-﻿using System;
+﻿        using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -37,17 +37,17 @@ namespace UsbSecurity
                 }
             }
         }
-            
+
         // --------------------------------------------- 요 아래에 함수 형태로 devcon 명령어 구현 --------------------------------------------------------- //
 
         internal void DisableDevice() // 차단하기
         {
-            DevconCommand("disable" + usbDeviceId);
+            DevconCommand("disable \"" + usbDeviceId + "\"");
         }
 
         internal void EnableDevice() // 허용하기 
         {
-           DevconCommand("enable" + usbDeviceId);
+           DevconCommand("enable \"" + usbDeviceId + "\"");
         }
         
     }

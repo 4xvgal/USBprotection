@@ -74,6 +74,7 @@ namespace UsbSecurity
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
         {
+            parsingUsbDevice.ShowList(); // USB 장치 목록 출력
             Console.WriteLine("USB 장치가 제거됨");
             Console.WriteLine(" ");
         }
