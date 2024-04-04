@@ -5,6 +5,7 @@ using System.Management;
 // class information :: 
 // USB 장치의 접속을 감지하는 클래스 입니다. 
 // System.Management 는 솔루션 탐색기 종속성에서 우클릭 -> NUGET 패키지 관리자를 통해 검색하셔서 다운받으시면 바로 작동합니다.
+// 2024:04:04:14:15 마지막 수정 LGJ
 
 namespace UsbSecurity
 {
@@ -52,6 +53,8 @@ namespace UsbSecurity
         {
             insertWatcher.Start();
             removeWatcher.Start();
+
+            parsingUsbDevice = new ParsingUsbDevice(); // USB 장치 인스턴스 추출 객체 생성
         }
 
         public void Stop() // USB 장치 감시 중지 인스턴스
@@ -62,21 +65,17 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e) // USB 장치 삽입 이벤트
         {   
-            parsingUsbDevice = new ParsingUsbDevice(); // USB 장치 인스턴스 추출 객체 생성
-  
-
             Console.WriteLine("USB 장치가 감지됨");
             Console.WriteLine(" ");
-
-            parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출
             parsingUsbDevice.ShowList(); // USB 장치 목록 출력
         }
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
         {
-            parsingUsbDevice.ShowList(); // USB 장치 목록 출력
+            
             Console.WriteLine("USB 장치가 제거됨");
             Console.WriteLine(" ");
+            parsingUsbDevice.removeData(); // 해당 usb를 리스트 에서 삭제
         }
         
     
