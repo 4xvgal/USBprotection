@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using USBprotect.src.dataClass;
+using USBprotect.src.USB.test;
 using UsbSecurity;
 
 namespace USBprotect
@@ -55,17 +56,9 @@ namespace USBprotect
              Application.SetCompatibleTextRenderingDefault(false);
              Application.Run(new Form1());*/
             AllocConsole(); // 콘솔 창 할당
-            List<USBdevice> uSBdevices = ParsingUsbDevice.GetConnectedUSBdevices();
 
-            foreach (var device in uSBdevices)
-            {
-                Console.WriteLine("Name: " + device.name);
-                Console.WriteLine("Status: " + device.status);
-                Console.WriteLine("DeviceID: " + device.deviceID);
-                Console.WriteLine("PnpDeviceID: " + device.pnpDeviceID);
-                Console.WriteLine("Description: " + device.description);
-                Console.WriteLine();
-            }
+            //USB 리스트 테스트
+            ParsingUsbDeviceTest.TestGetConnectedUSBdevices();
             Console.ReadKey(); // 사용자 입력 대기
         }
 
