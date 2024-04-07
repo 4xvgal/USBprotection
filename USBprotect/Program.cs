@@ -1,28 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
+using System.Management;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using USBprotect.src.dataClass;
+using USBprotect.src.USB.test;
 using UsbSecurity;
 
 namespace USBprotect
 {
     internal static class Program
     {
+        
+
         /// <summary>
         /// 해당 애플리케이션의 주 진입점입니다.
         /// </summary>
         /// 
 
         // 임시로 터미널 띄우는 코드
-
+/*
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
         [STAThread]
-        static void Main()
+        static void Main(List<string> parsingUsbDevice)
         {
             AllocConsole(); // 콘솔 창 할당
 
@@ -35,17 +41,28 @@ namespace USBprotect
             Console.ReadKey(); // 사용자 입력 대기
 
             watcher.Stop();
-        }
-
+            
+        }*/
+         
         // 원래코드
-        /*
+        
         [STAThread]
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            /* Application.EnableVisualStyles();
+             Application.SetCompatibleTextRenderingDefault(false);
+             Application.Run(new Form1());*/
+            AllocConsole(); // 콘솔 창 할당
+
+            //USB 리스트 테스트
+            ParsingUsbDeviceTest.TestGetConnectedUSBdevices();
+            Console.ReadKey(); // 사용자 입력 대기
         }
-        */
+
+
+       
     }
 }
