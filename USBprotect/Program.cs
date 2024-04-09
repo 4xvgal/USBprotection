@@ -35,17 +35,19 @@ namespace USBprotect
             Console.ReadKey(); // 사용자 입력 대기
 
             watcher.Stop();
-        }
 
-        // 원래코드
-        /*
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+
+            /*
+                  [STAThread]
+                  static void Main()
+                  {
+                      Application.EnableVisualStyles();
+                      Application.SetCompatibleTextRenderingDefault(false);
+                      Application.Run(new Form1());
+                  }
+            */
+
         }
-        */
     }
 }
