@@ -49,11 +49,11 @@
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);
-
         }
 
-        #endregion
+
 
         private System.Windows.Forms.ListBox listBox1;
+
     }
 }

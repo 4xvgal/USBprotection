@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UsbSecurity;
 
+
 namespace USBprotect
 {
     public partial class Form2 : Form
@@ -43,12 +44,24 @@ namespace USBprotect
             instance = new Form2(message); // 새로운 인스턴스 생성
 
             return instance; // 생성된 인스턴스 반환
+
+        public Form2()
+        {
+            InitializeComponent();
+
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+
             MessageBox.Show(message);
         }
     }
  }
+
+
+            MessageBox.Show("Usb 장치가 감지되었습니다.");
+        }
+    }
+}
 

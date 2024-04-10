@@ -22,12 +22,14 @@ namespace UsbSecurity
         private ManagementEventWatcher removeWatcher; // USB 장치 제거 감시 객체
         private DevconClass devcon; // devcon 명령줄 객체 
         private ParsingUsbDevice parsingUsbDevice; // 인스턴스 id 추철 객체
- 
+        private UsbConnectionEvent usbConnectionEvent;
+
 
 
         public UsbDeviceWatcher()   // 생성자
         {
-            
+
+            usbConnectionEvent = new UsbConnectionEvent(); // UsbConnectionEvent 인스턴스 생성
             this.devcon = new DevconClass(); // DevconClass 인스턴스 생성
 
             // WMI query for USB device insertion events
@@ -69,11 +71,18 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
+
             parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출  
             FormEventBase formEvent = new UnauthorizedUsbFormEvent();
             formEvent.PopUpForm();
             parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출
    
+
+            //Console.WriteLine("USB 장치가 감지됨");
+            //Console.WriteLine(" ");
+            usbConnectionEvent.OnUsbConnected();    // USB가 연결되면 UsbConnectionEvent의 OnUsbConnected() 메서드 호출
+            parsingUsbDevice.ShowList();            // USB 장치 목록 출력
+
         }
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
