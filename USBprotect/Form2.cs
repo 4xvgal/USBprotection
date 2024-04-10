@@ -35,7 +35,7 @@ namespace USBprotect
         // 여러개의 폼이 생성되는 것을 방지하기 위해 싱글톤 패턴을 적용한 GetInstance 메서드 정의
         public static Form2 GetInstance(string message) // 싱글톤 패턴을 적용한 GetInstance 메서드 정의
         {
-            
+
             if (instance != null && !instance.IsDisposed)
             {
                 instance.Close(); // 기존 인스턴스 닫기
@@ -44,7 +44,7 @@ namespace USBprotect
             instance = new Form2(message); // 새로운 인스턴스 생성
 
             return instance; // 생성된 인스턴스 반환
-
+        }
         public Form2()
         {
             InitializeComponent();
@@ -55,13 +55,7 @@ namespace USBprotect
         {
 
             MessageBox.Show(message);
-        }
-    }
- }
-
-
             MessageBox.Show("Usb 장치가 감지되었습니다.");
         }
     }
-}
-
+ }

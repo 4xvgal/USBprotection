@@ -50,10 +50,8 @@
             this.Text = "Form2";
             this.ResumeLayout(false);
         }
-
-
-
         private System.Windows.Forms.ListBox listBox1;
 
     }
 }
+#endregion

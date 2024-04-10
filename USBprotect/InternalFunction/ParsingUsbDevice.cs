@@ -75,6 +75,10 @@ namespace UsbSecurity
             return saveDeviceID;
         }
 
+        internal void ShowList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

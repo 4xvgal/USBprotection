@@ -38,7 +38,6 @@ namespace UsbSecurity
                     string result = reader.ReadToEnd(); 
                     return result;
 
-
                     ///예외처리 추가 필요
                 }
             }
