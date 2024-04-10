@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Management;
+using USBprotect;
+using USBprotect.InternalFunction;
 
 // class information :: 
 // USB 장치의 접속을 감지하는 클래스 입니다. 
@@ -20,23 +22,23 @@ namespace UsbSecurity
         private ManagementEventWatcher removeWatcher; // USB 장치 제거 감시 객체
         private DevconClass devcon; // devcon 명령줄 객체 
         private ParsingUsbDevice parsingUsbDevice; // 인스턴스 id 추철 객체
-
         private UsbConnectionEvent usbConnectionEvent;
+
 
 
         public UsbDeviceWatcher()   // 생성자
         {
-            usbConnectionEvent = new UsbConnectionEvent(); // UsbConnectionEvent 인스턴스 생성
 
+            usbConnectionEvent = new UsbConnectionEvent(); // UsbConnectionEvent 인스턴스 생성
             this.devcon = new DevconClass(); // DevconClass 인스턴스 생성
 
             // WMI query for USB device insertion events
-            var insertQuery = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_USBHub'");  // USB 장치 삽입 감시 쿼리
+            var insertQuery = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'");  // USB 장치 삽입 감시 쿼리
             insertWatcher = new ManagementEventWatcher(insertQuery);                                                                        // USB 장치 삽입 감시 인스턴스
             insertWatcher.EventArrived += new EventArrivedEventHandler(DeviceInsertedEvent);                                                // USB 장치 삽입 이벤트 핸들러
 
             // WMI query for USB device removal events
-            var removeQuery = new WqlEventQuery("SELECT * FROM __InstanceDeletionEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_USBHub'"); // USB 장치 삽입 감시 쿼리
+            var removeQuery = new WqlEventQuery("SELECT * FROM __InstanceDeletionEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'"); // USB 장치 삽입 감시 쿼리
             removeWatcher = new ManagementEventWatcher(removeQuery);                                                                       // USB 장치 제거 감시 인스턴스
             removeWatcher.EventArrived += new EventArrivedEventHandler(DeviceRemovedEvent);                                                // USB 장치 제거 이벤트 핸들러
 
@@ -58,7 +60,6 @@ namespace UsbSecurity
         {
             insertWatcher.Start();
             removeWatcher.Start();
-
             parsingUsbDevice = new ParsingUsbDevice(); // USB 장치 인스턴스 추출 객체 생성
         }
 
@@ -70,21 +71,32 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
+
+            parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출  
+            FormEventBase formEvent = new UnauthorizedUsbFormEvent();
+            formEvent.PopUpForm();
+            parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출
+   
+
             //Console.WriteLine("USB 장치가 감지됨");
             //Console.WriteLine(" ");
             usbConnectionEvent.OnUsbConnected();    // USB가 연결되면 UsbConnectionEvent의 OnUsbConnected() 메서드 호출
             parsingUsbDevice.ShowList();            // USB 장치 목록 출력
+
         }
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
         {
-            
-            Console.WriteLine("USB 장치가 제거됨");
-            Console.WriteLine(" ");
+
+         
+            FormEventBase formEvent = new RemoveUsbFormEvent();
+            formEvent.PopUpForm();
+
             parsingUsbDevice.removeData(); // 해당 usb를 리스트 에서 삭제
         }
-        
-    
+
+
     }
 
 }
+

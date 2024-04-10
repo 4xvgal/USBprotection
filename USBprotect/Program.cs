@@ -39,6 +39,21 @@ namespace USBprotect
         }
         */
 
+
+
+    
+                  [STAThread]
+                  static void Main()
+                  {
+                      Application.EnableVisualStyles();
+                      Application.SetCompatibleTextRenderingDefault(false);
+                      Application.Run(new Form1());
+                  }
+        
+            
+
+        
+
         // 원래코드
         [STAThread]
         static void Main()
@@ -51,5 +66,6 @@ namespace USBprotect
             watcher.Start();
             Application.Run(new Form1());
         }
+
     }
 }
