@@ -59,7 +59,17 @@ namespace USBprotect
 
             //USB 리스트 테스트
             ParsingUsbDeviceTest.TestGetConnectedUSBdevices();
-            Console.ReadKey(); // 사용자 입력 대기
+
+            //devcon 클래스 테스트
+            DevconClass devcon = new DevconClass();
+            Console.Write(devcon.SetDevconPath(@"C:\Users\4xvgal\AppData\Roaming\DevCon\devcon.exe"));
+
+            Console.Write("Type Device ID :"); // 장치 ID 입력
+            string deviceId = Console.ReadLine(); // 장치 ID 입력
+            USBdevice uSBdevice = new USBdevice(); // USB 장치 정보 생성
+            uSBdevice.deviceID = deviceId; // 장치 ID 설정
+            devcon.setDevice(uSBdevice); // USB 장치 정보 설정
+            devcon.DisableDevice(); // 장치 비활성화
         }
 
 
