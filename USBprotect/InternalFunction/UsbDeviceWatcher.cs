@@ -78,9 +78,10 @@ namespace UsbSecurity
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
         {
 
-       
+         
             FormEventBase formEvent = new RemoveUsbFormEvent();
             formEvent.PopUpForm();
+
             parsingUsbDevice.removeData(); // 해당 usb를 리스트 에서 삭제
         }
 

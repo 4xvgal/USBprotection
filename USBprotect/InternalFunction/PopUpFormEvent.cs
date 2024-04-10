@@ -14,16 +14,20 @@ namespace USBprotect.InternalFunction
 {
     public abstract class FormEventBase // 추상 클래스
     {
+        protected static Form1 form1instance;
+
+        public void GetForm(Form1 form1){form1instance = form1;}   
         public abstract void PopUpForm();
       
     }
+
+ 
 
     public class UnauthorizedUsbFormEvent : FormEventBase // 추상 클래스를 상속받은 클래스
     {
         public override void PopUpForm()
         {
-            Form2 form2 = new Form2("비인가 USB 접근이 감지되었습니다.");
-            form2.Show(); // 폼을 표시합니다.
+            form1instance.OpenForm2("비인가 USB 접속.");
         }
     }
 
@@ -31,8 +35,7 @@ namespace USBprotect.InternalFunction
     {
         public override void PopUpForm()
         {
-            Form2 form2 = new Form2("허가된 USB 입니다.");
-            form2.Show(); // 폼을 표시합니다.
+            form1instance.OpenForm2("블랙 리스트 장치 입니다!!");
         }
     }
 
@@ -40,8 +43,7 @@ namespace USBprotect.InternalFunction
     {
         public override void PopUpForm()
         {
-            Form2 form2 = new Form2("USB가 제거되었습니다.");
-            form2.Show(); // 폼을 표시합니다.
+            form1instance.OpenForm2("USB 제거됨");
         }
     }
 
