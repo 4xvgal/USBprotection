@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 // class information :: 
 // 현재 연결된 USB 저장장치 (이동저장장치만)의 인스턴스 ID 를 추출합니다. 
 // 차단 또는 승인할 장치의 인스턴스 아이디에 사용됩니다.
-// 마지막 수정일 2024-04-03 13:45 LGJ
+// 2024:04:04:14:15 마지막 수정 LGJ
 
 namespace UsbSecurity
 {
@@ -20,11 +20,12 @@ namespace UsbSecurity
     class ParsingUsbDevice
     {
     
-        private List<string> usbDeviceId = new List<string>(); // USB 장치 ID 가 저장되는 List 제너릭 
-       
-        public static List<string> GetConnectedUSBDevicesHardwareIDs()
+        public static List<string> saveDeviceID = new List<string>(); // 지금 까지 인식된 USB id 리스트 static 형
+
+        public static List<string> getCurrentUsbID() // .. 현재 연결된 USB id 를 추출하여 리스트에 추가하는 함수
         {
-            List<string> pnpDeviceIDs = new List<string>();
+            List<string> currentDeviceID = new List<string>(); // 현재 연결된 USB ID 를 임시로 저장하는 내부 제너릭
+
             string pattern =  @"USB\\VID_[0-9A-F]+&PID_[0-9A-F]+"; // USB 장치 ID 패턴 정규식 
                 
             // 'Win32_PnPEntity'에서 USB 저장 장치만 필터링합니다.
@@ -39,39 +40,41 @@ namespace UsbSecurity
                     Match parsingdata = Regex.Match(deviceId, pattern); // 장치 ID를 정규식으로 추출
                     if (parsingdata.Success)    // 추출 성공시
                     {
-                        pnpDeviceIDs.Add(parsingdata.Value); // 추출된 장치 ID를 리스트에 추가
+                       currentDeviceID.Add(parsingdata.Value); // 현재 연결된 장치 추출된 장치 ID를 리스트에 추가
                     }
 
                 }
             }
 
-            return pnpDeviceIDs; 
+            return currentDeviceID;
         }
 
-        public void InsertData()
+        /*#*/public void InsertData() // 현재 인식된 USB 를 전체 LIST 에 저장하는 함수 
         {
-            var externalDriveIDs = GetConnectedUSBDevicesHardwareIDs(); // 이동식 드라이브 인스턴스 ID를 가져옴 자료형은 
-            foreach (var id in externalDriveIDs) // 왜 VAR 형인가 ? 
+            var externalDriveIDs = getCurrentUsbID(); // 이동식 드라이브 인스턴스 ID를 가져옴
+            foreach (var id in externalDriveIDs)
             {
-                usbDeviceId.Add(id); //usb 장치 목록에 추출된 아이디를 추가한다.
-            }
-
-        }
-
-        public void removeData(string id)
-        {
-            usbDeviceId.Clear();  
-     
-        }   
-
-        public void ShowList()
-        { // usb 장치의 인스턴스 id 를 출력하는 함수
-            Console.WriteLine("USB 장치 목록");
-            foreach (var number in usbDeviceId)
-            {
-                Console.WriteLine(number);
+                if (!saveDeviceID.Contains(id)) // 리스트에 id가 이미 존재하는지 확인
+                {
+                    saveDeviceID.Add(id); // 리스트에 없는 경우에만 id를 추가
+                }
             }
         }
+
+        public void removeData() // 제거된 이동저장장치의 ID 를 전체 리스트에서 삭제하는 함수
+        {
+            var externalDriveIDs = getCurrentUsbID(); // 이동식 드라이브 인스턴스 ID를 가져옴 자료형은 
+            saveDeviceID.RemoveAll(id => !externalDriveIDs.Contains(id)); // 전체 ID 리스트에서 현재 접속된 USB ID 를 비교해서 중복값이 존재하지 않을 경우 전체 리스트에서 삭제한다.
+            // #USB 가 제거 되었을때 제거된 USB 의 ID 를 리스트 상에서 지웁니다.
+
+        }
+
+        //private static List<string> saveDeviceID = new List<string>(); 를 반환하는 코드
+        public List<string> getSaveDeviceID()
+        {
+            return saveDeviceID;
+        }
+
     }
 }
 

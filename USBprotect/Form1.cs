@@ -8,6 +8,8 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using USBprotect.InternalFunction;
+using UsbSecurity;
 
 namespace USBprotect
 {
@@ -59,6 +61,31 @@ namespace USBprotect
             //1. >>버튼 클릭시 승인과정 거침
             //2. 승인되지 않을 시 메시지 박스로 승인되지 않았다고 알림
             //3. 어떤 정보를 불러와서 리스트 박스에 보이게할지 결정
+
+
+            // Form1의 Load 이벤트에 이벤트 핸들러 추가
+            this.Load += Form1_Load;
+
+         
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // UsbDeviceWatcher 인스턴스 생성 및 시작
+            UsbDeviceWatcher watcher = new UsbDeviceWatcher();
+            watcher.Start();
+
+            // FormEventBase에 Form1 인스턴스 설정
+            UnauthorizedUsbFormEvent feb = new UnauthorizedUsbFormEvent();
+            feb.GetForm(this);
+
+        }
+
+        public void OpenForm2(string message)
+        {
+            Form2 form2 = Form2.GetInstance(message);
+            form2.Show();
+        }   
     }
 }
+
