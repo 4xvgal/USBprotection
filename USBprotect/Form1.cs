@@ -20,6 +20,8 @@ namespace USBprotect
 
             // Form1의 Load 이벤트에 이벤트 핸들러 추가
             this.Load += Form1_Load;
+
+         
         }
 
         private void Form1_Load(object sender, EventArgs e)

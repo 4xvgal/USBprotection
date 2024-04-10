@@ -69,10 +69,11 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
-           
+            parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출  
             FormEventBase formEvent = new UnauthorizedUsbFormEvent();
             formEvent.PopUpForm();
             parsingUsbDevice.InsertData(); // USB 장치 인스턴스 추출
+   
         }
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트

@@ -18,6 +18,7 @@ namespace USBprotect
         // 임시로 터미널 띄우는 코드
 
         /*
+        
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -37,11 +38,11 @@ namespace USBprotect
 
             watcher.Stop();
         }
-        */
+           */
 
 
 
-           
+    
                   [STAThread]
                   static void Main()
                   {
@@ -49,6 +50,7 @@ namespace USBprotect
                       Application.SetCompatibleTextRenderingDefault(false);
                       Application.Run(new Form1());
                   }
+        
             
 
         

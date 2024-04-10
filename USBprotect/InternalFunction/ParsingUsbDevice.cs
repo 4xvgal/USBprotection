@@ -19,12 +19,8 @@ namespace UsbSecurity
     class ParsingUsbDevice
     {
     
-        private static List<string> saveDeviceID = new List<string>(); // 지금 까지 인식된 USB id 리스트 static 형
+        public static List<string> saveDeviceID = new List<string>(); // 지금 까지 인식된 USB id 리스트 static 형
 
-
-
-        
-       
         public static List<string> getCurrentUsbID() // .. 현재 연결된 USB id 를 추출하여 리스트에 추가하는 함수
         {
             List<string> currentDeviceID = new List<string>(); // 현재 연결된 USB ID 를 임시로 저장하는 내부 제너릭
@@ -70,16 +66,14 @@ namespace UsbSecurity
             saveDeviceID.RemoveAll(id => !externalDriveIDs.Contains(id)); // 전체 ID 리스트에서 현재 접속된 USB ID 를 비교해서 중복값이 존재하지 않을 경우 전체 리스트에서 삭제한다.
             // #USB 가 제거 되었을때 제거된 USB 의 ID 를 리스트 상에서 지웁니다.
 
-        }   
-
-        public void ShowList()
-        { // usb 장치의 인스턴스 id 를 출력하는 함수
-            Console.WriteLine("USB 장치 목록");
-            foreach (var number in saveDeviceID)
-            {
-                Console.WriteLine(number);
-            }
         }
+
+        //private static List<string> saveDeviceID = new List<string>(); 를 반환하는 코드
+        public List<string> getSaveDeviceID()
+        {
+            return saveDeviceID;
+        }
+
     }
 }
 
