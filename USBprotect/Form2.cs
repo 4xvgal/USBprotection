@@ -26,5 +26,5 @@ namespace USBprotect
             MessageBox.Show(message);
         }
     }
-    }
+ }
 
