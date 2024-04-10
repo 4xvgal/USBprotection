@@ -37,7 +37,7 @@ namespace USBprotect
 
         public void OpenForm2(string message)
         {
-            Form2 form2 = new Form2(message);
+            Form2 form2 = Form2.GetInstance(message);
             form2.Show();
         }   
     }

@@ -31,12 +31,12 @@ namespace UsbSecurity
             this.devcon = new DevconClass(); // DevconClass 인스턴스 생성
 
             // WMI query for USB device insertion events
-            var insertQuery = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_USBHub'");  // USB 장치 삽입 감시 쿼리
+            var insertQuery = new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'");  // USB 장치 삽입 감시 쿼리
             insertWatcher = new ManagementEventWatcher(insertQuery);                                                                        // USB 장치 삽입 감시 인스턴스
             insertWatcher.EventArrived += new EventArrivedEventHandler(DeviceInsertedEvent);                                                // USB 장치 삽입 이벤트 핸들러
 
             // WMI query for USB device removal events
-            var removeQuery = new WqlEventQuery("SELECT * FROM __InstanceDeletionEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_USBHub'"); // USB 장치 삽입 감시 쿼리
+            var removeQuery = new WqlEventQuery("SELECT * FROM __InstanceDeletionEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'"); // USB 장치 삽입 감시 쿼리
             removeWatcher = new ManagementEventWatcher(removeQuery);                                                                       // USB 장치 제거 감시 인스턴스
             removeWatcher.EventArrived += new EventArrivedEventHandler(DeviceRemovedEvent);                                                // USB 장치 제거 이벤트 핸들러
 

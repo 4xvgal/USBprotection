@@ -30,10 +30,7 @@ namespace USBprotect.InternalFunction
             {
                 form1instance.Invoke(new Action(() => form1instance.OpenForm2("비인가 USB 접속.")));
             }
-            else // Invoke가 필요없는 경우
-            {
-                form1instance.OpenForm2("비인가 USB 접속.");
-            }
+          
         }
     }
 
@@ -46,10 +43,7 @@ namespace USBprotect.InternalFunction
             {
                 form1instance.Invoke(new Action(() => form1instance.OpenForm2("블랙리스트 장치 식별!!")));
             }
-            else // Invoke가 필요없는 경우
-            {
-                form1instance.OpenForm2("블랙리스트 장치 식별!!");
-            }
+           
         }
     }
 
@@ -62,10 +56,7 @@ namespace USBprotect.InternalFunction
             {
                 form1instance.Invoke(new Action(() => form1instance.OpenForm2("usb 제거됨")));
             }
-            else // Invoke가 필요없는 경우
-            {
-                form1instance.OpenForm2("usb 제거됨");
-            }
+         
         }
     }
 }
