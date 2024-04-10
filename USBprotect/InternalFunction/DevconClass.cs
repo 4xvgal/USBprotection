@@ -20,7 +20,7 @@ namespace UsbSecurity
         private USBdevice usbDevice; // USB 장치 정보
         string devconPath = @"C:\Program Files (x86)\Windows Kits\10\Tools\10.0.22621.0\x64\devcon.exe"; // !! devcon 모듈의 경로에 대한 수정 요구됨 
 
-        private string DevconCommand(string command) // Devcon 명령어를 실행하는 메서드 , 매겨변수로 devcon 명령어를 받습니다. 
+        private string DevconCommand(string command) // Devcon 명령어를 실행하는 메서드 , 매개변수로 devcon 명령어를 받습니다. 
         {
             ProcessStartInfo psi = new ProcessStartInfo() // 프로세스 시작 정보
             {
@@ -67,6 +67,10 @@ namespace UsbSecurity
                 return false; // 존재하지 않음
             }
 
+        }
+        public void setDevice(USBdevice device) // USB 장치 정보 설정
+        {
+            usbDevice = device; // USB 장치 정보 설정
         }
 
         // --------------------------------------------- 요 아래에 함수 형태로 devcon 명령어 구현 --------------------------------------------------------- //
