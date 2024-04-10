@@ -15,6 +15,7 @@ namespace UsbSecurity
     using System;
     using System.Collections.Generic;
     using System.Management; // System.Management 네임스페이스 참조 필요
+    using USBprotect.src.dataClass;
 
     class ParsingUsbDevice
     {
@@ -32,7 +33,7 @@ namespace UsbSecurity
             
             foreach (ManagementObject queryObj in searcher.Get())
             {
-                string deviceId = queryObj["PNPDeviceID"].ToString(); // PNP 장치 ID를 가져옴
+                string deviceId = queryObj["PNPDeviceID"].ToString(); // PNP 장치 ID를 가져옴;
 
                 if (!string.IsNullOrEmpty(deviceId)) // 장치 ID가 비어있지 않다면
                 {   
