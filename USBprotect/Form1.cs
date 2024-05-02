@@ -21,26 +21,28 @@ namespace USBprotect
         private void LoadUSBDevices()
         {
             // 여기에 저장된 USB 디바이스 정보를 불러오는 코드를 작성
-            //SelectQuery query = new SelectQuery("Win32_PnPEntity");
-            //query.Condition = "PNPClass='USB'"; // USB 클래스에 해당하는 디바이스만 검색
+            SelectQuery query = new SelectQuery("Win32_PnPEntity");
+            query.Condition = "PNPClass='USB'"; // USB 클래스에 해당하는 디바이스만 검색
 
-            //ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-            //List<string> deviceList = new List<string>();
+            //생성자에는 'SelectQurey' 객체 전달해서 원하는 쿼리 실행
+            //"Win32_PnPEntity"클래스에서 USB 장치 검색하는 쿼리 실행
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            List<string> deviceList = new List<string>();
 
-            //foreach (ManagementObject usbDevice in searcher.Get())
-            //{
-                //deviceList.Add(usbDevice["DeviceID"].ToString()); // 디바이스 ID를 리스트에 추가
-           // }
+            foreach (ManagementObject usbDevice in searcher.Get())
+            {
+                deviceList.Add(usbDevice["DeviceID"].ToString()); // 디바이스 ID를 리스트에 추가
+            }
 
             // 리스트에 있는 디바이스 정보를 리스트박스에 표시
-            //foreach (string device in deviceList)
-            //{
+            foreach (string device in deviceList)
+            {
                 //listBox1.Items.Add(device);
-            //}
+            }
             // 예시
-            listBox1.Items.Add("Device1"); 
-            listBox1.Items.Add("Device2"); 
-            listBox1.Items.Add("Device3"); 
+            //listBox1.Items.Add("Device1"); 
+            //listBox1.Items.Add("Device2"); 
+            //listBox1.Items.Add("Device3"); 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace USBprotect
                 MessageBox.Show("USB 디바이스를 선택하세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //1. >>버튼 클릭시 승인과정 거침
-            //2. 승인되지 않을 시 메시지 박스로 승인되지 않았다고 알림
+            
             //3. 어떤 정보를 불러와서 리스트 박스에 보이게할지 결정
         }
     }
