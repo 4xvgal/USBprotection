@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using USBprotect.src.dataClass;
+using USBprotect.InternalFunction;
 
 // class information :: 
 // 프로그램 구현에 필요한 핵심 DEVCON 명령어들이 C# 에서 작동할 수 있도록 하는 함수형 명령코드의 집합입니다.
@@ -14,13 +14,12 @@ using USBprotect.src.dataClass;
 
 namespace UsbSecurity
 {
-    class DevconClass
+    class DevconCMD
     {
-  
-        private USBdevice usbDevice; // USB 장치 정보
+ 
         string devconPath = @"C:\Program Files (x86)\Windows Kits\10\Tools\10.0.22621.0\x64\devcon.exe"; // !! devcon 모듈의 경로에 대한 수정 요구됨 
 
-        private string DevconCommand(string command) // Devcon 명령어를 실행하는 메서드 , 매개변수로 devcon 명령어를 받습니다. 
+        public string DevconCommand(string command) // Devcon 명령어를 실행하는 메서드 , 매개변수로 devcon 명령어를 받습니다. 
         {
             ProcessStartInfo psi = new ProcessStartInfo() // 프로세스 시작 정보
             {
@@ -40,6 +39,8 @@ namespace UsbSecurity
 
                     ///예외처리 추가 필요
                 }
+
+                
             }
         }
         internal bool SetDevconPath(string path) // devcon 경로 설정
@@ -67,10 +68,7 @@ namespace UsbSecurity
             }
 
         }
-        public void setDevice(USBdevice device) // USB 장치 정보 설정
-        {
-            usbDevice = device; // USB 장치 정보 설정
-        }
+  
 
         // --------------------------------------------- 요 아래에 함수 형태로 devcon 명령어 구현 --------------------------------------------------------- //
 
@@ -78,7 +76,9 @@ namespace UsbSecurity
         {
             string result; // 결과 저장 변수
             result = DevconCommand("disable \"" + usbDevice.deviceID + "\""); //명령어 실행
-            string[] resultArray = result.Split('\n');// 결과를 줄 단위로 나눔
+            
+            
+            // string[] resultArray = result.Split('\n');// 결과를 줄 단위로 나눔
             ///결과 값을 이용해 bool로 성공유무 반환
 
 
@@ -86,7 +86,7 @@ namespace UsbSecurity
 
         internal void EnableDevice() // 허용하기 
         {
-           DevconCommand("enable \"" + usbDevice.deviceID + "\"");
+          // DevconCommand("enable \"" + usbDevice.deviceID + "\"");
         }
         
     }

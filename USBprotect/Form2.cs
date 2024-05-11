@@ -24,10 +24,10 @@ namespace USBprotect
             this.Load += Form2_Load; // Load 이벤트에 핸들러 연결
 
             //public List<string> getSaveDeviceID() 에서 foreach로 하나씩 꺼내서 리스트 박스에 넣는 작업
-            foreach (var id in ParsingUsbDevice.saveDeviceID)
-            {
-                listBox1.Items.Add(id);
-            }
+            //foreach (var id in ParsingUsbDevice.saveDeviceID)
+            //{
+               // listBox1.Items.Add(id);
+           // }
                 
        
         }

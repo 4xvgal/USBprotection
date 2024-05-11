@@ -72,7 +72,7 @@ namespace USBprotect
         private void Form1_Load(object sender, EventArgs e)
         {
             // UsbDeviceWatcher 인스턴스 생성 및 시작
-            UsbDeviceWatcher watcher = new UsbDeviceWatcher();
+            DeviceMonitor watcher = new DeviceMonitor();
             watcher.Start();
 
             // FormEventBase에 Form1 인스턴스 설정
