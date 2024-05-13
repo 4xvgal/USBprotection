@@ -99,9 +99,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ico\" />
     <Folder Include="src\Devcon\" />
     <Folder Include="src\InternalClass\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\Home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
