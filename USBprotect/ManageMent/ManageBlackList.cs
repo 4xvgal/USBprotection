@@ -35,8 +35,17 @@ namespace UsbSecurity
         }
         public void disableEveryDevice(string DeviceId) // 블랙리스트 장치 비활성화 메서드
         {
-                devconCMD.DevconCommand($"disable \"{DeviceId}\""); //명령어 실행   
+           devconCMD.DevconCommand($"disable \"{DeviceId}\""); //명령어 실행   
+
+           // 아래에 장치가 올바르게 차단되었는지 검증하는 코드 
+           // 장치가 차단되었는지 확인하는 코드
+
         }
-       
+        public void WhiteToBlack(string deviceid) //나중에 버튼 액션
+        {
+            // 블랙리스트 디바이스 중 특정 장치 ID 를 가지는 객체를 화이트 리스트로 이동 (LINQ) 로 구현
+            USBinfo.BlackListDevices.Add(USBinfo.WhiteListDevices.Where(x => x.DeviceId == deviceid).FirstOrDefault());
+        }
+
     }
 }

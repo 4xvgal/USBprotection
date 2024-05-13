@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Management;
+using System.Windows.Forms;
 using USBprotect;
 using USBprotect.InternalFunction;
 
@@ -60,9 +61,10 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
-            Console.WriteLine("USB 장치가 감지됨");
+            MessageBox.Show("장치가 감지됨.");
+
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
-            parsingUsbDevice.showUSBinfo();
+           
             //Console.WriteLine(" ");
             //usbConnectionEvent.OnUsbConnected();    // USB가 연결되면 UsbConnectionEvent의 OnUsbConnected() 메서드 호출
 

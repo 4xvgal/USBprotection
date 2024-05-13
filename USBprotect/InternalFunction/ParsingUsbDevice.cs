@@ -15,6 +15,7 @@ namespace UsbSecurity
     using System;
     using System.Collections.Generic;
     using System.Management; // System.Management 네임스페이스 참조 필요
+    using System.Windows.Forms;
     using USBprotect.InternalFunction;
 
     class ParsingUsbDevice
@@ -32,7 +33,7 @@ namespace UsbSecurity
                     DeviceName = queryObj["Name"]?.ToString() ?? "Unknown",
                     Status = queryObj["Status"]?.ToString() ?? "Unknown",
                     DeviceId = queryObj["DeviceID"]?.ToString() ?? "Unknown",
-                    PnpDeviceId = queryObj["PNPDeviceID"]?.ToString() ?? "Unknown",
+                    PnpDeviceId = queryObj["PNPDeviceID"]?.ToString() ?? "Unknown", 
                     Description = queryObj["Description"]?.ToString() ?? "Unknown",
                    
                 };
@@ -61,12 +62,10 @@ namespace UsbSecurity
         {
             foreach(var device in USBinfo.BlackListDevices)
             {
-                Console.WriteLine("Device Name : " + device.DeviceName);
-                Console.WriteLine("Status : " + device.Status);
-                Console.WriteLine("Device ID : " + device.DeviceId);
-                Console.WriteLine("Pnp Device ID : " + device.PnpDeviceId);
-                Console.WriteLine("Description : " + device.Description);
-                Console.WriteLine("=====================================");
+
+                MessageBox.Show("Device Name : " + device.DeviceName);
+           
+                
             }   
         }
       
