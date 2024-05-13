@@ -68,26 +68,5 @@ namespace UsbSecurity
             }
 
         }
-  
-
-        // --------------------------------------------- 요 아래에 함수 형태로 devcon 명령어 구현 --------------------------------------------------------- //
-
-        internal void DisableDevice() // 차단하기
-        {
-            string result; // 결과 저장 변수
-            result = DevconCommand("disable \"" + usbDevice.deviceID + "\""); //명령어 실행
-            
-            
-            // string[] resultArray = result.Split('\n');// 결과를 줄 단위로 나눔
-            ///결과 값을 이용해 bool로 성공유무 반환
-
-
-        }
-
-        internal void EnableDevice() // 허용하기 
-        {
-          // DevconCommand("enable \"" + usbDevice.deviceID + "\"");
-        }
-        
     }
 }
