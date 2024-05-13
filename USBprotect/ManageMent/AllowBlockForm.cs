@@ -18,12 +18,14 @@ namespace USBprotect
     {
         ManageAllowList manageAllowList = new ManageAllowList();
         ManageAllowList manageBlockList = new ManageAllowList();
-        DeviceMonitor watcher = new DeviceMonitor();
+        
         ParsingUsbDevice usbDevice = new ParsingUsbDevice();    
 
         public AllowBlockForm()
         {
-           
+
+            DeviceMonitor watcher = new DeviceMonitor();
+            watcher.Start();
 
             InitializeComponent();
             LoadUSBDevices();
@@ -39,14 +41,15 @@ namespace USBprotect
         }
         private void LoadUSBDevices()
         {
-            watcher.Start();
+           
             
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // BlackListDevices 리스트가 null이거나 비어 있는지 확인
-            if (USBinfo.BlackListDevices != null && USBinfo.BlackListDevices.Any())
+
+
+            if (USBinfo.BlackListDevices != null && USBinfo.BlackListDevices.Count > 0)
             {
                 foreach (var device in USBinfo.BlackListDevices)
                 {
@@ -55,11 +58,11 @@ namespace USBprotect
             }
             else
             {
+                // 리스트가 null이거나 비어있을 경우
                 MessageBox.Show("블랙리스트 장치가 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            // WhiteListDevices 리스트가 null이거나 비어 있는지 확인
-            if (USBinfo.WhiteListDevices != null && USBinfo.WhiteListDevices.Any())
+            if (USBinfo.WhiteListDevices != null && USBinfo.WhiteListDevices.Count > 0)
             {
                 foreach (var device in USBinfo.WhiteListDevices)
                 {
@@ -68,6 +71,7 @@ namespace USBprotect
             }
             else
             {
+                // 리스트가 null이거나 비어있을 경우
                 MessageBox.Show("화이트리스트 장치가 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -106,7 +110,7 @@ namespace USBprotect
             {
                 string selectedDevice = listBox2.SelectedItem.ToString(); // 선택된 디바이스
                 listBox1.Items.Add(selectedDevice); // 승인된 디바이스 목록에 추가
-                listBox2.Items.RemoveAt(listBox1.SelectedIndex); // 첫 번째 ListBox에서 선택된 디바이스 제거
+                listBox2.Items.RemoveAt(listBox2.SelectedIndex); // 첫 번째 ListBox에서 선택된 디바이스 제거
 
 
                 string[] parts = selectedDevice.Split('/');

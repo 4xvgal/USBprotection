@@ -18,6 +18,8 @@ namespace USBprotect
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        
+        
         [STAThread]
         static void Main()
         {
@@ -26,11 +28,12 @@ namespace USBprotect
             Application.Run(new AllowBlockForm());  // 'MainForm'은 앱의 메인 폼입니다
             
         }
+        
 
 
 
-
-        /*[DllImport("kernel32.dll", SetLastError = true)]
+        /*
+        [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
@@ -48,8 +51,9 @@ namespace USBprotect
             Console.ReadKey(); // 사용자 입력 대기
 
             watcher.Stop();
+        }
+        
         */
-
     }
     
 }

@@ -15,7 +15,6 @@ namespace UsbSecurity
     using System;
     using System.Collections.Generic;
     using System.Management; // System.Management 네임스페이스 참조 필요
-    using System.Windows.Forms;
     using USBprotect.InternalFunction;
 
     class ParsingUsbDevice
@@ -26,29 +25,25 @@ namespace UsbSecurity
             string wmiQuery = "SELECT Name, Status, DeviceID, PNPDeviceID, Description FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
 
-            foreach (ManagementObject queryObj in searcher.Get())
+            lock (USBinfo._lock) // 리스트 수정 작업에 대한 동기화 처리
             {
-                USBinfo usbDevice = new USBinfo
+                foreach (ManagementObject queryObj in searcher.Get())
                 {
-                    DeviceName = queryObj["Name"]?.ToString() ?? "Unknown",
-                    Status = queryObj["Status"]?.ToString() ?? "Unknown",
-                    DeviceId = queryObj["DeviceID"]?.ToString() ?? "Unknown",
-                    PnpDeviceId = queryObj["PNPDeviceID"]?.ToString() ?? "Unknown", 
-                    Description = queryObj["Description"]?.ToString() ?? "Unknown",
-                   
-                };
+                    USBinfo usbDevice = new USBinfo
+                    {
+                        DeviceName = queryObj["Name"]?.ToString() ?? "Unknown",
+                        Status = queryObj["Status"]?.ToString() ?? "Unknown",
+                        DeviceId = queryObj["DeviceID"]?.ToString() ?? "Unknown",
+                        PnpDeviceId = queryObj["PNPDeviceID"]?.ToString() ?? "Unknown",
+                        Description = queryObj["Description"]?.ToString() ?? "Unknown",
+                    };
 
-                // 중복 확인 및 처리
-                var existingDeviceIndex = USBinfo.BlackListDevices
-                .Select((device, index) => new { Device = device, Index = index })
-                .FirstOrDefault(x => AreDevicesEqual(x.Device, usbDevice))?.Index ?? -1;
-                if (existingDeviceIndex != -1) // 장치가 이미 존재하면 제거
-                {
-                    USBinfo.BlackListDevices.RemoveAt(existingDeviceIndex);
-                }
-                else // 장치가 존재하지 않으면 추가
-                {
-                    USBinfo.BlackListDevices.Add(usbDevice);
+                    var existingDevice = USBinfo.BlackListDevices.FirstOrDefault(x => AreDevicesEqual(x, usbDevice));
+                    if (existingDevice != null)
+                    {
+                        USBinfo.BlackListDevices.Remove(existingDevice); // 기존 장치 제거
+                    }
+                    USBinfo.BlackListDevices.Add(usbDevice); // 새 장치 추가
                 }
             }
         }
@@ -62,10 +57,12 @@ namespace UsbSecurity
         {
             foreach(var device in USBinfo.BlackListDevices)
             {
-
-                MessageBox.Show("Device Name : " + device.DeviceName);
-           
-                
+                Console.WriteLine("Device Name : " + device.DeviceName);
+                Console.WriteLine("Status : " + device.Status);
+                Console.WriteLine("Device ID : " + device.DeviceId);
+                Console.WriteLine("Pnp Device ID : " + device.PnpDeviceId);
+                Console.WriteLine("Description : " + device.Description);
+                Console.WriteLine("=====================================");
             }   
         }
       
