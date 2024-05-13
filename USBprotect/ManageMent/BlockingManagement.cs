@@ -14,6 +14,7 @@ namespace UsbSecurity
 {
     public partial class BlockingManagement : Form
     {
+
         public BlockingManagement()
         {
             InitializeComponent();
@@ -23,6 +24,14 @@ namespace UsbSecurity
                // 리스트 박스에 블랙리스트 장치들을 추가
                 listBox1.Items.Add(device.DeviceName);
             }
+
+            foreach(var newitem in listBox1.Items)
+            {
+                // newitem 캐스팅
+                USBinfo item = newitem as USBinfo;
+                USBinfo.WhiteListDevices.Add(item); 
+            }
+            
         }
 
       
