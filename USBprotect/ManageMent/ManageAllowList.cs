@@ -40,8 +40,19 @@ namespace USBsecurity
 
         public void BlacktoWhite(string deviceid)
         {
-            
-            USBinfo.WhiteListDevices.Add(USBinfo.BlackListDevices.FirstOrDefault(x => x.PnpDeviceId.Trim().Equals(deviceid.Trim(), StringComparison.OrdinalIgnoreCase)));
+
+            var device = USBinfo.BlackListDevices.FirstOrDefault(x => x.PnpDeviceId.Trim().Equals(deviceid.Trim(), StringComparison.OrdinalIgnoreCase));
+
+            if (device != null)
+            {
+                USBinfo.WhiteListDevices.Add(device);
+                USBinfo.BlackListDevices.Remove(device); // 화이트리스트에서 제거
+            }
+            else
+            {
+                // 예외 처리: 객체가 존재하지 않음
+                MessageBox.Show($"Device with ID {deviceid} not found in whitelist.");
+            }
 
         }
 

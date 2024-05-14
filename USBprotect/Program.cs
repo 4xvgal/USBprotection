@@ -25,7 +25,7 @@ namespace USBprotect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false); 
-            Application.Run(new AllowBlockForm());  // 'MainForm'은 앱의 메인 폼입니다
+            Application.Run(new MainForm());  // 'MainForm'은 앱의 메인 폼입니다
             
         }
         
