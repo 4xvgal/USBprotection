@@ -68,6 +68,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InternalFunction\DeviceMonitor.cs" />
+    <Compile Include="src\USBmanagement\IUSBmanagementSystem.cs" />
+    <Compile Include="src\USBmanagement\USBmanagementSystem.cs" />
+    <Compile Include="src\USBmanagement\USBxmlSerializer.cs" />
     <EmbeddedResource Include="ManageMent\AllowBlockForm.resx">
       <DependentUpon>AllowBlockForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,10 +101,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Devcon\" />
-    <Folder Include="src\InternalClass\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="ico\Home.png" />
   </ItemGroup>
