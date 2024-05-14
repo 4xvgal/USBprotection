@@ -16,13 +16,23 @@ namespace USBprotect
 
 
         /// <summary>
-        /// 해당 애플리케이션의 주 진입점입니다.
+        /// The main entry point for the application.
         /// </summary>
-        /// 
+        
+        
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false); 
+            Application.Run(new AllowBlockForm());  // 'MainForm'은 앱의 메인 폼입니다
+            
+        }
+        
 
 
 
-
+        /*
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -41,16 +51,9 @@ namespace USBprotect
             Console.ReadKey(); // 사용자 입력 대기
 
             watcher.Stop();
-            /*
-             // 수정 필요..
-                      Application.EnableVisualStyles();
-                      Application.SetCompatibleTextRenderingDefault(false);
-
-                      UsbDeviceWatcher watcher = new UsbDeviceWatcher();
-                      watcher.Start();
-                      Application.Run(new Form1());
-                  }
-                   */
         }
+        
+        */
     }
+    
 }

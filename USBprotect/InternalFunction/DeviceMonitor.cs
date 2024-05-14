@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Management;
+using System.Windows.Forms;
 using USBprotect;
 using USBprotect.InternalFunction;
 
@@ -21,7 +22,7 @@ namespace UsbSecurity
         private ManagementEventWatcher insertWatcher; // USB 장치 삽입 감시 객체
         private ManagementEventWatcher removeWatcher; // USB 장치 제거 감시 객체
         private DevconCMD devcon; // devcon 명령줄 객체 
-        private ParsingUsbDevice parsingUsbDevice; // 인스턴스 id 추철 객체
+        private ParsingUsbDevice parsingUsbDevice = new ParsingUsbDevice(); // 인스턴스 id 추철 객체
         //private UsbConnectionEvent usbConnectionEvent;
 
 
@@ -49,7 +50,7 @@ namespace UsbSecurity
         {
             insertWatcher.Start();
             removeWatcher.Start();
-            parsingUsbDevice = new ParsingUsbDevice(); // USB 장치 인스턴스 추출 객체 생성
+           
         }
 
         public void Stop() // USB 장치 감시 중지 인스턴스
@@ -60,9 +61,10 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
-            Console.WriteLine("USB 장치가 감지됨");
+            MessageBox.Show("장치가 감지됨.");
+
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
-            parsingUsbDevice.showUSBinfo();
+            parsingUsbDevice.showUSBinfo(); // USB 장치 정보 출력
             //Console.WriteLine(" ");
             //usbConnectionEvent.OnUsbConnected();    // USB가 연결되면 UsbConnectionEvent의 OnUsbConnected() 메서드 호출
 

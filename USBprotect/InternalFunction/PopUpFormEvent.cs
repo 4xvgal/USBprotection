@@ -14,9 +14,9 @@ namespace USBprotect.InternalFunction
 {
     public abstract class FormEventBase // 추상 클래스
     {
-        protected static Form1 form1instance; // Form1 인스턴스를 저장할 변수
+        protected static AllowBlockForm form1instance; // Form1 인스턴스를 저장할 변수
 
-        public void GetForm(Form1 form1) { form1instance = form1; }  // Form1 으로 부터 객체를 넘겨받아서 form1 에서 컨트롤 할 수 있도록  
+        public void GetForm(AllowBlockForm form1) { form1instance = form1; }  // Form1 으로 부터 객체를 넘겨받아서 form1 에서 컨트롤 할 수 있도록  
         public abstract void PopUpForm(); // 추상 메서드
 
     }
