@@ -28,25 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.tbg = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.종료 = new System.Windows.Forms.ToolStripMenuItem();
+            this.최대화 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tbg = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -87,29 +95,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "허용요청관리";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::USBprotect.Properties.Resources.Numbered_List;
-            this.button1.Location = new System.Drawing.Point(13, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 120);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::USBprotect.Properties.Resources.Circled_Check;
-            this.button2.Location = new System.Drawing.Point(148, 21);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 120);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -121,20 +106,6 @@
             this.label2.Size = new System.Drawing.Size(116, 18);
             this.label2.TabIndex = 9;
             this.label2.Text = "장치목록관리";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
-            this.button3.BackgroundImage = global::USBprotect.Properties.Resources.Move_Mail;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(283, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 120);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel3
             // 
@@ -146,7 +117,14 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(838, 508);
             this.panel3.TabIndex = 9;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(343, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(3, 238);
+            this.label6.TabIndex = 13;
             // 
             // panel4
             // 
@@ -170,30 +148,6 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "허용요청보내기";
             // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = global::USBprotect.Properties.Resources.Send;
-            this.button5.Location = new System.Drawing.Point(43, 21);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(120, 120);
-            this.button5.TabIndex = 1;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // tbg
-            // 
-            this.tbg.BackColor = System.Drawing.Color.Transparent;
-            this.tbg.BackgroundImage = global::USBprotect.Properties.Resources.shield;
-            this.tbg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tbg.Location = new System.Drawing.Point(31, 3);
-            this.tbg.Name = "tbg";
-            this.tbg.Size = new System.Drawing.Size(55, 49);
-            this.tbg.TabIndex = 3;
-            this.tbg.UseVisualStyleBackColor = false;
-            this.tbg.Click += new System.EventHandler(this.tbg_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(219)))), ((int)(((byte)(45)))));
@@ -216,23 +170,119 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "장치 모니터링 정상 작동중";
             // 
-            // label6
+            // notifyIcon1
             // 
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(343, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(3, 238);
-            this.label6.TabIndex = 13;
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.종료,
+            this.최대화});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(133, 56);
+            // 
+            // 종료
+            // 
+            this.종료.Name = "종료";
+            this.종료.Size = new System.Drawing.Size(132, 26);
+            this.종료.Text = "종료";
+            this.종료.Click += new System.EventHandler(this.종료_Click);
+            // 
+            // 최대화
+            // 
+            this.최대화.Name = "최대화";
+            this.최대화.Size = new System.Drawing.Size(132, 26);
+            this.최대화.Text = "최대화";
+            this.최대화.Click += new System.EventHandler(this.최대화_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(219)))), ((int)(((byte)(45)))));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = global::USBprotect.Properties.Resources.off_1;
+            this.button4.Location = new System.Drawing.Point(648, 21);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 55);
+            this.button4.TabIndex = 14;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Image = global::USBprotect.Properties.Resources.Send;
+            this.button5.Location = new System.Drawing.Point(43, 21);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(120, 120);
+            this.button5.TabIndex = 1;
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::USBprotect.Properties.Resources.Numbered_List;
+            this.button1.Location = new System.Drawing.Point(13, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 120);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::USBprotect.Properties.Resources.Circled_Check;
+            this.button2.Location = new System.Drawing.Point(148, 21);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 120);
+            this.button2.TabIndex = 1;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
+            this.button3.BackgroundImage = global::USBprotect.Properties.Resources.Move_Mail;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(283, 21);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(120, 120);
+            this.button3.TabIndex = 2;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // tbg
+            // 
+            this.tbg.BackColor = System.Drawing.Color.Transparent;
+            this.tbg.BackgroundImage = global::USBprotect.Properties.Resources.shield;
+            this.tbg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tbg.Location = new System.Drawing.Point(31, 3);
+            this.tbg.Name = "tbg";
+            this.tbg.Size = new System.Drawing.Size(55, 49);
+            this.tbg.TabIndex = 3;
+            this.tbg.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -241,6 +291,7 @@
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -262,5 +313,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 종료;
+        private System.Windows.Forms.ToolStripMenuItem 최대화;
+        private System.Windows.Forms.Button button4;
     }
 }

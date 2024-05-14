@@ -39,10 +39,10 @@ namespace USBprotect.InternalFunction
         public override void PopUpForm()
         {
             //invoke 란 다른 스레드에서 UI 컨트롤에 접근할 때 사용하는 메서드 
-            if (form1instance.InvokeRequired)  // 기존 코드에서 InvokeRequired를 사용하여 Invoke가 필요한지 확인
-            {
-                form1instance.Invoke(new Action(() => form1instance.OpenForm2("블랙리스트 장치 식별!!")));
-            }
+           // if (form1instance.InvokeRequired)  // 기존 코드에서 InvokeRequired를 사용하여 Invoke가 필요한지 확인
+            //{
+               // form1instance.Invoke(new Action(() => form1instance.OpenForm2("블랙리스트 장치 식별!!")));
+           // }
            
         }
     }

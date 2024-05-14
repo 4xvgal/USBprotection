@@ -22,27 +22,9 @@ namespace USBprotect
         ParsingUsbDevice usbDevice = new ParsingUsbDevice();
         public AllowBlockForm()
         {
-            DeviceMonitor watcher = new DeviceMonitor();
-            watcher.Start();
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // UsbDeviceWatcher 인스턴스 생성 및 시작
-            DeviceMonitor watcher = new DeviceMonitor();
-            watcher.Start();
-
-            // FormEventBase에 Form1 인스턴스 설정
-            UnauthorizedUsbFormEvent feb = new UnauthorizedUsbFormEvent();
-            feb.GetForm(this);
-
-        }
-
-        public void OpenForm2(string message)
-        {
-            Form2 form2 = Form2.GetInstance(message);
-            form2.Show();
-        }
+      
 
         //============  버튼 액션  ============//
 
@@ -102,8 +84,7 @@ namespace USBprotect
             //3. 어떤 정보를 불러와서 리스트 박스에 보이게할지 결정
 
 
-            // Form1의 Load 이벤트에 이벤트 핸들러 추가
-            this.Load += Form1_Load;
+        
         }
 
         private void button2_Click(object sender, EventArgs e) // 차단 버튼
@@ -130,8 +111,46 @@ namespace USBprotect
             //3. 어떤 정보를 불러와서 리스트 박스에 보이게할지 결정
 
 
-            // Form1의 Load 이벤트에 이벤트 핸들러 추가
-            this.Load += Form1_Load;
+         
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+
+        
+            MainForm.Instance.Show();
+        }
+
+        private void AllowBlockForm_Load(object sender, EventArgs e)
+        {
+            if (USBinfo.BlackListDevices != null && USBinfo.BlackListDevices.Count > 0)
+            {
+                listBox1.Items.Clear();
+                foreach (var device in USBinfo.BlackListDevices)
+                {
+                    listBox1.Items.Add($"{device.DeviceName} / {device.PnpDeviceId}");
+                }
+            }
+            else
+            {
+                // 리스트가 null이거나 비어있을 경우
+                MessageBox.Show("블랙리스트 장치가 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            if (USBinfo.WhiteListDevices != null && USBinfo.WhiteListDevices.Count > 0)
+            {
+                listBox2.Items.Clear();
+                foreach (var device in USBinfo.WhiteListDevices)
+                {
+                    listBox2.Items.Add($"{device.DeviceName} / {device.PnpDeviceId}");
+                }
+            }
+            else
+            {
+                // 리스트가 null이거나 비어있을 경우
+                MessageBox.Show("화이트리스트 장치가 없습니다.", "에러", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

@@ -65,9 +65,6 @@ namespace UsbSecurity
 
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
             parsingUsbDevice.showUSBinfo(); // USB 장치 정보 출력
-            //Console.WriteLine(" ");
-            //usbConnectionEvent.OnUsbConnected();    // USB가 연결되면 UsbConnectionEvent의 OnUsbConnected() 메서드 호출
-
 
             FormEventBase formEvent = new UnauthorizedUsbFormEvent();
             formEvent.PopUpForm();

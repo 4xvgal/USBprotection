@@ -73,9 +73,29 @@ namespace USBprotect.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Circled_X {
+            get {
+                object obj = ResourceManager.GetObject("Circled X", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Home {
             get {
                 object obj = ResourceManager.GetObject("Home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap image_removebg_preview__1__2 {
+            get {
+                object obj = ResourceManager.GetObject("image-removebg-preview (1) 2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +126,16 @@ namespace USBprotect.Properties {
         internal static System.Drawing.Bitmap Numbered_List {
             get {
                 object obj = ResourceManager.GetObject("Numbered List", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap off_1 {
+            get {
+                object obj = ResourceManager.GetObject("off 1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

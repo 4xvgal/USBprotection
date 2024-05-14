@@ -141,5 +141,17 @@
   <ItemGroup>
     <None Include="ico\Send.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\Circled X.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\image-removebg-preview %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\image-removebg-preview %281%29 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\off 1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
