@@ -12,14 +12,16 @@ using USBprotect.InternalFunction;
 using UsbSecurity;
 using USBsecurity;
 
+
 namespace USBprotect
 {
     public partial class AllowBlockForm : Form
     {
         ManageAllowList manageAllowList = new ManageAllowList();
         ManageBlackList manageBlockList = new ManageBlackList();
-        
-        ParsingUsbDevice usbDevice = new ParsingUsbDevice();    
+
+        ParsingUsbDevice usbDevice = new ParsingUsbDevice();
+
 
         public AllowBlockForm()
         {
@@ -28,15 +30,10 @@ namespace USBprotect
             watcher.Start();
 
             InitializeComponent();
-         
 
-            listBox1.MouseDown += new MouseEventHandler(listBox1_MouseDown);
-            listBox2.DragEnter += new DragEventHandler(listBox2_DragEnter);
-            listBox2.DragDrop += new DragEventHandler(listBox2_DragDrop);
 
-            listBox2.MouseDown += new MouseEventHandler(listBox2_MouseDown);
-            listBox1.DragEnter += new DragEventHandler(listBox1_DragEnter);
-            listBox1.DragDrop += new DragEventHandler(listBox1_DragDrop);
+            listBox1.AllowDrop = true;
+            listBox2.AllowDrop = true;
 
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -64,7 +61,7 @@ namespace USBprotect
 
             // 버튼 누르면 리스트 전체 순회 해서 데이터 다시 로드
             if (USBinfo.BlackListDevices != null && USBinfo.BlackListDevices.Count > 0)
-            {   
+            {
                 listBox1.Items.Clear();
                 foreach (var device in USBinfo.BlackListDevices)
                 {
@@ -102,10 +99,10 @@ namespace USBprotect
 
                 string[] parts = selectedDevice.Split('/'); // 선택된 디바이스의 정보를 가져옴 ( 앞에 장치 이름 제외하고 뒤에 id 정보만 가져옴)
                 string result = parts[parts.Length - 1];
-                
+
                 manageAllowList.BlacktoWhite(result); // 선택된 디바이스를 블랙리스트에서화이트 리스트로 이동
                 MessageBox.Show(selectedDevice + "가 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
             else
             {
@@ -148,83 +145,118 @@ namespace USBprotect
             this.Load += Form1_Load;
         }
 
-
-        //============  드래그 액션  ============//
+        //======================================================
 
         private void listBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (listBox1.Items.Count == 0)
-                return;
+            DragDropEffects effect;
 
             int index = listBox1.IndexFromPoint(e.X, e.Y);
+            // listBox1.SelectedIndex를 사용하지 않으므로
+            // 오른쪽 마우스 버튼의 드래그&드롭도 처리 가능
+
             if (index != ListBox.NoMatches)
             {
-                // 데이터를 드래그 시작
-                listBox1.DoDragDrop(listBox1.Items[index].ToString(), DragDropEffects.Move);
-            }
-        }
-
-        private void listBox1_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.StringFormat))
-            {
-                e.Effect = DragDropEffects.Move;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
+                string item = (string)listBox1.Items[index];
+                effect = DoDragDrop(item, DragDropEffects.Copy | DragDropEffects.Move);
+                if (effect == DragDropEffects.Move)
+                {
+                    listBox1.Items.RemoveAt(index);
+                }
             }
         }
 
         private void listBox1_DragDrop(object sender, DragEventArgs e)
         {
-            string selectedDevice = e.Data.GetData(DataFormats.StringFormat).ToString();
-            listBox1.Items.Add(selectedDevice); // 아이템을 listBox2에 추가
-            listBox2.Items.Remove(selectedDevice); // 원래 위치에서 아이템 제거
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                listBox1.Items.Add(e.Data.GetData(DataFormats.StringFormat));
+            }
+        }
 
-            string[] parts = selectedDevice.Split('/'); // 선택된 디바이스의 정보를 가져옴 ( 앞에 장치 이름 제외하고 뒤에 id 정보만 가져옴)
-            string result = parts[parts.Length - 1];
-            manageBlockList.WhiteToBlack(result); // 선택된 디바이스를 화이트리스트에서 블랙리스트로 이동
-            MessageBox.Show(selectedDevice + "가 차단되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        private void listBox1_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                // StringFormat 형식을 허용하기 때문에 다른 프로그램(노트패드 등)
+                // 에서 문자열을 선택하고 드래그&드롭도 가능하다.
+
+                if ((e.KeyState & 8) != 0)
+                {
+                    e.Effect = DragDropEffects.Copy;
+          
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.Move;
+                }
+            }
         }
 
         private void listBox2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (listBox2.Items.Count == 0)
-                return;
+            DragDropEffects effect;
 
             int index = listBox2.IndexFromPoint(e.X, e.Y);
+            // listBox1.SelectedIndex를 사용하지 않으므로
+            // 오른쪽 마우스 버튼의 드래그&드롭도 처리 가능
+
             if (index != ListBox.NoMatches)
             {
-                // 데이터를 드래그 시작
-                listBox2.DoDragDrop(listBox2.Items[index].ToString(), DragDropEffects.Move);
+                string item = (string)listBox2.Items[index];
+                effect = DoDragDrop(item, DragDropEffects.Copy | DragDropEffects.Move);
+                if (effect == DragDropEffects.Move)
+                {
+                    listBox2.Items.RemoveAt(index);
+                }
             }
         }
-
-        private void listBox2_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.StringFormat))
-            {
-                e.Effect = DragDropEffects.Move;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
+        
 
         private void listBox2_DragDrop(object sender, DragEventArgs e)
         {
-            string selectedDevice = e.Data.GetData(DataFormats.StringFormat).ToString();
-            listBox2.Items.Add(selectedDevice); // 아이템을 listBox2에 추가
-            listBox1.Items.Remove(selectedDevice); // 원래 위치에서 아이템 제거
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                listBox2.Items.Add(e.Data.GetData(DataFormats.StringFormat));
 
-            string[] parts = selectedDevice.Split('/'); // 선택된 디바이스의 정보를 가져옴 ( 앞에 장치 이름 제외하고 뒤에 id 정보만 가져옴)
-            string result = parts[parts.Length - 1];
-            manageBlockList.WhiteToBlack(result); // 선택된 디바이스를 화이트리스트에서 블랙리스트로 이동
-            MessageBox.Show(selectedDevice + "가 차단되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string selectedDevice = listBox2.SelectedItem.ToString(); // 선택된 디바이스
+                listBox1.Items.Add(selectedDevice); // 차단된 디바이스 목록에 추가
+                listBox2.Items.RemoveAt(listBox2.SelectedIndex); // 첫 번째 ListBox에서 선택된 디바이스 제거
+
+                string[] parts = selectedDevice.Split('/');
+                string result = parts[parts.Length - 1];
+
+                manageBlockList.WhiteToBlack(result); // 선택된 디바이스를 화이트리스트에서 블랙리스트로 이동
+            }
         }
 
-    }
+        private void listBox2_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                // StringFormat 형식을 허용하기 때문에 다른 프로그램(노트패드 등)
+                // 에서 문자열을 선택하고 드래그&드롭도 가능하다.
+
+                if ((e.KeyState & 8) != 0)
+                {
+                    e.Effect = DragDropEffects.Copy;
+
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.Move;
+                }
+            }
+        }
+
+
+            //============  드래그 액션  ============//
+
+            //lisbox1 과 listbox2 의 요소를 각각 선택 및 드래그 하여 양쪽 리스트에 추가할 수 있도록 한다
+            // 이동할떄는 원래 있던 리스트에서 해당 요소를 제거하며, 동일 리스트에서 동일한 리스로 이동은 불가능하다
+
+
+        }
 }
+
 
