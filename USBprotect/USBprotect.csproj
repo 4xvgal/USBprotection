@@ -118,9 +118,6 @@
     <None Include="ico\maineffect.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ico\List.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ico\Numbered List.png" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ico\Circled X.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ico\image-removebg-preview %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ico\image-removebg-preview %281%29 2.png" />
