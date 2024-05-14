@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UsbSecurity;
 
 namespace USBsecurity
@@ -39,8 +40,8 @@ namespace USBsecurity
 
         public void BlacktoWhite(string deviceid)
         {
-           // 블랙리스트 디바이스 중 특정 장치 ID 를 가지는 객체를 화이트 리스트로 이동 (LINQ) 로 구현
-           USBinfo.WhiteListDevices.Add(USBinfo.BlackListDevices.Where(x => x.DeviceId == deviceid).FirstOrDefault());
+            
+            USBinfo.WhiteListDevices.Add(USBinfo.BlackListDevices.FirstOrDefault(x => x.PnpDeviceId.Trim().Equals(deviceid.Trim(), StringComparison.OrdinalIgnoreCase)));
 
         }
 

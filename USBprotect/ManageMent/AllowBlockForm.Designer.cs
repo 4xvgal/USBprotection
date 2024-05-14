@@ -32,7 +32,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2G = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,7 +51,6 @@
             this.label1.Size = new System.Drawing.Size(89, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "차단 목록";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // listBox1
             // 
@@ -91,18 +90,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2G
+            // button2
             // 
-            this.button2G.BackColor = System.Drawing.Color.White;
-            this.button2G.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2G.Location = new System.Drawing.Point(679, 509);
-            this.button2G.Margin = new System.Windows.Forms.Padding(4);
-            this.button2G.Name = "button2G";
-            this.button2G.Size = new System.Drawing.Size(101, 50);
-            this.button2G.TabIndex = 5;
-            this.button2G.Text = "차단";
-            this.button2G.UseVisualStyleBackColor = false;
-            this.button2G.Click += new System.EventHandler(this.button2_Click);
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.Location = new System.Drawing.Point(679, 509);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(101, 50);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "차단";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel4
             // 
@@ -114,7 +113,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1057, 81);
             this.panel4.TabIndex = 9;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // button4
             // 
@@ -155,7 +153,7 @@
             this.ClientSize = new System.Drawing.Size(1000, 619);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2G);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel4);
@@ -163,7 +161,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AllowBlockForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.AllowBlockForm_Load);
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -176,7 +173,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2G;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button4;
