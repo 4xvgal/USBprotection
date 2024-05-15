@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -36,7 +37,7 @@ namespace UsbSecurity
         }
         public void disableEveryDevice(string DeviceId) // 블랙리스트 장치 비활성화 메서드
         {
-           MessageBox.Show("장치 비활성화");
+       
            devconCMD.DevconCommand($"disable \"@{DeviceId}\""); //명령어 실행   
 
            // 아래에 장치가 올바르게 차단되었는지 검증하는 코드 
@@ -46,14 +47,21 @@ namespace UsbSecurity
 
 
         }
-        public void WhiteToBlack(string deviceid) //나중에 버튼 액션
+        public void WhiteToBlack(string deviceid)
         {
             var device = USBinfo.WhiteListDevices.FirstOrDefault(x => x.PnpDeviceId.Trim().Equals(deviceid.Trim(), StringComparison.OrdinalIgnoreCase));
 
             if (device != null)
             {
-                USBinfo.BlackListDevices.Add(device);
-                USBinfo.WhiteListDevices.Remove(device); // 화이트리스트에서 제거
+                // 임시 변수를 사용하여 컬렉션 변경 이벤트 핸들러가 완료된 후 컬렉션 수정
+                var toAdd = device;
+                var toRemove = device;
+
+                // 실제 컬렉션 수정은 이벤트 핸들러 외부에서 수행
+                Task.Run(() => {
+                    USBinfo.BlackListDevices.Add(toAdd);
+                    USBinfo.WhiteListDevices.Remove(toRemove);
+                });
             }
             else
             {

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
+using NUnit.Framework;  
 
 // class information :: 
 // 현재 연결된 USB 저장장치 (이동저장장치만)의 인스턴스 ID 를 추출합니다. 
@@ -21,9 +22,10 @@ namespace UsbSecurity
     using System.Windows.Forms;
     using USBprotect.InternalFunction;
 
+    [TestFixture]
     class ParsingUsbDevice
     {
-
+        [Test]
         public void GetUsbDevices()
         {
             string wmiQuery = "SELECT Name, Status, DeviceID, PNPDeviceID, Description FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";

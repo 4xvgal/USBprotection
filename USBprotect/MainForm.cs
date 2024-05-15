@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +49,21 @@ namespace USBprotect
         }
 
 
+        public bool IsUserAdmin()
+        {
+            try
+            {
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(user);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("권한 확인 중 오류가 발생했습니다: " + ex.Message);
+                return false;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             panel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel1.Width, panel1.Height, 30, 30));
@@ -70,16 +87,49 @@ namespace USBprotect
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
 
-            // 새 폼 생성
-            Form AllowBlOCKForm = new AllowBlockForm();  // Form2는 새로 열 폼의 클래스 이름입니다.
+            if (IsUserAdmin())
+            {
+                this.Hide();
 
-            // 새 폼이 닫힐 때 애플리케이션 종료 설정
-            AllowBlOCKForm.Closed += (s, args) => this.Close();
+                // 새 폼 생성
+                Form AllowBlOCKForm = new AllowBlockForm();  // Form2는 새로 열 폼의 클래스 이름입니다.
 
-            // 새 폼 표시
-            AllowBlOCKForm.Show();
+                // 새 폼이 닫힐 때 애플리케이션 종료 설정
+                AllowBlOCKForm.Closed += (s, args) => this.Close();
+
+                // 새 폼 표시
+                AllowBlOCKForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("이 기능을 사용하려면 관리자 권한이 필요합니다. 애플리케이션을 관리자 권한으로 다시 실행하세요.", "권한 요구", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (IsUserAdmin())
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("이 기능을 사용하려면 관리자 권한이 필요합니다. 애플리케이션을 관리자 권한으로 다시 실행하세요.", "권한 요구", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (IsUserAdmin())
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("이 기능을 사용하려면 관리자 권한이 필요합니다. 애플리케이션을 관리자 권한으로 다시 실행하세요.", "권한 요구", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -133,6 +183,8 @@ namespace USBprotect
             label1.Text = "장치 모니터링 정상 작동중";
             deviceMonitor.Start();
         }
+
+   
     }
     
 }

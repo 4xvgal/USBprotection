@@ -17,28 +17,35 @@ namespace UsbSecurity
     class DevconCMD
     {
  
-        string devconPath = @"C:\Program Files (x86)\Windows Kits\10\Tools\10.0.22621.0\x64\devcon.exe"; // !! devcon 모듈의 경로에 대한 수정 요구됨 
+         string devconPath = @"C:\Program Files (x86)\Windows Kits\10\Tools\10.0.22621.0\x64\devcon.exe"; // !! devcon 모듈의 경로에 대한 수정 요구됨 
 
-        public string DevconCommand(string command) // Devcon 명령어를 실행하는 메서드 , 매개변수로 devcon 명령어를 받습니다. 
+        public string DevconCommand(string command)
         {
-            ProcessStartInfo psi = new ProcessStartInfo() // 프로세스 시작 정보
+            ProcessStartInfo psi = new ProcessStartInfo()
             {
-                FileName = devconPath,         // Devcon 경로
-                Arguments = command,           // 명령어
-                UseShellExecute = true,       // 셸 실행 사용 안함
-                Verb = "runas",               // 관리자 권한으로 실행
-                CreateNoWindow = true    // 창 생성 안함
+                FileName = devconPath,
+                Arguments = command,
+                UseShellExecute = true, // 셸 실행 사용
+                Verb = "runas", // 관리자 권한 요청
+                CreateNoWindow = true
             };
 
-            using (Process process = Process.Start(psi)) // 프로세스 시작
+            try
             {
-                using (StreamReader reader = process.StandardOutput) // 프로세스 읽어옴...
+                using (Process process = Process.Start(psi))
                 {
-                    string result = reader.ReadToEnd(); 
-                    return result;
-
-                    ///예외처리 추가 필요
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+                    if (process.ExitCode == 0)
+                        return output;
+                    else
+                        return $"Failed with error: {error}";
                 }
+            }
+            catch (Exception ex)
+            {
+                return $"Error executing Devcon command: {ex.Message}";
             }
         }
 

@@ -63,7 +63,7 @@ namespace USBprotect
         private void button1_Click(object sender, EventArgs e) // 승인버튼
         {
             if (listBox1.SelectedIndex != -1) // 아이템이 선택되었는지 확인
-            {
+            {   
                 string selectedDevice = listBox1.SelectedItem.ToString(); // 선택된 디바이스
                 listBox2.Items.Add(selectedDevice); // 승인된 디바이스 목록에 추가
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex); // 첫 번째 ListBox에서 선택된 디바이스 제거
@@ -71,7 +71,7 @@ namespace USBprotect
                 string[] parts = selectedDevice.Split('/'); // 선택된 디바이스의 정보를 가져옴 ( 앞에 장치 이름 제외하고 뒤에 id 정보만 가져옴)
                 string result = parts[parts.Length - 1];
 
-                manageAllowList.BlacktoWhite(result); // 선택된 디바이스를 블랙리스트에서화이트 리스트로 이동
+                manageAllowList.BlackToWhite(result); // 선택된 디바이스를 블랙리스트에서화이트 리스트로 이동
                 MessageBox.Show(selectedDevice + "가 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
