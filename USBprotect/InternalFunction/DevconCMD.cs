@@ -25,8 +25,8 @@ namespace UsbSecurity
             {
                 FileName = devconPath,         // Devcon 경로
                 Arguments = command,           // 명령어
-                UseShellExecute = false,       // 셸 실행 사용 안함
-                RedirectStandardOutput = true, // 표준 출력 리다이렉트
+                UseShellExecute = true,       // 셸 실행 사용 안함
+                Verb = "runas",               // 관리자 권한으로 실행
                 CreateNoWindow = true    // 창 생성 안함
             };
 
@@ -39,10 +39,9 @@ namespace UsbSecurity
 
                     ///예외처리 추가 필요
                 }
-
-                
             }
         }
+
         internal bool SetDevconPath(string path) // devcon 경로 설정
         {
             devconPath = path; // 경로 설정

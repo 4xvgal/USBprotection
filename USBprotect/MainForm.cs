@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,7 +16,8 @@ namespace USBprotect
     public partial class MainForm : Form
     {
         private static MainForm _instance;
-        private DeviceMonitor deviceMonitor = new DeviceMonitor();  
+        private DeviceMonitor deviceMonitor = new DeviceMonitor();
+        private bool isToggled = false;  // 토글 상태를 추적하는 변
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect,int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
@@ -25,10 +27,17 @@ namespace USBprotect
             tbg.FlatStyle = FlatStyle.Flat;  // 버튼 스타일
             tbg.FlatAppearance.BorderSize = 0;  // 테두리 없애기
             tbg.BackColor = Color.Transparent;
-            tbg.Enabled = true;
+            tbg.Visible = true;
+
+            tbgT.FlatStyle = FlatStyle.Flat;  // 버튼 스타일
+            tbgT.FlatAppearance.BorderSize = 0;  // 테두리 없애기
+            tbgT.BackColor = Color.Transparent;
+            tbgT.Visible = false;
+
             _instance = this;
 
             deviceMonitor.Start(); // USB 장치 감시 시작
+        
         }
 
 
@@ -107,6 +116,22 @@ namespace USBprotect
         {
             deviceMonitor.Stop(); // USB 장치 감시 중지   
             Application.Exit();
+        }
+
+        private void tbg_Click(object sender, EventArgs e)
+        {
+            tbg.Visible = false;
+            tbgT.Visible = true;
+            label1.Text = "장치 모니터링 비활성화 됨";
+            deviceMonitor.Stop();
+        }
+
+        private void tbgT_Click(object sender, EventArgs e)
+        {
+            tbgT.Visible = false;
+            tbg.Visible = true;
+            label1.Text = "장치 모니터링 정상 작동중";
+            deviceMonitor.Start();
         }
     }
     

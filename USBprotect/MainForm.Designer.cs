@@ -50,6 +50,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tbg = new System.Windows.Forms.Button();
+            this.tbgT = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -153,9 +154,10 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(219)))), ((int)(((byte)(45)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tbg);
-            this.panel1.Location = new System.Drawing.Point(-19, 21);
+            this.panel1.Controls.Add(this.tbgT);
+            this.panel1.Location = new System.Drawing.Point(-19, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(364, 55);
+            this.panel1.Size = new System.Drawing.Size(364, 64);
             this.panel1.TabIndex = 13;
             // 
             // label1
@@ -164,7 +166,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("HY견고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(102, 18);
+            this.label1.Location = new System.Drawing.Point(96, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(224, 18);
             this.label1.TabIndex = 13;
@@ -266,11 +268,24 @@
             this.tbg.BackColor = System.Drawing.Color.Transparent;
             this.tbg.BackgroundImage = global::USBprotect.Properties.Resources.shield;
             this.tbg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tbg.Location = new System.Drawing.Point(31, 3);
+            this.tbg.Location = new System.Drawing.Point(20, 4);
             this.tbg.Name = "tbg";
             this.tbg.Size = new System.Drawing.Size(55, 49);
             this.tbg.TabIndex = 3;
             this.tbg.UseVisualStyleBackColor = false;
+            this.tbg.Click += new System.EventHandler(this.tbg_Click);
+            // 
+            // tbgT
+            // 
+            this.tbgT.BackColor = System.Drawing.Color.Transparent;
+            this.tbgT.BackgroundImage = global::USBprotect.Properties.Resources.disableshield;
+            this.tbgT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tbgT.Location = new System.Drawing.Point(20, -5);
+            this.tbgT.Name = "tbgT";
+            this.tbgT.Size = new System.Drawing.Size(55, 69);
+            this.tbgT.TabIndex = 14;
+            this.tbgT.UseVisualStyleBackColor = false;
+            this.tbgT.Click += new System.EventHandler(this.tbgT_Click);
             // 
             // MainForm
             // 
@@ -318,5 +333,6 @@
         private System.Windows.Forms.ToolStripMenuItem 종료;
         private System.Windows.Forms.ToolStripMenuItem 최대화;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button tbgT;
     }
 }

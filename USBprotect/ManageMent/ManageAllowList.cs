@@ -29,13 +29,15 @@ namespace USBsecurity
                 foreach (var Item in e.NewItems) // 새로 추가된 항목들을 가져옴
                 {
                     USBinfo newItem = Item as USBinfo; // USBinfo 클래스로 캐스팅
+ 
                     disableEveryDevice(newItem.DeviceId); // 장치 활성화 해버리기
                 }
             }
         }
         public void disableEveryDevice(string DeviceId) // 장치 활성화 메서드
         {
-            devconCMD.DevconCommand($"enable \"{DeviceId}\""); //명령어 실행   
+            MessageBox.Show($"enable \"@{DeviceId}\"");
+            devconCMD.DevconCommand($"enable \"@{DeviceId}\""); //명령어 실행   
         }
 
         public void BlacktoWhite(string deviceid)
@@ -47,6 +49,7 @@ namespace USBsecurity
             {
                 USBinfo.WhiteListDevices.Add(device);
                 USBinfo.BlackListDevices.Remove(device); // 화이트리스트에서 제거
+              
             }
             else
             {

@@ -147,5 +147,8 @@
   <ItemGroup>
     <None Include="ico\off 1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ico\disableshield.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

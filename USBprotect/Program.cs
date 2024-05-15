@@ -19,7 +19,7 @@ namespace USBprotect
         /// The main entry point for the application.
         /// </summary>
         
-        
+    
         [STAThread]
         static void Main()
         {
@@ -29,7 +29,7 @@ namespace USBprotect
             
         }
         
-
+   
 
 
         /*
@@ -53,7 +53,7 @@ namespace USBprotect
             watcher.Stop();
         }
         
-        */
+       */
     }
     
 }

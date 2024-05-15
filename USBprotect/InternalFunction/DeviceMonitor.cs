@@ -61,11 +61,11 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
-            AllowBlockForm allowBlockForm = new AllowBlockForm();
+
 
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
             parsingUsbDevice.showUSBinfo(); // USB 장치 정보 출력
-
+            AllowBlockForm allowBlockForm = new AllowBlockForm();
             FormEventBase formEvent = new UnauthorizedUsbFormEvent();
             formEvent.PopUpForm();
        

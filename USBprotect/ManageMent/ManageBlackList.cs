@@ -36,10 +36,14 @@ namespace UsbSecurity
         }
         public void disableEveryDevice(string DeviceId) // 블랙리스트 장치 비활성화 메서드
         {
-           devconCMD.DevconCommand($"disable \"{DeviceId}\""); //명령어 실행   
+           MessageBox.Show("장치 비활성화");
+           devconCMD.DevconCommand($"disable \"@{DeviceId}\""); //명령어 실행   
 
            // 아래에 장치가 올바르게 차단되었는지 검증하는 코드 
            // 장치가 차단되었는지 확인하는 코드
+           // 차단된 장치가 있는지 확인하는 코드
+
+
 
         }
         public void WhiteToBlack(string deviceid) //나중에 버튼 액션
