@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UsbSecurity;
 
 namespace USBprotect.USBmanagement
 {
-    public class UsbManagementSystem : IUsbManagementSystem
+    public class UsbManagementSystem2 : IUsbManagementSystem
     {
         private List<USBinfo> _whiteListedUsb;
         private List<USBinfo> _blackListedUsb;
         public readonly string Filepath;
 
-        public UsbManagementSystem(string filepath)
+        public UsbManagementSystem2(string filepath)
         {
             Filepath = filepath;
             _whiteListedUsb = new List<USBinfo>();

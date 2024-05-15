@@ -85,7 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InternalFunction\DeviceMonitor.cs" />
     <Compile Include="src\USBmanagement\IUSBmanagementSystem.cs" />
-    <Compile Include="src\USBmanagement\test\UsbManagementSystemTests.cs" />
+    <Compile Include="src\USBmanagement\test\UsbMangementSystemTests.cs" />
     <Compile Include="src\USBmanagement\test\UsBxmlSerializerTests.cs" />
     <Compile Include="src\USBmanagement\USBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\USBxmlSerializer.cs" />
