@@ -19,17 +19,17 @@ namespace USBprotect
         /// The main entry point for the application.
         /// </summary>
         
-    
+        
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false); 
-            Application.Run(new MainForm());  // 'MainForm'은 앱의 메인 폼입니다
+            Application.Run(new AllowBlockForm());  // 'MainForm'은 앱의 메인 폼입니다
             
         }
         
-   
+
 
 
         /*
@@ -53,7 +53,7 @@ namespace USBprotect
             watcher.Stop();
         }
         
-       */
+        */
     }
     
 }
