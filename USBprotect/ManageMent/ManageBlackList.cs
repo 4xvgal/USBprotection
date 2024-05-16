@@ -53,6 +53,7 @@ namespace UsbSecurity
 
             if (device != null)
             {
+                // 비동기 처리: 장치를 블랙리스트로 이동
                 // 임시 변수를 사용하여 컬렉션 변경 이벤트 핸들러가 완료된 후 컬렉션 수정
                 var toAdd = device;
                 var toRemove = device;

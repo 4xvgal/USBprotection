@@ -24,7 +24,8 @@ namespace USBprotect
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect,int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
         public MainForm()
-        {
+        { 
+            // 버튼 디자인
             InitializeComponent();
             tbg.FlatStyle = FlatStyle.Flat;  // 버튼 스타일
             tbg.FlatAppearance.BorderSize = 0;  // 테두리 없애기
@@ -49,7 +50,8 @@ namespace USBprotect
         }
 
 
-        public bool IsUserAdmin()
+  
+        public bool IsUserAdmin() // 관리자 권환 확인 
         {
             try
             {
@@ -64,6 +66,7 @@ namespace USBprotect
             }
         }
 
+        // UI 동글동글하게 만드는거
         private void MainForm_Load(object sender, EventArgs e)
         {
             panel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel1.Width, panel1.Height, 30, 30));
@@ -90,7 +93,7 @@ namespace USBprotect
 
             if (IsUserAdmin())
             {
-                this.Hide();
+                this.Hide();// 현재 폼 (Form1) 숨기기
 
                 // 새 폼 생성
                 Form AllowBlOCKForm = new AllowBlockForm();  // Form2는 새로 열 폼의 클래스 이름입니다.
@@ -132,14 +135,14 @@ namespace USBprotect
             }
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e) // 트레이 아이콘 더블클릭 이벤트
         {
             this.Show();  // 폼 표시
             this.WindowState = FormWindowState.Normal;
             notifyIcon1.Visible = false;  // 트레이 아이콘 숨기기
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) // 폼 종료 이벤트
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -149,26 +152,27 @@ namespace USBprotect
             }
         }
 
-        private void 종료_Click(object sender, EventArgs e)
+        //트레이란? 컴퓨터 오른쪽 아래 보면 시계 옆에 있는 아이콘들 백그라운드 에서 조작할 수 있는 아이콘
+        private void 종료_Click(object sender, EventArgs e) // 트레이 액션 
         {
             deviceMonitor.Stop(); // USB 장치 감시 중지
             Application.Exit();
         }
 
-        private void 최대화_Click(object sender, EventArgs e)
+        private void 최대화_Click(object sender, EventArgs e) // 트레이 액션
         {
             this.Show();  // 폼을 보여줍니다.
             this.WindowState = FormWindowState.Maximized;  // 폼을 최대화 상태로 변경
             notifyIcon1.Visible = false;  // 트레이 아이콘을 숨깁니다.
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)  // 정지 버튼 (완전종료)
         {
             deviceMonitor.Stop(); // USB 장치 감시 중지   
             Application.Exit();
         }
 
-        private void tbg_Click(object sender, EventArgs e)
+        private void tbg_Click(object sender, EventArgs e) // 폼 상단에 방패모양 버튼
         {
             tbg.Visible = false;
             tbgT.Visible = true;
@@ -176,7 +180,7 @@ namespace USBprotect
             deviceMonitor.Stop();
         }
 
-        private void tbgT_Click(object sender, EventArgs e)
+        private void tbgT_Click(object sender, EventArgs e) // 폼 상단에 방패모양 버튼 (토글)
         {
             tbgT.Visible = false;
             tbg.Visible = true;

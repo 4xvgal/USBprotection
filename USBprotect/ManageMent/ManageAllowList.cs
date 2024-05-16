@@ -35,11 +35,11 @@ namespace USBsecurity
                 {
                     USBinfo newItem = Item as USBinfo; // USBinfo 클래스로 캐스팅
  
-                    disableEveryDevice(newItem.DeviceId); // 장치 활성화 해버리기
+                    enableEveryDevice(newItem.DeviceId); // 장치 활성화 해버리기
                 }
             }
         }
-        public void disableEveryDevice(string DeviceId) // 장치 활성화 메서드
+        public void enableEveryDevice(string DeviceId) // 장치 활성화 메서드
         {
             devconCMD.DevconCommand($"enable \"@{DeviceId}\""); //명령어 실행   
         }
@@ -49,7 +49,8 @@ namespace USBsecurity
             var device = USBinfo.BlackListDevices.FirstOrDefault(x => x.PnpDeviceId.Trim().Equals(deviceid.Trim(), StringComparison.OrdinalIgnoreCase));
 
             if (device != null)
-            {
+            {   
+                // 비동기 처리: 장치를 화이트리스트로 이동
                 // 임시 변수를 사용하여 컬렉션 변경 이벤트 핸들러가 완료된 후 컬렉션 수정
                 var toAdd = device;
                 var toRemove = device;

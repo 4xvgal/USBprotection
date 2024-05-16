@@ -50,12 +50,10 @@ namespace UsbSecurity
                     {
                         USBinfo.BlackListDevices.Remove(existingDevice); // 기존 장치 제거
                     }
+
                     USBinfo.BlackListDevices.Add(usbDevice); // 새 장치 추가
 
-         
-                }
-
-               
+                }   
             }
         }
 
