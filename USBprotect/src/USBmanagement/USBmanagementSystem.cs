@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Management;
 using UsbSecurity;
 
 namespace USBprotect.USBmanagement
@@ -11,7 +12,7 @@ namespace USBprotect.USBmanagement
         private List<USBinfo> _whiteListedUsb;
         private List<USBinfo> _blackListedUsb;
         public readonly string Filepath;
-        //이벤트 구독
+        //감지 이벤트 클래스
         private UsbDeviceMonitor _deviceMonitor;
         
         //생성자
@@ -22,9 +23,7 @@ namespace USBprotect.USBmanagement
             _blackListedUsb = new List<USBinfo>();
             // USB 장치 감시 이벤트 핸들러 등록
             _deviceMonitor = new UsbDeviceMonitor();
-            _deviceMonitor.DeviceInserted += HandleUsbDeviceInserted;
-            _deviceMonitor.DeviceRemoved += HandleUsbDeviceRemoved;
-
+            _deviceMonitor.OnUsbDeviceInserted += HandleUsbDeviceInserted;  // 이벤트 핸들러 연결
         }
         //시스템 초기화
         public void InitSystem()
@@ -193,7 +192,7 @@ namespace USBprotect.USBmanagement
         // USB 장치 감지하여 처리
         // 허용 리스트에 있으면 통과, 블랙 리스트에 있으면 차단
         // 둘 다 없으면 선 차단
-        private void HandleUsbDeviceInserted(USBinfo usb) 
+        public void HandleUsbDeviceInserted(USBinfo usb) 
         {
             if(_whiteListedUsb.Contains(usb))
             {
@@ -211,7 +210,7 @@ namespace USBprotect.USBmanagement
             }
         }
 
-        private void HandleUsbDeviceRemoved(USBinfo usb)
+        public void HandleUsbDeviceRemoved(USBinfo usb)
         {
             //장치가 제거 되었다는 이벤트
             Console.WriteLine($"USB {usb.DeviceId} is removed.");

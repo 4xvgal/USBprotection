@@ -41,7 +41,7 @@ namespace USBprotect.USBmanagement
             _removeWatcher.Stop();
         }
 
-        private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
+        public void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
             var device = (ManagementBaseObject)e.NewEvent["TargetInstance"];
 
@@ -58,7 +58,7 @@ namespace USBprotect.USBmanagement
             OnUsbDeviceInserted?.Invoke(usbInfo); // 콜백을 통해 USBinfo 객체 전달
         }
 
-        private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e)
+        public void DeviceRemovedEvent(object sender, EventArrivedEventArgs e)
         {
             MessageBox.Show("장치가 제거됨.");
         }
