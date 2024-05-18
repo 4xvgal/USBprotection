@@ -40,9 +40,6 @@ namespace USBprotect
         }
            */
 
-
-
-    
                   [STAThread]
                   static void Main()
                   {
