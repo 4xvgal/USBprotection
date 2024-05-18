@@ -87,6 +87,8 @@
     <Compile Include="src\USBmanagement\IUSBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\test\UsbMangementSystemTests.cs" />
     <Compile Include="src\USBmanagement\test\UsBxmlSerializerTests.cs" />
+    <Compile Include="src\USBmanagement\UsbDeviceManager.cs" />
+    <Compile Include="src\USBmanagement\UsbDeviceMonitor.cs" />
     <Compile Include="src\USBmanagement\USBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\USBxmlSerializer.cs" />
     <EmbeddedResource Include="ManageMent\AllowBlockForm.resx">
