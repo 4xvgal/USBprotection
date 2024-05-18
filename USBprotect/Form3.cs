@@ -107,7 +107,7 @@ namespace USBprotect
             int selectedIndex = listBox1.SelectedIndex;
             if (selectedIndex != -1)
             {
-                string message = "정말로 선택된 요청을 삭제하시겠습니까?";
+                string message = "정말로 삭제하시겠습니까?";
                 string caption = "요청 삭제 확인";
                 var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
