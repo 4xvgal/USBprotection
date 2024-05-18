@@ -7,15 +7,24 @@ namespace USBprotect.USBmanagement
 {
     public class UsbManagementSystem : IUsbManagementSystem
     {
+        //화이트 리스트, 블랙 리스트
         private List<USBinfo> _whiteListedUsb;
         private List<USBinfo> _blackListedUsb;
         public readonly string Filepath;
-
+        //이벤트 구독
+        private UsbDeviceMonitor _deviceMonitor;
+        
+        //생성자
         public UsbManagementSystem(string filepath)
         {
             Filepath = filepath;
             _whiteListedUsb = new List<USBinfo>();
             _blackListedUsb = new List<USBinfo>();
+            // USB 장치 감시 이벤트 핸들러 등록
+            _deviceMonitor = new UsbDeviceMonitor();
+            _deviceMonitor.DeviceInserted += HandleUsbDeviceInserted;
+            _deviceMonitor.DeviceRemoved += HandleUsbDeviceRemoved;
+
         }
         //시스템 초기화
         public void InitSystem()
@@ -179,6 +188,33 @@ namespace USBprotect.USBmanagement
                 Console.Error.WriteLine($"Failed to delete USB data file: {ex.Message}");
                 throw;
             }
+        }
+        
+        // USB 장치 감지하여 처리
+        // 허용 리스트에 있으면 통과, 블랙 리스트에 있으면 차단
+        // 둘 다 없으면 선 차단
+        private void HandleUsbDeviceInserted(USBinfo usb) 
+        {
+            if(_whiteListedUsb.Contains(usb))
+            {
+                Console.WriteLine($"USB {usb.DeviceId} is allowed.");
+            }
+            else if(_blackListedUsb.Contains(usb))
+            {
+                Console.WriteLine($"USB {usb.DeviceId} is blocked.");
+            }
+            else
+            {
+                AddBlackListedUsb(usb); //블랙 리스트에 추가
+                RemoveWhiteListedUsb(usb); //화이트 리스트에서 삭제
+                Console.WriteLine($"USB {usb.DeviceId} is blocked.");
+            }
+        }
+
+        private void HandleUsbDeviceRemoved(USBinfo usb)
+        {
+            //장치가 제거 되었다는 이벤트
+            Console.WriteLine($"USB {usb.DeviceId} is removed.");
         }
     }
 }

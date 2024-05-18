@@ -28,6 +28,12 @@ namespace USBprotect.USBmanagement
         void LoadAllUsb(); 
         void SaveAllUsb();
         void DeleteAllUsb();
+        
+        // 꽃힌 장치 감지하여 처리 
+        // 허용 리스트에 있으면 통과, 블랙 리스트에 있으면 차단
+        // 둘 다 없으면 선 차단
+        void HandleUsbDeviceInserted(USBinfo usb);
+        void HandleUsbDeviceRemoved(USBinfo usb);
     }
 }
 
