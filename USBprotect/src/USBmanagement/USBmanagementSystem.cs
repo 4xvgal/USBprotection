@@ -17,21 +17,21 @@ namespace USBprotect.USBmanagement
             _whiteListedUsb = new List<USBinfo>();
             _blackListedUsb = new List<USBinfo>();
         }
-
+        //시스템 초기화
         public void InitSystem()
         {
             try
             {
-                LoadAllUsb();
-                Console.WriteLine("System initialized and USB data loaded.");
+                LoadAllUsb(); // XML 파일 불러오기
+                Console.WriteLine("System initialized and USB data loaded."); //시스템 초기화 완료
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Failed to initialize system: {ex.Message}");
+                Console.Error.WriteLine($"Failed to initialize system: {ex.Message}"); //시스템 초기화 실패
                 throw;
             }
         }
-
+        //화이트 리스트 추가
         public bool AddWhiteListedUsb(USBinfo usb)
         {
             try
@@ -52,7 +52,7 @@ namespace USBprotect.USBmanagement
                 return false;
             }
         }
-
+        //블랙 리스트 추가
         public bool AddBlackListedUsb(USBinfo usb)
         {
             try
@@ -73,7 +73,7 @@ namespace USBprotect.USBmanagement
                 return false;
             }
         }
-
+        //화이트 리스트 삭제
         public bool RemoveWhiteListedUsb(USBinfo usb)
         {
             try
@@ -92,7 +92,7 @@ namespace USBprotect.USBmanagement
                 return false;
             }
         }
-
+        //블랙 리스트 삭제
         public bool RemoveBlackListedUsb(USBinfo usb)
         {
             try
@@ -111,17 +111,17 @@ namespace USBprotect.USBmanagement
                 return false;
             }
         }
-
+        //화이트 리스트 반환
         public List<USBinfo> GetWhiteListedUsb()
         {
             return _whiteListedUsb;
         }
-
+        //블랙 리스트 반환
         public List<USBinfo> GetBlackListedUsb()
         {
             return _blackListedUsb;
         }
-
+        //XML 파일 불러오기
         public void LoadAllUsb()
         {
             try
@@ -143,8 +143,8 @@ namespace USBprotect.USBmanagement
                 Console.Error.WriteLine($"Failed to load USB data from XML: {ex.Message}");
                 throw;
             }
-        }
-
+        } 
+        //XML 파일 저장
         public void SaveAllUsb()
         {
             try
@@ -161,7 +161,7 @@ namespace USBprotect.USBmanagement
                 throw;
             }
         }
-
+        //XML 파일 삭제
         public void DeleteAllUsb()
         {
             try
