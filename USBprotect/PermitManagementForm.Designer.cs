@@ -1,6 +1,6 @@
 ﻿namespace USBprotect
 {
-    partial class Form3
+    partial class PermitManagementForm
     {
         /// <summary>
         /// Required designer variable.

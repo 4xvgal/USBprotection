@@ -7,14 +7,14 @@ using USBprotect.PermitRequest;
 namespace USBprotect
 {
     // 허용 요청 보내는 폼
-    public partial class Form2 : Form       {
+    public partial class PermitRequestForm : Form       {
         private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
         private string message; // 초기 메시지
-        private static Form2 instance; // Form2의 인스턴스
+        private static PermitRequestForm instance; // Form2의 인스턴스
         private readonly PermitRequestManagement _requestList; // 허용 요청 리스트
 
         // 생성자
-        public Form2(string message)
+        public PermitRequestForm(string message)
         {
             InitializeComponent();
             this.message = message;
@@ -29,14 +29,14 @@ namespace USBprotect
         }
 
         // Form2 인스턴스 가져오는 메서드
-        public static Form2 GetInstance(string message)
+        public static PermitRequestForm GetInstance(string message)
         {
             if (instance != null && !instance.IsDisposed)
             {
                 instance.Close();
             }
 
-            instance = new Form2(message);
+            instance = new PermitRequestForm(message);
             return instance;
         }
 

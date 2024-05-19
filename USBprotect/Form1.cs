@@ -39,7 +39,7 @@ namespace USBprotect
 
         public void OpenForm2(string message)
         {
-            Form2 form2 = Form2.GetInstance(message);
+            PermitRequestForm form2 = PermitRequestForm.GetInstance(message);
             form2.Show();
         }   
     }
