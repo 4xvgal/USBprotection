@@ -10,12 +10,12 @@ namespace USBprotect
 {
     public partial class Form3 : Form
     {
-        private List<PermitRequestManagement.PermitRequest> permitRequests; // 허용 요청을 저장할 리스트
+        private List<PermitRequest> permitRequests; // 허용 요청을 저장할 리스트
 
         public Form3()
         {
             InitializeComponent();
-            permitRequests = new List<PermitRequestManagement.PermitRequest>(); // 리스트 초기화
+            permitRequests = new List<PermitRequest>(); // 리스트 초기화
             LoadRequests(); // XML 파일에서 허용 요청 로드
             PopulateListBox(); // 로드된 요청으로 리스트 박스 채우기
         }

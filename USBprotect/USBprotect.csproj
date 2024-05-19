@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="InternalFunction\PopUpFormEvent.cs" />
     <Compile Include="InternalFunction\ParsingUsbDevice.cs" />
-    <Compile Include="PermitRequest\PermitRequestList.cs" />
+    <Compile Include="PermitRequest\PermitRequest.cs" />
     <Compile Include="PermitRequest\PermitRequestManagement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +127,5 @@
   <ItemGroup>
     <None Include="Resources\calendar %281%29.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
