@@ -39,10 +39,16 @@ namespace USBprotect
                 }
 
                 // 디바이스 이름과 갯수를 포함한 표시 이름 생성
-                string displayName = request.DeviceName + " (" + deviceNameCount[request.DeviceName] + ")";
+                string displayName = request.DeviceName;
+                // 디바이스 이름이 중복되는 경우에만 숫자를 표시
+                if (deviceNameCount[request.DeviceName] > 1)
+                {
+                    displayName += " (" + deviceNameCount[request.DeviceName] + ")";
+                }
                 listBox1.Items.Add(displayName); // 표시 이름을 리스트 박스에 추가
             }
         }
+
 
         // 리스트 박스에서 선택한 인덱스 변경 이벤트 핸들러
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
