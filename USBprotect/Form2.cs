@@ -8,7 +8,7 @@ namespace USBprotect
 {
     // 허용 요청 보내는 폼
     public partial class Form2 : Form       {
-        private string hintText = "허용 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
+        private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
         private string message; // 초기 메시지
         private static Form2 instance; // Form2의 인스턴스
         private readonly PermitRequestManagement _requestList; // 허용 요청 리스트

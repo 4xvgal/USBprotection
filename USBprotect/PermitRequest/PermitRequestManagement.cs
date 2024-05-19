@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+
 namespace USBprotect.PermitRequest
 {
     // 허용 요청 목록 관리하는 클래스
@@ -26,7 +27,7 @@ namespace USBprotect.PermitRequest
         }
 
         // 허용 요청을 파일에 저장하는 메서드
-        private void SaveRequests()
+        public void SaveRequests()
         {
             try
             {
@@ -66,6 +67,20 @@ namespace USBprotect.PermitRequest
         public List<PermitRequest> GetRequests()
         {
             return requests; // 요청 리스트 반환
+        }
+
+        // 선택한 인덱스의 요청을 삭제하는 메서드
+        public void RemoveRequest(int index)
+        {
+            if (index >= 0 && index < requests.Count)
+            {
+                requests.RemoveAt(index); // 선택한 인덱스의 요청 삭제
+                SaveRequests(); // 요청 저장
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
+            }
         }
     }
 }
