@@ -56,11 +56,14 @@
     <Compile Include="PermitRequestForm.Designer.cs">
       <DependentUpon>PermitRequestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PermitManagementForm.cs">
+    <Compile Include="PermitRequest\PermitRequestApprove.cs" />
+    <Compile Include="PermitRequest\PermitRequestDelete.cs" />
+    <Compile Include="PermitRequest\PermitRequestInquiry.cs" />
+    <Compile Include="RequestManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PermitManagementForm.Designer.cs">
-      <DependentUpon>PermitManagementForm.cs</DependentUpon>
+    <Compile Include="RequestManagementForm.Designer.cs">
+      <DependentUpon>RequestManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InternalFunction\DevconClass.cs" />
     <Compile Include="Form1.cs">
@@ -79,8 +82,8 @@
     <EmbeddedResource Include="PermitRequestForm.resx">
       <DependentUpon>PermitRequestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PermitManagementForm.resx">
-      <DependentUpon>PermitManagementForm.cs</DependentUpon>
+    <EmbeddedResource Include="RequestManagementForm.resx">
+      <DependentUpon>RequestManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

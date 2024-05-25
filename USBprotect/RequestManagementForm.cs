@@ -6,12 +6,12 @@ using USBprotect.PermitRequest;
 
 namespace USBprotect
 {
-    public partial class PermitManagementForm : Form
+    public partial class RequestManagementForm : Form
     {
         private PermitRequestManagement _permitRequestManagement;
         private List<PermitRequest.PermitRequest> permitRequests; // 허용 요청을 저장할 리스트
 
-        public PermitManagementForm()
+        public RequestManagementForm()
         {
             InitializeComponent();
             _permitRequestManagement = new PermitRequestManagement();
