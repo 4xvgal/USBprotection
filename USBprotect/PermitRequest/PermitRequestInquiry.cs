@@ -35,10 +35,5 @@ namespace USBprotect.PermitRequest
             }
         }
 
-        public List<PermitRequest> GetRequests()     // 현재 저장된 허용 요청 리스트를 반환하는 메서드
-        {
-            return requests; // 요청 리스트 반환
-        }
-
     }
 }

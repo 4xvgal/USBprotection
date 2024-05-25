@@ -7,19 +7,19 @@ using USBprotect.PermitRequest;
 namespace USBprotect
 {
     // 허용 요청 보내는 폼
-    public partial class PermitRequestForm : Form       {
+    public partial class PermitRequestForm : Form
+    {
         private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
         private string message; // 초기 메시지
         private static PermitRequestForm instance; // Form2의 인스턴스
-        private readonly PermitRequestManagement _requestList; // 허용 요청 리스트
+        private readonly PermitRequestApprove _requestList; // 허용 요청 리스트
 
-        // 생성자
-        public PermitRequestForm(string message)
+        public PermitRequestForm(string message)     // 생성자
         {
             InitializeComponent();
             this.message = message;
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
-            _requestList = new PermitRequestManagement(); // 허용 요청 리스트 초기화
+            _requestList = new PermitRequestApprove(); // 허용 요청 리스트 초기화
 
             // USB 장치 정보를 가져와 label에 추가
             foreach (var id in ParsingUsbDevice.saveDeviceID)

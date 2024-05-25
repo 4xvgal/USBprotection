@@ -15,6 +15,10 @@ namespace USBprotect.PermitRequest
             requests = new List<PermitRequest>(); // 리스트 초기화
             LoadRequests(); // 허용 요청 로드
         }
+        public List<PermitRequest> GetRequests()     // 현재 저장된 허용 요청 리스트를 반환하는 메서드
+        {
+            return requests; // 요청 리스트 반환
+        }
 
         public void AddRequest(string deviceName, string requester, string reason, DateTime requestTime)    // 새로운 허용 요청을 추가하는 메서드
         {
