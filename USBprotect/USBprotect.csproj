@@ -89,6 +89,11 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="InternalFunction\DevconCMD.cs" />
+    <Compile Include="Logger\Src\LogDelete.cs" />
+    <Compile Include="Logger\Src\Logger.cs" />
+    <Compile Include="Logger\Src\LogRetentionManger.cs" />
+    <Compile Include="Logger\Src\LogViewer.cs" />
+    <Compile Include="Logger\Tests\LoggerManagerTests.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +178,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Logger\Form\" />
     <Folder Include="src\Devcon\" />
     <Folder Include="src\InternalClass\" />
   </ItemGroup>
