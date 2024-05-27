@@ -106,9 +106,25 @@
     <Compile Include="Database\USBinfo.cs" />
     <Compile Include="ManageMent\ManageAllowList.cs" />
     <Compile Include="ManageMent\ManageBlackList.cs" />
+    <Compile Include="PermitRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PermitRequestForm.Designer.cs">
+      <DependentUpon>PermitRequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PermitRequest\PermitRequest.cs" />
+    <Compile Include="PermitRequest\PermitRequestApprove.cs" />
+    <Compile Include="PermitRequest\PermitRequestDelete.cs" />
+    <Compile Include="PermitRequest\PermitRequestInquiry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InternalFunction\DeviceMonitor.cs" />
+    <Compile Include="RequestManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RequestManagementForm.Designer.cs">
+      <DependentUpon>RequestManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\USBmanagement\IUSBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\test\UsbMangementSystemTests.cs" />
     <Compile Include="src\USBmanagement\test\UsBxmlSerializerTests.cs" />
@@ -125,10 +141,16 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PermitRequestForm.resx">
+      <DependentUpon>PermitRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RequestManagementForm.resx">
+      <DependentUpon>RequestManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -204,6 +226,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\calendar %281%29.png" />
+    <Content Include="Resources\calendar.png" />
+    <Content Include="Resources\free-icon-envelope-5151980.png" />
+    <Content Include="Resources\free-icon-house-8105220.png" />
+    <Content Include="Resources\rotate.png" />
+    <Content Include="Resources\usb-drive.png" />
+    <Content Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
