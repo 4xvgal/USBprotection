@@ -36,18 +36,18 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox2
@@ -91,7 +91,7 @@
             // 
             // pictureBox2
             // 
-           // this.pictureBox2.Image = global::USBprotect.Properties.Resources.rotate;
+            this.pictureBox2.Image = global::USBprotect.Properties.Resources.rotate;
             this.pictureBox2.Location = new System.Drawing.Point(685, 11);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(56, 55);
@@ -101,7 +101,7 @@
             // 
             // pictureBox1
             // 
-            //this.pictureBox1.Image = global::USBprotect.Properties.Resources.free_icon_house_8105220;
+            this.pictureBox1.Image = global::USBprotect.Properties.Resources.free_icon_house_8105220;
             this.pictureBox1.Location = new System.Drawing.Point(41, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(56, 55);
@@ -152,6 +152,37 @@
             this.panel1.Size = new System.Drawing.Size(809, 569);
             this.panel1.TabIndex = 16;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.ForeColor = System.Drawing.Color.Coral;
+            this.panel3.Location = new System.Drawing.Point(136, 113);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(341, 45);
+            this.panel3.TabIndex = 35;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.label6.Location = new System.Drawing.Point(9, 2);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 37);
+            this.label6.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Nirmala UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.label5.Location = new System.Drawing.Point(3, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 37);
+            this.label5.TabIndex = 0;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -176,7 +207,7 @@
             // 
             // pictureBox3
             // 
-            //this.pictureBox3.Image = global::USBprotect.Properties.Resources.free_icon_envelope_5151980;
+            this.pictureBox3.Image = global::USBprotect.Properties.Resources.free_icon_envelope_5151980;
             this.pictureBox3.Location = new System.Drawing.Point(44, 184);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(56, 55);
@@ -184,38 +215,7 @@
             this.pictureBox3.TabIndex = 18;
             this.pictureBox3.TabStop = false;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.ForeColor = System.Drawing.Color.Coral;
-            this.panel3.Location = new System.Drawing.Point(136, 113);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(341, 45);
-            this.panel3.TabIndex = 35;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.label5.Location = new System.Drawing.Point(3, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 37);
-            this.label5.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Nirmala UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.label6.Location = new System.Drawing.Point(9, 2);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 37);
-            this.label6.TabIndex = 2;
-            // 
-            // Form2
+            // PermitRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,16 +224,16 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form2";
+            this.Name = "PermitRequestForm";
             this.Text = "Form2";
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
