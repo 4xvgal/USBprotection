@@ -63,25 +63,7 @@ namespace USBprotect
             }
         }
 
-        // 승인 버튼 클릭 이벤트 핸들러
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
-                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
-                permitRequests = requestInquiry.GetRequests(); // 업데이트된 요청 리스트 가져오기
-                PopulateListBox(); // 리스트 박스 업데이트
-                MessageBox.Show("요청이 승인되었습니다.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        // 삭제 버튼 클릭 이벤트 핸들러
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)       // 삭제 버튼 클릭 이벤트 핸들러
         {
             try
             {
@@ -97,28 +79,25 @@ namespace USBprotect
             }
         }
 
-        // 폼을 닫는 버튼 클릭 이벤트 핸들러
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
         {
             this.Close(); // 폼 닫기
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
-                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
-                permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
-                PopulateListBox(); // 리스트 박스 업데이트
-                MessageBox.Show("요청이 승인되었습니다.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
+                try
+                {
+                    int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+                    requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
+                    permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
+                    PopulateListBox(); // 리스트 박스 업데이트
+                    MessageBox.Show("요청이 승인되었습니다.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
         }
     }
 }
