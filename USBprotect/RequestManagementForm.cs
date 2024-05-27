@@ -8,13 +8,18 @@ namespace USBprotect
 {
     public partial class RequestManagementForm : Form
     {
-        private PermitRequestApprove _permitRequestApprove; // 요청 허용 클래스 인스턴스
+        private PermitRequestApprove requestApprove; // 요청 허용 클래스 인스턴스
+        private PermitRequestDelete requestDelete; // 요청 삭제 클래스 인스턴스
+        private PermitRequestInquiry requestInquiry; // 요청 조회 클래스 인스턴스
         private List<PermitRequest.PermitRequest> permitRequests; // 허용 요청 리스트
+
         public RequestManagementForm()
         {
             InitializeComponent();
-            _permitRequestApprove = new PermitRequestApprove(); // 요청 허용 클래스 초기화
-            permitRequests = _permitRequestApprove.GetRequests(); // 허용 요청 리스트 초기화
+            requestApprove = new PermitRequestApprove(); // 요청 허용 클래스 초기화
+            requestDelete = new PermitRequestDelete(); // 요청 삭제 클래스 초기화
+            requestInquiry = new PermitRequestInquiry(); // 요청 조회 클래스 초기화
+            permitRequests = requestInquiry.GetRequests(); // 허용 요청 리스트 초기화
             PopulateListBox(); // 리스트 박스 채우기
         }
 
@@ -22,7 +27,7 @@ namespace USBprotect
         {
             listBox1.Items.Clear(); // 리스트 박스에 있는 항목들 지우기
             var deviceNameCount = new Dictionary<string, int>(); // 디바이스 이름과 갯수를 저장할 딕셔너리
-           
+
             foreach (var request in permitRequests) // 각 허용 요청에 대해 반복
             {
                 if (!deviceNameCount.ContainsKey(request.DeviceName))   // 디바이스 이름의 갯수 업데이트
@@ -58,10 +63,62 @@ namespace USBprotect
             }
         }
 
+        // 승인 버튼 클릭 이벤트 핸들러
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
+                permitRequests = requestInquiry.GetRequests(); // 업데이트된 요청 리스트 가져오기
+                PopulateListBox(); // 리스트 박스 업데이트
+                MessageBox.Show("요청이 승인되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        // 삭제 버튼 클릭 이벤트 핸들러
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+                requestDelete.RemoveRequest(selectedIndex); // 선택한 요청 삭제
+                permitRequests = requestInquiry.GetRequests(); // 업데이트된 요청 리스트 가져오기
+                PopulateListBox(); // 리스트 박스 업데이트
+                MessageBox.Show("요청이 삭제되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
         // 폼을 닫는 버튼 클릭 이벤트 핸들러
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close(); // 폼 닫기
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
+                permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
+                PopulateListBox(); // 리스트 박스 업데이트
+                MessageBox.Show("요청이 승인되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
         }
     }
 }
