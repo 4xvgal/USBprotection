@@ -19,11 +19,11 @@ namespace USBprotect
             this.message = message;
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
 
-            // USB 장치 정보를 가져와 label에 추가
-            foreach (var id in ParsingUsbDevice.saveDeviceID)
-            {
-                label6.Text += id + "\n";
-            }
+            //// USB 장치 정보를 가져와 label에 추가
+            //foreach (var id in ParsingUsbDevice.saveDeviceID)
+            //{
+            //    label6.Text += id + "\n";
+            //}
         }
 
         // Form2 인스턴스 가져오는 메서드

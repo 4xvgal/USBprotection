@@ -89,11 +89,19 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="InternalFunction\DevconCMD.cs" />
+    <Compile Include="Logger\Form\logform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logger\Form\logform.Designer.cs">
+      <DependentUpon>logform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger\Src\LogDelete.cs" />
     <Compile Include="Logger\Src\Logger.cs" />
     <Compile Include="Logger\Src\LogRetentionManger.cs" />
+    <Compile Include="Logger\Src\LogSearcher.cs" />
     <Compile Include="Logger\Src\LogViewer.cs" />
     <Compile Include="Logger\Tests\LoggerManagerTests.cs" />
+    <Compile Include="Logger\Tests\LogSearcherTests.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +145,9 @@
     <Compile Include="src\USBmanagement\UsbDeviceMonitor.cs" />
     <Compile Include="src\USBmanagement\USBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\USBxmlSerializer.cs" />
+    <EmbeddedResource Include="Logger\Form\logform.resx">
+      <DependentUpon>logform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,7 +189,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logger\Form\" />
     <Folder Include="src\Devcon\" />
     <Folder Include="src\InternalClass\" />
   </ItemGroup>
