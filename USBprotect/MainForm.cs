@@ -13,7 +13,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using USBprotect.InternalFunction;
+
 using UsbSecurity;
 
 namespace USBprotect
@@ -24,7 +24,7 @@ namespace USBprotect
         private ManagementEventWatcher removeWatcher; // USB 장치 제거 감시 객체
         private ParsingUsbDevice parsingUsbDevice = new ParsingUsbDevice(); // 인스턴스 id 추출 객체
         private static MainForm _instance;
-        private DeviceMonitor deviceMonitor = new DeviceMonitor();
+
         private bool isToggled = false;  // 토글 상태를 추적하는 변수
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -66,7 +66,7 @@ namespace USBprotect
             tbgT.Visible = false;
 
             _instance = this;
-            deviceMonitor.Start(); // USB 장치 감시 시작
+            Start(); // USB 장치 감시 시작
         }
 
         public static MainForm Instance
@@ -183,7 +183,7 @@ namespace USBprotect
         // 트레이 액션
         private void 종료_Click(object sender, EventArgs e)
         {
-            deviceMonitor.Stop(); // USB 장치 감시 중지
+            Stop(); // USB 장치 감시 중지
             Application.Exit();
         }
 
@@ -196,7 +196,7 @@ namespace USBprotect
 
         private void button4_Click(object sender, EventArgs e) // 정지 버튼 (완전종료)
         {
-            deviceMonitor.Stop(); // USB 장치 감시 중지
+            Stop(); // USB 장치 감시 중지
             Application.Exit();
         }
 
@@ -205,7 +205,7 @@ namespace USBprotect
             tbg.Visible = false;
             tbgT.Visible = true;
             label1.Text = "장치 모니터링 비활성화 됨";
-            deviceMonitor.Stop();
+             Stop();
         }
 
         private void tbgT_Click(object sender, EventArgs e) // 폼 상단에 방패모양 버튼 (토글)
@@ -213,7 +213,7 @@ namespace USBprotect
             tbgT.Visible = false;
             tbg.Visible = true;
             label1.Text = "장치 모니터링 정상 작동중";
-            deviceMonitor.Start();
+            Start();
         }
 
         public void Start() // USB 장치 감시 시작 인스턴스
@@ -233,14 +233,12 @@ namespace USBprotect
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
             parsingUsbDevice.showUSBinfo(); // USB 장치 정보 출력
             AllowBlockForm allowBlockForm = new AllowBlockForm();
-            FormEventBase formEvent = new UnauthorizedUsbFormEvent();
-            formEvent.PopUpForm();
+
         }
 
         private void DeviceRemovedEvent(object sender, EventArrivedEventArgs e) // USB 장치 제거 이벤트
         {
-            FormEventBase formEvent = new RemoveUsbFormEvent();
-            formEvent.PopUpForm();
+
             // parsingUsbDevice.removeData(); // 해당 usb를 리스트에서 삭제
         }
     }

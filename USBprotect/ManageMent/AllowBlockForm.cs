@@ -8,8 +8,6 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using USBprotect.InternalFunction;
 using USBprotect.ManageMent;
 using UsbSecurity;
 using USBsecurity;
@@ -47,7 +45,7 @@ namespace USBprotect
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex); // 첫 번째 ListBox에서 선택된 디바이스 제거
 
                 string[] parts = selectedDevice.Split('/'); // 선택된 디바이스의 정보를 가져옴 ( 앞에 장치 이름 제외하고 뒤에 id 정보만 가져옴)
-                string result = parts[parts.Length - 1];
+                string result = parts[parts.Length - 1];        
 
                 manageAllowList.BlackToWhite(result); // 선택된 디바이스를 블랙리스트에서화이트 리스트로 이동
                 MessageBox.Show(selectedDevice + "가 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);

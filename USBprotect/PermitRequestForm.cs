@@ -12,6 +12,7 @@ namespace USBprotect
         private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
         private string message; // 초기 메시지
         private static PermitRequestForm instance; // Form2의 인스턴스
+        USBinfo USBinfo = new USBinfo(); // USB 장치 정보
 
         public PermitRequestForm(string message)     // 생성자
         {
@@ -20,7 +21,7 @@ namespace USBprotect
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
 
             // USB 장치 정보를 가져와 label에 추가
-            foreach (var id in ParsingUsbDevice.saveDeviceID)
+            foreach (var id in USBinfo.DeviceName)
             {
                 label6.Text += id + "\n";
             }

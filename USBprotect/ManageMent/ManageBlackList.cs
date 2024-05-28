@@ -116,6 +116,7 @@ namespace UsbSecurity
                 Task.Run(() => {
                     USBinfo.BlackListDevices.Add(toAdd);
                     USBinfo.WhiteListDevices.Remove(toRemove);
+                    MessageBox.Show(deviceid + "가 차단되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 });
             }
             else

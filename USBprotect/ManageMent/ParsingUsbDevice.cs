@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 using NUnit.Framework;  
@@ -20,7 +19,7 @@ namespace UsbSecurity
     using System.Collections.Generic;
     using System.Management; // System.Management 네임스페이스 참조 필요
     using System.Windows.Forms;
-    using USBprotect.InternalFunction;
+
 
     [TestFixture]
     class ParsingUsbDevice
