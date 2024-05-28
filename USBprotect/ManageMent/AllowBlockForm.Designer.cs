@@ -32,7 +32,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.block_button = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,6 +54,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 18;
             this.listBox1.Location = new System.Drawing.Point(26, 133);
@@ -82,20 +83,20 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "허용";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Allow_Button_Click);
             // 
-            // button2
+            // block_button
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(679, 509);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 50);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "차단";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.block_button.BackColor = System.Drawing.Color.White;
+            this.block_button.Font = new System.Drawing.Font("휴먼둥근헤드라인", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.block_button.Location = new System.Drawing.Point(679, 509);
+            this.block_button.Margin = new System.Windows.Forms.Padding(4);
+            this.block_button.Name = "block_button";
+            this.block_button.Size = new System.Drawing.Size(101, 50);
+            this.block_button.TabIndex = 5;
+            this.block_button.Text = "차단";
+            this.block_button.UseVisualStyleBackColor = false;
+            this.block_button.Click += new System.EventHandler(this.block_button_Click);
             // 
             // panel4
             // 
@@ -116,7 +117,7 @@
             this.button4.Size = new System.Drawing.Size(77, 58);
             this.button4.TabIndex = 7;
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Home_Button_Click);
             // 
             // button3
             // 
@@ -126,7 +127,7 @@
             this.button3.Size = new System.Drawing.Size(77, 58);
             this.button3.TabIndex = 6;
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Refresh_Button_Click);
             // 
             // label2
             // 
@@ -148,7 +149,7 @@
             this.ClientSize = new System.Drawing.Size(1000, 619);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.block_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel4);
@@ -166,14 +167,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button block_button;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.ListBox listBox1;
+        public System.Windows.Forms.ListBox listBox2;
     }
 }
 

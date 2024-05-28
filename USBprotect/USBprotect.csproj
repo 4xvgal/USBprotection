@@ -102,8 +102,9 @@
       <DependentUpon>AllowBlockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InternalFunction\PopUpFormEvent.cs" />
-    <Compile Include="InternalFunction\ParsingUsbDevice.cs" />
+    <Compile Include="ManageMent\ParsingUsbDevice.cs" />
     <Compile Include="Database\USBinfo.cs" />
+    <Compile Include="ManageMent\InquaryUSBList.cs" />
     <Compile Include="ManageMent\ManageAllowList.cs" />
     <Compile Include="ManageMent\ManageBlackList.cs" />
     <Compile Include="PermitRequestForm.cs">
