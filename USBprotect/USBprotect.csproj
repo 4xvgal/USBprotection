@@ -108,10 +108,10 @@
     <Compile Include="Database\USBinfo.cs" />
     <Compile Include="ManageMent\ManageAllowList.cs" />
     <Compile Include="ManageMent\ManageBlackList.cs" />
-    <Compile Include="PermitRequestForm.cs">
+    <Compile Include="PermitRequest\PermitRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PermitRequestForm.Designer.cs">
+    <Compile Include="PermitRequest\PermitRequestForm.Designer.cs">
       <DependentUpon>PermitRequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PermitRequestManagement\PermitRequestEnt.cs" />
@@ -144,7 +144,7 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PermitRequestForm.resx">
+    <EmbeddedResource Include="PermitRequest\PermitRequestForm.resx">
       <DependentUpon>PermitRequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

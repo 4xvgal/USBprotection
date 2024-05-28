@@ -38,7 +38,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -156,7 +155,6 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.label5);
             this.panel3.ForeColor = System.Drawing.Color.Coral;
             this.panel3.Location = new System.Drawing.Point(136, 113);
             this.panel3.Name = "panel3";
@@ -172,16 +170,6 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 37);
             this.label6.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.label5.Location = new System.Drawing.Point(3, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 37);
-            this.label5.TabIndex = 0;
             // 
             // label1
             // 
@@ -252,7 +240,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
     }
 }
