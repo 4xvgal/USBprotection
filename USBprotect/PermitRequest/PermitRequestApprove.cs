@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using USBsecurity;
 
 namespace USBprotect.PermitRequest
 {
@@ -10,27 +11,29 @@ namespace USBprotect.PermitRequest
         private List<PermitRequest> requests; // 허용 요청을 저장하는 리스트
         private readonly string filePath = "PermitRequests.xml"; // 요청 목록 XML 파일 경로
         private readonly string approvedFilePath = "ApprovedRequests.xml"; // 승인된 요청 목록 XML 파일 경로
+        private ManageAllowList manageAllowList; // ManageAllowList 인스턴스
 
 
         public PermitRequestApprove()   // 생성자
         {
             requests = new List<PermitRequest>(); // 리스트 초기화
             LoadRequests(); // 허용 요청 로드
+            manageAllowList = new ManageAllowList(); // ManageAllowList 초기화
         }
         public List<PermitRequest> GetRequests()     // 현재 저장된 허용 요청 리스트를 반환하는 메서드
         {
             return requests; // 요청 리스트 반환
         }
 
-        public void ApproveRequest(int index)    // 선택한 인덱스의 요청을 승인하는 메서드
+   public void ApproveRequest(int index)    // 선택한 인덱스의 요청을 승인하는 메서드
         {
             if (index >= 0 && index < requests.Count)
             {
                 var approvedRequest = requests[index];
                 requests.RemoveAt(index); // 리스트에서 요청 삭제
                 SaveRequests(); // 변경된 요청 목록 저장
-
                 SaveApprovedRequest(approvedRequest); // 승인된 요청 저장
+                manageAllowList.enableEveryDevice(approvedRequest.DeviceName); // ManageAllowList를 사용하여 장치 활성화
             }
             else
             {

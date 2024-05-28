@@ -68,5 +68,9 @@ namespace USBsecurity
             }
         }
 
+        internal void enableEveryDevice(object deviceId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
