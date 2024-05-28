@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using UsbSecurity;
+using USBprotect.PermitRequest;
 
 namespace USBprotect
 {
-
-    // <----허용 요청 기능 수정 필요---->
-    public partial class PermitRequestForm : Form    // 허용 요청 보내는 폼
+    public partial class PermitRequestForm : Form
     {
         private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
         private string message; // 초기 메시지
         private static PermitRequestForm instance; // Form2의 인스턴스
+        private PermitRequester permitRequester; // 허용 요청을 처리하는 객체
 
         public PermitRequestForm(string message)     // 생성자
         {
             InitializeComponent();
             this.message = message;
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
-/*
-            // USB 장치 정보를 가져와 label에 추가
-            foreach (var id in ParsingUsbDevice.saveDeviceID)
-            {
-                label6.Text += id + "\n";
-            }*/
+            permitRequester = new PermitRequester(); // PermitRequester 객체 초기화
         }
 
         // Form2 인스턴스 가져오는 메서드
@@ -73,11 +67,11 @@ namespace USBprotect
                 string reason = textBox1.Text; // 사유
                 DateTime requestTime = DateTime.Now; // 요청 시간
 
-                // 요청 보내기 로직 (추후 구현 예정)
-                // 예시:
-                // SendRequest(deviceName, requester, reason, requestTime);
+                // PermitRequestEnt 객체 생성
+                PermitRequestEnt request = new PermitRequestEnt(deviceName, requester, reason, requestTime);
 
-                MessageBox.Show("요청이 전송되었습니다.");
+                // PermitRequester를 사용해 요청 보내기
+                permitRequester.SendRequest(request);
             }
             catch (Exception ex)
             {

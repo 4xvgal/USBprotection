@@ -11,7 +11,7 @@ namespace USBprotect
         private PermitRequestApprove requestApprove; // 요청 허용 클래스 인스턴스
         private PermitRequestDelete requestDelete; // 요청 삭제 클래스 인스턴스
         private PermitRequestInquiry requestInquiry; // 요청 조회 클래스 인스턴스
-        private List<PermitRequest.PermitRequest> permitRequests; // 허용 요청 리스트
+        private List<PermitRequest.PermitRequestEnt> permitRequests; // 허용 요청 리스트
 
         public RequestManagementForm()
         {

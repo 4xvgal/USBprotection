@@ -2,7 +2,7 @@ using System;
 
 namespace USBprotect.PermitRequest
 {
-    public class PermitRequest
+    public class PermitRequestEnt
     {
         // USB 장치 이름
         public string DeviceName { get; set; }
@@ -17,12 +17,12 @@ namespace USBprotect.PermitRequest
         public DateTime RequestTime { get; set; }
 
         // 기본 생성자
-        public PermitRequest()
+        public PermitRequestEnt()
         {
         }
 
         // 매개변수를 받는 생성자
-        public PermitRequest(string deviceName, string requester, string reason, DateTime requestTime)
+        public PermitRequestEnt(string deviceName, string requester, string reason, DateTime requestTime)
         {
             DeviceName = deviceName; // 장치 이름 설정
             Requester = requester; // 요청자 설정
