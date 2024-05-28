@@ -33,6 +33,8 @@ namespace USBprotect
 
             Application.Run(permitRequestForm);
 
+            //Application.Run(new RequestManagementForm());
+
         }
 
 

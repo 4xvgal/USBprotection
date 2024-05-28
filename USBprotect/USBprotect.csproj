@@ -108,6 +108,7 @@
     <Compile Include="Database\USBinfo.cs" />
     <Compile Include="ManageMent\ManageAllowList.cs" />
     <Compile Include="ManageMent\ManageBlackList.cs" />
+    <Compile Include="PermitRequest\PermitReqeustAdd.cs" />
     <Compile Include="PermitRequest\PermitRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,7 +119,6 @@
     <Compile Include="PermitRequestManagement\PermitRequestApprove.cs" />
     <Compile Include="PermitRequestManagement\PermitRequestDelete.cs" />
     <Compile Include="PermitRequestManagement\PermitRequestInquiry.cs" />
-    <Compile Include="PermitRequest\PermitRequester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InternalFunction\DeviceMonitor.cs" />

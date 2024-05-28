@@ -63,21 +63,6 @@ namespace USBprotect
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)       // 삭제 버튼 클릭 이벤트 핸들러
-        {
-            try
-            {
-                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
-                requestDelete.RemoveRequest(selectedIndex); // 선택한 요청 삭제
-                permitRequests = requestInquiry.GetRequests(); // 업데이트된 요청 리스트 가져오기
-                PopulateListBox(); // 리스트 박스 업데이트
-                MessageBox.Show("요청이 삭제되었습니다.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
         {
@@ -98,6 +83,11 @@ namespace USBprotect
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
+        }
+
+        private void button3_Click(object sender, EventArgs e)  // 삭제 버튼 클릭 이벤트 핸들러
+        {
+
         }
     }
 }

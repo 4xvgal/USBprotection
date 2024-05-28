@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using UsbSecurity;
 using USBprotect.PermitRequest;
+using System.Management;
 
 namespace USBprotect
 {
@@ -20,14 +21,6 @@ namespace USBprotect
             this.message = message;
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
             _requestAdd = new PermitRequestAdd(); // 허용 요청 추가 클래스 초기화
-
-
-            // <------------수정필요-------------->
-            // USB 장치 정보를 가져와 label에 추가
-            foreach (var id in ParsingUsbDevice.saveDeviceID)
-            {
-                label6.Text += id + "\n";
-            }
         }
 
         // Form2 인스턴스 가져오는 메서드
@@ -47,6 +40,13 @@ namespace USBprotect
         {
             MessageBox.Show(message); // 초기 메시지 표시
             SetHintText(); // 힌트 텍스트 설정
+            UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
+
+            // USB 장치 변경 이벤트 핸들러 등록
+            ManagementEventWatcher watcher = new ManagementEventWatcher();
+            watcher.EventArrived += UsbDeviceChangeHandler;
+            watcher.Query = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2 or EventType = 3");
+            watcher.Start();
         }
 
         // 힌트 텍스트 설정 메서드
@@ -103,6 +103,40 @@ namespace USBprotect
             {
                 SetHintText(); // 텍스트 상자가 비어있으면 힌트 텍스트 설정
             }
+        }
+
+        // USB 장치 정보를 가져와 label에 추가하는 메서드
+        private void UpdateUsbDevicesLabel()
+        {
+            label6.Text = string.Empty; // 기존 텍스트 초기화
+            var usbDevices = GetUsbDevices(); // USB 장치 정보 가져오기
+
+            foreach (var device in usbDevices)
+            {
+                label6.Text += device + "\n"; // 장치 정보 추가
+            }
+        }
+
+        // 현재 연결된 USB 장치 정보를 가져오는 메서드
+        private string[] GetUsbDevices()
+        {
+            var deviceList = new System.Collections.Generic.List<string>();
+            string wmiQuery = "SELECT Name FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
+
+            foreach (ManagementObject queryObj in searcher.Get())
+            {
+                var deviceName = queryObj["Name"]?.ToString() ?? "Unknown";
+                deviceList.Add(deviceName);
+            }
+
+            return deviceList.ToArray();
+        }
+
+        // USB 장치가 추가되거나 제거될 때 호출되는 이벤트 핸들러
+        private void UsbDeviceChangeHandler(object sender, EventArrivedEventArgs e)
+        {
+            UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
         }
     }
 }

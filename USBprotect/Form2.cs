@@ -23,13 +23,12 @@ namespace USBprotect
             this.message = message; // 생성자에서 전달된 메시지를 저장
             this.Load += Form2_Load; // Load 이벤트에 핸들러 연결
 
-            //public List<string> getSaveDeviceID() 에서 foreach로 하나씩 꺼내서 리스트 박스에 넣는 작업
-            //foreach (var id in ParsingUsbDevice.saveDeviceID)
-            //{
-               // listBox1.Items.Add(id);
-           // }
-                
-       
+/*            foreach (var id in ParsingUsbDevice.saveDeviceID)
+            {
+                listBox1.Items.Add(id);
+            }*/
+
+
         }
 
         // 여러개의 폼이 생성되는 것을 방지하기 위해 싱글톤 패턴을 적용한 GetInstance 메서드 정의
