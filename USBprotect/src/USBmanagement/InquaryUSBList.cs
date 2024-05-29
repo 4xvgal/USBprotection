@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UsbSecurity;
 
-namespace USBprotect.ManageMent
+
+namespace USBprotect
 {
     public class InquaryUSBList
     {

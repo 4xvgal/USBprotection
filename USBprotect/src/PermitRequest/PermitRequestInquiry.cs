@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace USBprotect.PermitRequest
-{
-    internal class PermitRequestInquiry
+namespace USBprotect
+{ 
+    public class PermitRequestInquiry
     {
         private List<PermitRequest> requests; // 허용 요청을 저장하는 리스트
         private readonly string filePath = "PermitRequests.xml"; // XML 파일 경로

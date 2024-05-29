@@ -91,7 +91,7 @@
             // 
             // pictureBox2
             // 
-           // this.pictureBox2.Image = global::USBprotect.Properties.Resources.rotate;
+            // this.pictureBox2.Image = global::USBprotect.Properties.Resources.rotate;
             this.pictureBox2.Location = new System.Drawing.Point(685, 11);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(56, 55);

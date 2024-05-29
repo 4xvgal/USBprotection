@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsbSecurity
+namespace USBprotect
 { 
 
 // USB 장치 정보 클래스

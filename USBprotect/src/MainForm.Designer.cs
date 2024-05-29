@@ -44,8 +44,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.종료 = new System.Windows.Forms.ToolStripMenuItem();
             this.최대화 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label7 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -61,6 +63,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.button1);
@@ -69,7 +73,7 @@
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(402, 72);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(413, 212);
+            this.panel2.Size = new System.Drawing.Size(580, 212);
             this.panel2.TabIndex = 8;
             // 
             // label4
@@ -116,7 +120,7 @@
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Location = new System.Drawing.Point(-37, 92);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(838, 508);
+            this.panel3.Size = new System.Drawing.Size(1020, 508);
             this.panel3.TabIndex = 9;
             // 
             // label6
@@ -203,13 +207,25 @@
             this.최대화.Text = "최대화";
             this.최대화.Click += new System.EventHandler(this.최대화_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("HY견고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(199)))), ((int)(((byte)(118)))));
+            this.label7.Location = new System.Drawing.Point(447, 172);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 18);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "로그조회";
+            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(219)))), ((int)(((byte)(45)))));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = global::USBprotect.Properties.Resources.off_1;
-            this.button4.Location = new System.Drawing.Point(648, 21);
+            this.button4.Location = new System.Drawing.Point(815, 16);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(130, 55);
             this.button4.TabIndex = 14;
@@ -227,6 +243,20 @@
             this.button5.Size = new System.Drawing.Size(120, 120);
             this.button5.TabIndex = 1;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(186)))), ((int)(((byte)(146)))));
+            this.button6.BackgroundImage = global::USBprotect.Properties.Resources.Vector;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(427, 21);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(120, 120);
+            this.button6.TabIndex = 12;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button1
             // 
@@ -293,7 +323,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(975, 450);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -336,5 +366,7 @@
         private System.Windows.Forms.ToolStripMenuItem 최대화;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button tbgT;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button6;
     }
 }

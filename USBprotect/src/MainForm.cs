@@ -14,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using UsbSecurity;
 
 namespace USBprotect
 {
@@ -133,7 +132,31 @@ namespace USBprotect
         {
             if (IsUserAdmin())
             {
-                // 관리자 권한 필요 작업
+                this.Hide(); // 현재 폼 숨기기
+                Form RequestManagementForm = new RequestManagementForm(); // 새 폼 생성 
+                RequestManagementForm.Closed += (s, args) => this.Close(); // 새 폼이 닫힐 때 애플리케이션 종료 설정
+                RequestManagementForm.Show(); // 새 폼 표시
+            }
+            else
+            {
+                MessageBox.Show(
+                    "이 기능을 사용하려면 관리자 권한이 필요합니다. 애플리케이션을 관리자 권한으로 다시 실행하세요.",
+                    "권한 요구",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (IsUserAdmin())
+            {
+               /* this.Hide(); // 현재 폼 숨기기
+                Form PermitRequestForm = new PermitRequestForm(); // 새 폼 생성 
+                RequestManagementForm.Closed += (s, args) => this.Close(); // 새 폼이 닫힐 때 애플리케이션 종료 설정
+                RequestManagementForm.Show(); // 새 폼 표시
+               */
             }
             else
             {
@@ -147,6 +170,23 @@ namespace USBprotect
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {
+            if (IsUserAdmin())
+            {
+                // 관리자 권한 필요 작업
+            }
+            else
+            {
+                MessageBox.Show(
+                    "이 기능을 사용하려면 관리자 권한이 필요합니다. 애플리케이션을 관리자 권한으로 다시 실행하세요.",
+                    "권한 요구",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
         {
             if (IsUserAdmin())
             {
@@ -241,5 +281,7 @@ namespace USBprotect
 
             // parsingUsbDevice.removeData(); // 해당 usb를 리스트에서 삭제
         }
+
+        
     }
 }

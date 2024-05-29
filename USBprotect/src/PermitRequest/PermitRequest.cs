@@ -1,6 +1,6 @@
 using System;
 
-namespace USBprotect.PermitRequest
+namespace USBprotect
 {
     public class PermitRequest
     {

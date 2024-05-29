@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using System.IO;
-using NUnit.Framework;  
+using NUnit.Framework;
 
 // class information :: 
 // 현재 연결된 USB 저장장치 (이동저장장치만)의 인스턴스 ID 를 추출합니다. 
 // 차단 또는 승인할 장치의 인스턴스 아이디에 사용됩니다.
 // 2024:04:04:14:15 마지막 수정 LGJ
 
-namespace UsbSecurity
+namespace USBprotect
 {
     using System;
     using System.Collections.Generic;
