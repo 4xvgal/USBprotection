@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using USBprotect.PermitRequest;
 
@@ -11,7 +10,7 @@ namespace USBprotect
         private PermitRequestApprove requestApprove; // 요청 허용 클래스 인스턴스
         private PermitRequestDelete requestDelete; // 요청 삭제 클래스 인스턴스
         private PermitRequestInquiry requestInquiry; // 요청 조회 클래스 인스턴스
-        private List<PermitRequest.PermitRequestEnt> permitRequests; // 허용 요청 리스트
+        private List<PermitRequestEnt> permitRequests; // 허용 요청 리스트
 
         public RequestManagementForm()
         {
@@ -23,10 +22,16 @@ namespace USBprotect
             PopulateListBox(); // 리스트 박스 채우기
         }
 
-        private void PopulateListBox()   // 리스트 박스를 허가 요청으로 채우는 메서드
+        private void PopulateListBox()
         {
             listBox1.Items.Clear(); // 리스트 박스에 있는 항목들 지우기
             var deviceNameCount = new Dictionary<string, int>(); // 디바이스 이름과 갯수를 저장할 딕셔너리
+
+            if (permitRequests.Count == 0) // 허용 요청이 없을 경우
+            {
+                MessageBox.Show("현재 허용 요청이 존재하지 않습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // 메서드 종료
+            }
 
             foreach (var request in permitRequests) // 각 허용 요청에 대해 반복
             {
@@ -55,6 +60,10 @@ namespace USBprotect
             // 아이템이 선택되었는지 확인
             if (selectedIndex != -1)
             {
+                // 아이템이 선택되면 버튼 활성화
+                button2.Enabled = true;
+                button3.Enabled = true;
+
                 // 선택한 허가 요청의 세부 정보 표시
                 var selectedRequest = permitRequests[selectedIndex];
                 label5.Text = selectedRequest.Requester;
@@ -70,17 +79,25 @@ namespace USBprotect
 
         private void button2_Click(object sender, EventArgs e)  // 승인 버튼 클릭 이벤트 핸들러
         {
-            try
+            int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+
+            if (selectedIndex != -1)
             {
-                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
-                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
-                permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
-                PopulateListBox(); // 리스트 박스 업데이트
-                MessageBox.Show("요청이 승인되었습니다.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
+                var result = MessageBox.Show("허용하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
+                        permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
+                        PopulateListBox(); // 리스트 박스 업데이트
+                        MessageBox.Show("요청이 승인되었습니다.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
             }
         }
 

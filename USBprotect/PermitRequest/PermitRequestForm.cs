@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using UsbSecurity;
 using USBprotect.PermitRequest;
 using System.Management;
+using System.Collections.Generic;
 
 namespace USBprotect
 {
@@ -66,8 +67,8 @@ namespace USBprotect
         {
             try
             {
-                string deviceName = label6.Text.Trim();
-                if (string.IsNullOrEmpty(deviceName))
+                string deviceInfo = label6.Text.Trim();
+                if (string.IsNullOrEmpty(deviceInfo))
                 {
                     MessageBox.Show("USB 장치가 없습니다.");
                     return;
@@ -76,7 +77,8 @@ namespace USBprotect
                 string requester = textBox2.Text; // 요청자
                 string reason = textBox1.Text; // 사유
                 DateTime requestTime = DateTime.Now; // 요청 시간
-                string deviceId = GetDeviceId(deviceName); // deviceId 가져오기
+                string deviceName = ExtractDeviceName(deviceInfo); // deviceName 추출
+                string deviceId = ExtractDeviceId(deviceInfo); // deviceId 추출
 
                 _requestAdd.AddRequest(deviceName, requester, reason, requestTime, deviceId); // 허용 요청 추가
 
@@ -121,7 +123,7 @@ namespace USBprotect
         // 현재 연결된 USB 장치 정보를 가져오는 메서드
         private string[] GetUsbDevices()
         {
-            var deviceList = new System.Collections.Generic.List<string>();
+            var deviceList = new List<string>();
             string wmiQuery = "SELECT Name, DeviceID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
 
@@ -136,17 +138,27 @@ namespace USBprotect
         }
 
         // USB 장치의 DeviceID를 추출하는 메서드
-        private string GetDeviceId(string deviceName)
+        private string ExtractDeviceId(string deviceInfo)
         {
-            string wmiQuery = $"SELECT DeviceID FROM Win32_PnPEntity WHERE Name = '{deviceName}'";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
-
-            foreach (ManagementObject queryObj in searcher.Get())
+            int startIndex = deviceInfo.IndexOf('(') + 1;
+            int endIndex = deviceInfo.IndexOf(')');
+            if (startIndex > 0 && endIndex > startIndex)
             {
-                return queryObj["DeviceID"]?.ToString() ?? "Unknown";
+                return deviceInfo.Substring(startIndex, endIndex - startIndex);
             }
-
             return "Unknown";
+        }
+
+        // USB 장치의 DeviceName을 추출하는 메서드
+        private string ExtractDeviceName(string deviceInfo)
+        {
+            int startIndex = 0;
+            int endIndex = deviceInfo.IndexOf('(');
+            if (endIndex > startIndex)
+            {
+                return deviceInfo.Substring(startIndex, endIndex - 1).Trim();
+            }
+            return deviceInfo;
         }
 
         // USB 장치가 추가되거나 제거될 때 호출되는 이벤트 핸들러
