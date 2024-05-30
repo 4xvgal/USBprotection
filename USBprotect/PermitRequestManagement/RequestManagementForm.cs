@@ -101,9 +101,28 @@ namespace USBprotect
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)  // 삭제 버튼 클릭 이벤트 핸들러
+        private void button3_Click(object sender, EventArgs e)
         {
-            // 삭제 관련 코드 작성 필요
+            int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+
+            if (selectedIndex != -1)
+            {
+                var result = MessageBox.Show("선택한 요청을 삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        requestDelete.RemoveRequest(selectedIndex); // 선택한 요청 삭제
+                        permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
+                        PopulateListBox(); // 리스트 박스 업데이트
+                        MessageBox.Show("요청이 삭제되었습니다.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }

@@ -15,7 +15,6 @@ namespace USBprotect.PermitRequest
             requests = new List<PermitRequestEnt>(); // 리스트 초기화
             LoadRequests(); // 허용 요청 로드
         }
-
         public void RemoveRequest(int index)     // 선택한 인덱스의 요청을 삭제하는 메서드
         {
             if (index >= 0 && index < requests.Count)
@@ -28,6 +27,7 @@ namespace USBprotect.PermitRequest
                 throw new ArgumentOutOfRangeException("index", "Index is out of range.");
             }
         }
+
         public void SaveRequests()  // 허용 요청을 파일에 저장하는 메서드
         {
             try
