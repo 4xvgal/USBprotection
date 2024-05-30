@@ -33,7 +33,7 @@ namespace USBprotect.PermitRequest
                 requests.RemoveAt(index); // 리스트에서 요청 삭제
                 SaveRequests(); // 변경된 요청 목록 저장
                 SaveApprovedRequest(approvedRequest); // 승인된 요청 저장
-                manageAllowList.enableEveryDevice(approvedRequest.DeviceName); // ManageAllowList를 사용하여 장치 활성화
+                manageAllowList.BlackToWhite(approvedRequest.DeviceName); // ManageAllowList를 사용하여 장치를 화이트리스트로 이동 및 활성화
             }
             else
             {
