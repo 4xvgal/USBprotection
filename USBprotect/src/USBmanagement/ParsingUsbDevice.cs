@@ -33,7 +33,7 @@ namespace USBprotect
             lock (USBinfo._lock) // 리스트 수정 작업에 대한 동기화 처리
             {
                 foreach (ManagementObject queryObj in searcher.Get())
-                {
+                {   
                     USBinfo usbDevice = new USBinfo
                     {
                         DeviceName = queryObj["Name"]?.ToString() ?? "Unknown",
@@ -50,7 +50,7 @@ namespace USBprotect
                         USBinfo.BlackListDevices.Remove(existingDevice); // 기존 장치 제거
                     }
 
-                    USBinfo.BlackListDevices.Add(usbDevice); // 새 장치 추가
+                    USBinfo.BlackListDevices.Add(usbDevice); // 새 장치 추가E
 
                 }   
             }

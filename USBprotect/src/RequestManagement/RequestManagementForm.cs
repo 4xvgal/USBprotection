@@ -99,5 +99,18 @@ namespace USBprotect
                     MessageBox.Show("Error: " + ex.Message);
                 }
         }
+
+        private void Refresh_Button_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+            MainForm.Instance.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+    
     }
 }

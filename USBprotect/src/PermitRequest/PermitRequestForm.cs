@@ -10,20 +10,26 @@ namespace USBprotect
     public partial class PermitRequestForm : Form    // 허용 요청 보내는 폼
     {
         private string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
-        private string message; // 초기 메시지
         private static PermitRequestForm instance; // Form2의 인스턴스
         USBinfo USBinfo = new USBinfo(); // USB 장치 정보
 
-        public PermitRequestForm(string message)     // 생성자
+        public PermitRequestForm()
         {
             InitializeComponent();
-            this.message = message;
+
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
 
             // USB 장치 정보를 가져와 label에 추가
-            foreach (var id in USBinfo.DeviceName)
+            foreach (var id in USBinfo.BlackListDevices)
             {
-                label6.Text += id + "\n";
+                if (id == null)
+                {
+                    label6.Text = "USB 장치가 없습니다.";
+                }
+                else
+                {
+                    label6.Text += id.DeviceName + "\n";
+                }
             }
         }
 
@@ -35,14 +41,13 @@ namespace USBprotect
                 instance.Close();
             }
 
-            instance = new PermitRequestForm(message);
+            instance = new PermitRequestForm();
             return instance;
         }
 
         // 폼 로드 시 이벤트 핸들러
         private void Form2_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(message); // 초기 메시지 표시
             SetHintText(); // 힌트 텍스트 설정
         }
 
@@ -102,6 +107,12 @@ namespace USBprotect
             {
                 SetHintText(); // 텍스트 상자가 비어있으면 힌트 텍스트 설정
             }
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+            MainForm.Instance.Show();
         }
     }
 }
