@@ -128,6 +128,15 @@
     <Compile Include="PermitRequestManagement\RequestManagementForm.Designer.cs">
       <DependentUpon>RequestManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingExportImport\form\SettingExportImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingExportImport\form\SettingExportImport.Designer.cs">
+      <DependentUpon>SettingExportImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingExportImport\src\SettingExport.cs" />
+    <Compile Include="SettingExportImport\src\SettingImport.cs" />
+    <Compile Include="SettingExportImport\test\SettingXmlTests.cs" />
     <Compile Include="src\USBmanagement\IUSBmanagementSystem.cs" />
     <Compile Include="src\USBmanagement\test\UsbMangementSystemTests.cs" />
     <Compile Include="src\USBmanagement\test\UsBxmlSerializerTests.cs" />
@@ -154,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PermitRequestManagement\RequestManagementForm.resx">
       <DependentUpon>RequestManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingExportImport\form\SettingExportImport.resx">
+      <DependentUpon>SettingExportImport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
