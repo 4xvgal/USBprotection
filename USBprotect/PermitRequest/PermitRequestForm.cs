@@ -76,8 +76,9 @@ namespace USBprotect
                 string requester = textBox2.Text; // 요청자
                 string reason = textBox1.Text; // 사유
                 DateTime requestTime = DateTime.Now; // 요청 시간
+                string deviceId = GetDeviceId(deviceName); // deviceId 가져오기
 
-                _requestAdd.AddRequest(deviceName, requester, reason, requestTime); // 허용 요청 추가
+                _requestAdd.AddRequest(deviceName, requester, reason, requestTime, deviceId); // 허용 요청 추가
 
                 MessageBox.Show("요청이 전송되었습니다.");
             }
@@ -121,16 +122,31 @@ namespace USBprotect
         private string[] GetUsbDevices()
         {
             var deviceList = new System.Collections.Generic.List<string>();
-            string wmiQuery = "SELECT Name FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
+            string wmiQuery = "SELECT Name, DeviceID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
 
             foreach (ManagementObject queryObj in searcher.Get())
             {
                 var deviceName = queryObj["Name"]?.ToString() ?? "Unknown";
-                deviceList.Add(deviceName);
+                var deviceId = queryObj["DeviceID"]?.ToString() ?? "Unknown";
+                deviceList.Add($"{deviceName} ({deviceId})");
             }
 
             return deviceList.ToArray();
+        }
+
+        // USB 장치의 DeviceID를 추출하는 메서드
+        private string GetDeviceId(string deviceName)
+        {
+            string wmiQuery = $"SELECT DeviceID FROM Win32_PnPEntity WHERE Name = '{deviceName}'";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
+
+            foreach (ManagementObject queryObj in searcher.Get())
+            {
+                return queryObj["DeviceID"]?.ToString() ?? "Unknown";
+            }
+
+            return "Unknown";
         }
 
         // USB 장치가 추가되거나 제거될 때 호출되는 이벤트 핸들러

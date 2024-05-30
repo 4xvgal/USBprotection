@@ -16,18 +16,20 @@ namespace USBprotect.PermitRequest
         // 요청 일시
         public DateTime RequestTime { get; set; }
 
+        // 장치 ID
+        public string DeviceId { get; set; }
+
         // 기본 생성자
-        public PermitRequestEnt()
-        {
-        }
+        public PermitRequestEnt() { }
 
         // 매개변수를 받는 생성자
-        public PermitRequestEnt(string deviceName, string requester, string reason, DateTime requestTime)
+        public PermitRequestEnt(string deviceName, string requester, string reason, DateTime requestTime, string deviceId)
         {
-            DeviceName = deviceName; // 장치 이름 설정
-            Requester = requester; // 요청자 설정
-            Reason = reason; // 사유 설정
-            RequestTime = requestTime; // 요청 일시 설정
+            DeviceName = deviceName;
+            Requester = requester;
+            Reason = reason;
+            RequestTime = requestTime;
+            DeviceId = deviceId;
         }
     }
 }

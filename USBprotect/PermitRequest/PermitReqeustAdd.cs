@@ -16,9 +16,9 @@ namespace USBprotect.PermitRequest
             LoadRequests(); // 허용 요청 로드
         }
 
-        public void AddRequest(string deviceName, string requester, string reason, DateTime requestTime)    // 새로운 허용 요청을 추가하는 메서드
+        public void AddRequest(string deviceName, string requester, string reason, DateTime requestTime, string deviceId)    // 새로운 허용 요청을 추가하는 메서드
         {
-            var request = new PermitRequestEnt(deviceName, requester, reason, requestTime); // 새로운 요청 생성
+            var request = new PermitRequestEnt(deviceName, requester, reason, requestTime, deviceId); // 새로운 요청 생성
             requests.Add(request); // 리스트에 요청 추가
             SaveRequests(); // 요청 저장
         }

@@ -27,13 +27,13 @@ namespace USBprotect
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new RequestManagementForm());  // 'MainForm'은 앱의 메인 폼입니다*
 
-            // 허용 요청폼 실행 코드
+           /* // 허용 요청폼 실행 코드
             string initialMessage = "This is the initial message for the PermitRequestForm.";
             PermitRequestForm permitRequestForm = PermitRequestForm.GetInstance(initialMessage);
 
             Application.Run(permitRequestForm);
-
-            //Application.Run(new RequestManagementForm());
+            */
+            Application.Run(new RequestManagementForm());
 
         }
 

@@ -63,31 +63,30 @@ namespace USBprotect
             }
         }
 
-
         private void button1_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
         {
             this.Close(); // 폼 닫기
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  // 승인 버튼 클릭 이벤트 핸들러
         {
-                try
-                {
-                    int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
-                    requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
-                    permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
-                    PopulateListBox(); // 리스트 박스 업데이트
-                    MessageBox.Show("요청이 승인되었습니다.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+            try
+            {
+                int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+                requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
+                permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
+                PopulateListBox(); // 리스트 박스 업데이트
+                MessageBox.Show("요청이 승인되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)  // 삭제 버튼 클릭 이벤트 핸들러
         {
-
+            // 삭제 관련 코드 작성 필요
         }
     }
 }

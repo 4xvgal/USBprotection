@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using UsbSecurity;
 using USBsecurity;
 
 namespace USBprotect.PermitRequest
@@ -25,7 +26,7 @@ namespace USBprotect.PermitRequest
             return requests; // 요청 리스트 반환
         }
 
-        public void ApproveRequest(int index)    // 선택한 인덱스의 요청을 승인하는 메서드
+        public void ApproveRequest(int index)
         {
             if (index >= 0 && index < requests.Count)
             {
@@ -33,13 +34,26 @@ namespace USBprotect.PermitRequest
                 requests.RemoveAt(index); // 리스트에서 요청 삭제
                 SaveRequests(); // 변경된 요청 목록 저장
                 SaveApprovedRequest(approvedRequest); // 승인된 요청 저장
-                manageAllowList.BlackToWhite(approvedRequest.DeviceName); // ManageAllowList를 사용하여 장치를 화이트리스트로 이동 및 활성화
+
+                // 승인된 요청을 화이트리스트로 추가
+                USBinfo usbInfo = new USBinfo
+                {
+                    DeviceName = approvedRequest.DeviceName,
+                    DeviceId = approvedRequest.DeviceId,
+                    PnpDeviceId = approvedRequest.DeviceId, // 적절한 PnpDeviceId 설정
+                    Status = "Approved",
+                    IsWhiteListed = true
+                };
+
+                USBinfo.WhiteListDevices.Add(usbInfo); // 화이트리스트에 추가
+                manageAllowList.enableEveryDevice(approvedRequest.DeviceId); // 장치 활성화
             }
             else
             {
                 throw new ArgumentOutOfRangeException("index", "Index is out of range.");
             }
         }
+
 
         public void SaveRequests()  // 허용 요청을 파일에 저장하는 메서드
         {
