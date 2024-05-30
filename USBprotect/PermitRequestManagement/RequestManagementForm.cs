@@ -61,8 +61,8 @@ namespace USBprotect
             if (selectedIndex != -1)
             {
                 // 아이템이 선택되면 버튼 활성화
-                button2.Enabled = true;
-                button3.Enabled = true;
+                approve_btn.Enabled = true;
+                delete_btn.Enabled = true;
 
                 // 선택한 허가 요청의 세부 정보 표시
                 var selectedRequest = permitRequests[selectedIndex];
@@ -72,12 +72,12 @@ namespace USBprotect
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
+        private void close_btn_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
         {
             this.Close(); // 폼 닫기
         }
 
-        private void button2_Click(object sender, EventArgs e)  // 승인 버튼 클릭 이벤트 핸들러
+        private void approve_btn_Click(object sender, EventArgs e)  // 승인 버튼 클릭 이벤트 핸들러
         {
             int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
 
@@ -101,7 +101,7 @@ namespace USBprotect
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void delete_btn_Click(object sender, EventArgs e)
         {
             int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
 
@@ -123,6 +123,13 @@ namespace USBprotect
                     }
                 }
             }
+        }
+
+        private void home_btn_Click(object sender, EventArgs e)
+        {
+                this.Hide(); // 현재 폼 (Form2) 숨기기
+
+                //MainForm.Instance.Show();
         }
     }
 }
