@@ -21,11 +21,6 @@ namespace USBprotect.PermitRequest
             manageAllowList = new ManageAllowList(); // ManageAllowList 초기화
         }
 
-        public List<PermitRequestEnt> GetRequests()     // 현재 저장된 허용 요청 리스트를 반환하는 메서드
-        {
-            return requests; // 요청 리스트 반환
-        }
-
         public void ApproveRequest(int index)
         {
             if (index >= 0 && index < requests.Count)
