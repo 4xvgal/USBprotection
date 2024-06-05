@@ -19,6 +19,9 @@ namespace USBprotect.PermitRequest
         // 장치 ID
         public string DeviceId { get; set; }
 
+        // 파일 경로
+        public static string FilePath { get; } = "PermitRequests.xml";
+
         // 기본 생성자
         public PermitRequestEnt() { }
 

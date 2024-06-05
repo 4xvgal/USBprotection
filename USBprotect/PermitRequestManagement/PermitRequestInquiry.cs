@@ -8,7 +8,6 @@ namespace USBprotect.PermitRequest
     internal class PermitRequestInquiry
     {
         private List<PermitRequestEnt> requests; // 허용 요청을 저장하는 리스트
-        private readonly string filePath = "PermitRequests.xml"; // XML 파일 경로
 
         public PermitRequestInquiry()   // 생성자
         {
@@ -25,10 +24,10 @@ namespace USBprotect.PermitRequest
         {
             try
             {
-                if (File.Exists(filePath)) // 파일이 존재하는지 확인
+                if (File.Exists(PermitRequestEnt.FilePath)) // 파일이 존재하는지 확인
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(List<PermitRequestEnt>)); // 역직렬화 객체 생성
-                    using (FileStream stream = new FileStream(filePath, FileMode.Open)) // 파일 스트림 열기
+                    using (FileStream stream = new FileStream(PermitRequestEnt.FilePath, FileMode.Open)) // 파일 스트림 열기
                     {
                         requests = (List<PermitRequestEnt>)serializer.Deserialize(stream); // XML을 역직렬화하여 요청 리스트에 할당
                     }
