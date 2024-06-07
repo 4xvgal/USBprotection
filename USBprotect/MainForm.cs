@@ -152,9 +152,9 @@ namespace UsbSecurity
         {
             if (IsUserAdmin())
             {
-                string message = "";
+           
                 this.Hide(); // 현재 폼 숨기기
-                Form PermitRequestForm = new PermitRequestForm(message); // 새 폼 생성 
+                Form PermitRequestForm = new PermitRequestForm(); // 새 폼 생성 
                 PermitRequestForm.Closed += (s, args) => this.Close(); // 새 폼이 닫힐 때 애플리케이션 종료 설정
                 PermitRequestForm.Show(); // 새 폼 표시
 

@@ -1,4 +1,4 @@
-using UsbSecurity;
+/*using UsbSecurity;
 
 namespace USBprotect.USBmanagement
 {
@@ -29,3 +29,4 @@ namespace USBprotect.USBmanagement
         }
     }
 }
+*/

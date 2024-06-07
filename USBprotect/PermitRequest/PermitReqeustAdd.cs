@@ -44,7 +44,7 @@ namespace UsbSecurity
             }
         }
 
-        private void LoadRequests()      // 파일에서 허용 요청을 로드하는 메서드
+        private void LoadRequests() // 파일에서 허용 요청을 로드하는 메서드
         {
             try
             {
