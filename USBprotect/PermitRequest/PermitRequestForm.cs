@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Windows.Forms;
 using UsbSecurity;
-using USBprotect.PermitRequest;
 using System.Management;
 using System.Collections.Generic;
 
-namespace USBprotect
+namespace UsbSecurity
 {
     // 허용 요청 보내는 폼
     public partial class PermitRequestForm : Form
@@ -165,6 +164,12 @@ namespace USBprotect
         private void UsbDeviceChangeHandler(object sender, EventArrivedEventArgs e)
         {
             UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) // 홈으로 가는 버튼
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+            MainForm.Instance.Show();
         }
     }
 }

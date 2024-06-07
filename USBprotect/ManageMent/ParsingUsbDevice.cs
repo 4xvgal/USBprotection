@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
-using NUnit.Framework;  
+using NUnit.Framework;
 
 // class information :: 
 // 현재 연결된 USB 저장장치 (이동저장장치만)의 인스턴스 ID 를 추출합니다. 
@@ -20,7 +21,7 @@ namespace UsbSecurity
     using System.Collections.Generic;
     using System.Management; // System.Management 네임스페이스 참조 필요
     using System.Windows.Forms;
-    using USBprotect.InternalFunction;
+
 
     [TestFixture]
     class ParsingUsbDevice
@@ -53,11 +54,11 @@ namespace UsbSecurity
 
                     USBinfo.BlackListDevices.Add(usbDevice); // 새 장치 추가
 
-                }   
+                }
             }
         }
 
-        
+
         private bool AreDevicesEqual(USBinfo device1, USBinfo device2) // 장치가 같은지 확인
         {
             return device1.DeviceId == device2.DeviceId && device1.PnpDeviceId == device2.PnpDeviceId; // 비교연산
@@ -65,7 +66,7 @@ namespace UsbSecurity
 
         public void showUSBinfo()
         {
-            foreach(var device in USBinfo.BlackListDevices)
+            foreach (var device in USBinfo.BlackListDevices)
             {
                 Console.WriteLine("Device Name : " + device.DeviceName);
                 Console.WriteLine("Status : " + device.Status);
@@ -73,14 +74,14 @@ namespace UsbSecurity
                 Console.WriteLine("Pnp Device ID : " + device.PnpDeviceId);
                 Console.WriteLine("Description : " + device.Description);
                 Console.WriteLine("=====================================");
-            }   
+            }
         }
-      
+
     }
 
 
 }
 
-    
+
 
 
