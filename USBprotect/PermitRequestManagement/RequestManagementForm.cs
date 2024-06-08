@@ -85,6 +85,7 @@ namespace UsbSecurity
                     try
                     {
                         requestApprove.ApproveRequest(selectedIndex);
+                        PermitRequestEnt.SaveApprovedRequest(permitRequests[selectedIndex]);
                         permitRequests.RemoveAt(selectedIndex);
                         PopulateListBox();
                         MessageBox.Show("요청이 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
