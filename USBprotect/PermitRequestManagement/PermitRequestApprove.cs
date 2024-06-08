@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using UsbSecurity;
-using USBsecurity;
 
-namespace USBprotect.PermitRequest
+
+
+namespace UsbSecurity
 {
     internal class PermitRequestApprove
     {

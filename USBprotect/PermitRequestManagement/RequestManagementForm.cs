@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using USBprotect.PermitRequest;
 
-namespace USBprotect
+namespace UsbSecurity
 {
     public partial class RequestManagementForm : Form
     {
@@ -130,6 +129,12 @@ namespace USBprotect
                 this.Hide(); // 현재 폼 (Form2) 숨기기
 
                 //MainForm.Instance.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e) // 홈화면 버튼
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+            MainForm.Instance.Show();
         }
     }
 }

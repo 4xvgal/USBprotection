@@ -32,7 +32,7 @@ namespace USBprotect
             PermitRequestForm permitRequestForm = PermitRequestForm.GetInstance(initialMessage);
 
             Application.Run(permitRequestForm);*/
-            Application.Run(new RequestManagementForm());
+            Application.Run(new MainForm());
 
         }
 

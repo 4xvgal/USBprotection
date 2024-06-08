@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace USBprotect.PermitRequest
+namespace UsbSecurity
 {
     internal class PermitRequestAdd
     {
@@ -44,7 +44,7 @@ namespace USBprotect.PermitRequest
             }
         }
 
-        private void LoadRequests()      // 파일에서 허용 요청을 로드하는 메서드
+        private void LoadRequests() // 파일에서 허용 요청을 로드하는 메서드
         {
             try
             {

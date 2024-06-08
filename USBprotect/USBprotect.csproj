@@ -84,13 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InternalFunction\DevconCMD.cs" />
     <Compile Include="Logger\Form\logform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +109,11 @@
     <Compile Include="ManageMent\AllowBlockForm.Designer.cs">
       <DependentUpon>AllowBlockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InternalFunction\PopUpFormEvent.cs" />
-    <Compile Include="InternalFunction\ParsingUsbDevice.cs" />
     <Compile Include="Database\USBinfo.cs" />
+    <Compile Include="ManageMent\InquaryUSBList.cs" />
     <Compile Include="ManageMent\ManageAllowList.cs" />
     <Compile Include="ManageMent\ManageBlackList.cs" />
+    <Compile Include="ManageMent\ParsingUsbDevice.cs" />
     <Compile Include="PermitRequest\PermitReqeustAdd.cs" />
     <Compile Include="PermitRequest\PermitRequestForm.cs">
       <SubType>Form</SubType>
@@ -134,7 +127,6 @@
     <Compile Include="PermitRequestManagement\PermitRequestInquiry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="InternalFunction\DeviceMonitor.cs" />
     <Compile Include="PermitRequestManagement\RequestManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,9 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageMent\AllowBlockForm.resx">
       <DependentUpon>AllowBlockForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PermitRequest\PermitRequestForm.resx">
       <DependentUpon>PermitRequestForm.cs</DependentUpon>

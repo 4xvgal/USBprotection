@@ -2,24 +2,22 @@
 using System.Linq;
 using System.Windows.Forms;
 using UsbSecurity;
-using USBprotect.PermitRequest;
 using System.Management;
 using System.Collections.Generic;
 
-namespace USBprotect
+namespace UsbSecurity
 {
     // 허용 요청 보내는 폼
     public partial class PermitRequestForm : Form
     {
         private readonly string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
-        private readonly string message; // 초기 메시지
         private static PermitRequestForm instance; // Form2의 인스턴스
         private readonly PermitRequestAdd _requestAdd; // 허용 요청 추가 클래스
+        public USBinfo USBinfo = new USBinfo(); // USB 장치 정보 클래스
 
-        public PermitRequestForm(string message)     // 생성자
+        public PermitRequestForm()     // 생성자
         {
             InitializeComponent();
-            this.message = message;
             this.Load += Form2_Load; // 폼 로드 이벤트 핸들러 등록
             _requestAdd = new PermitRequestAdd(); // 허용 요청 추가 클래스 초기화
         }
@@ -32,22 +30,16 @@ namespace USBprotect
                 instance.Close();
             }
 
-            instance = new PermitRequestForm(message);
+            instance = new PermitRequestForm();
             return instance;
         }
 
         // 폼 로드 시 이벤트 핸들러
         private void Form2_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show(message); // 초기 메시지 표시
+        {           
             SetHintText(); // 힌트 텍스트 설정
             UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
 
-            // USB 장치 변경 이벤트 핸들러 등록
-            ManagementEventWatcher watcher = new ManagementEventWatcher();
-            watcher.EventArrived += UsbDeviceChangeHandler;
-            watcher.Query = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2 or EventType = 3");
-            watcher.Start();
         }
 
         // 힌트 텍스트 설정 메서드
@@ -124,15 +116,21 @@ namespace USBprotect
         private string[] GetUsbDevices()
         {
             var deviceList = new List<string>();
-            string wmiQuery = "SELECT Name, DeviceID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'USB%' AND (Description LIKE '%디스크 드라이브%' OR DeviceID LIKE 'USBSTOR%')";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
 
-            foreach (ManagementObject queryObj in searcher.Get())
+            if (USBinfo.WhiteListDevices != null)
             {
-                var deviceName = queryObj["Name"]?.ToString() ?? "Unknown";
-                var deviceId = queryObj["DeviceID"]?.ToString() ?? "Unknown";
-                deviceList.Add($"{deviceName} ({deviceId})");
+                foreach (var usb in USBinfo.BlackListDevices)
+                {
+                    string devicename = usb.DeviceName;
+                    string deviceid = usb.DeviceId;
+                    deviceList.Add($"{devicename} ({deviceid})");
+                }
             }
+            else
+            {
+                MessageBox.Show("USB 장치 정보를 가져오는데 실패했습니다.");    
+            }
+
 
             return deviceList.ToArray();
         }
@@ -165,6 +163,17 @@ namespace USBprotect
         private void UsbDeviceChangeHandler(object sender, EventArrivedEventArgs e)
         {
             UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) // 홈으로 가는 버튼
+        {
+            this.Hide(); // 현재 폼 (Form2) 숨기기
+            MainForm.Instance.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            UpdateUsbDevicesLabel();
         }
     }
 }
