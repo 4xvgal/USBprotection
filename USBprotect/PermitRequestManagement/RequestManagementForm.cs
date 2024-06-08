@@ -121,5 +121,19 @@ namespace UsbSecurity
                 }
             }
         }
+
+        private void home_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // 현재 폼 숨기기
+            MainForm.Instance.Show();
+        }
+
+        private void refresh_btn_Click(object sender, EventArgs e)
+        {
+                PopulateListBox();  // 리스트 박스 다시 채우기
+                label5.Text = ""; // 요청자 초기화
+                label6.Text = ""; // 요청 시간 초기화
+                label7.Text = ""; // 요청 사유 초기화
+        }
     }
 }

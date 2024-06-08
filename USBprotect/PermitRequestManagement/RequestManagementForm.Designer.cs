@@ -30,8 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.home_btn = new System.Windows.Forms.Button();
+            this.refresh_btn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -86,8 +86,8 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(142)))), ((int)(((byte)(128)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.home_btn);
+            this.panel2.Controls.Add(this.refresh_btn);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -95,25 +95,27 @@
             this.panel2.Size = new System.Drawing.Size(1184, 89);
             this.panel2.TabIndex = 37;
             // 
-            // button1
+            // home_btn
             // 
-            this.button1.Image = global::USBprotect.Properties.Resources.Home;
-            this.button1.Location = new System.Drawing.Point(959, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 77);
-            this.button1.TabIndex = 38;
-            this.button1.UseVisualStyleBackColor = true;
+            this.home_btn.Image = global::USBprotect.Properties.Resources.Home;
+            this.home_btn.Location = new System.Drawing.Point(959, 4);
+            this.home_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.home_btn.Name = "home_btn";
+            this.home_btn.Size = new System.Drawing.Size(100, 77);
+            this.home_btn.TabIndex = 38;
+            this.home_btn.UseVisualStyleBackColor = true;
+            this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
-            // button5
+            // refresh_btn
             // 
-            this.button5.Image = global::USBprotect.Properties.Resources.refresh;
-            this.button5.Location = new System.Drawing.Point(1067, 4);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 77);
-            this.button5.TabIndex = 37;
-            this.button5.UseVisualStyleBackColor = true;
+            this.refresh_btn.Image = global::USBprotect.Properties.Resources.refresh;
+            this.refresh_btn.Location = new System.Drawing.Point(1067, 4);
+            this.refresh_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.refresh_btn.Name = "refresh_btn";
+            this.refresh_btn.Size = new System.Drawing.Size(100, 77);
+            this.refresh_btn.TabIndex = 37;
+            this.refresh_btn.UseVisualStyleBackColor = true;
+            this.refresh_btn.Click += new System.EventHandler(this.refresh_btn_Click);
             // 
             // button3
             // 
@@ -347,8 +349,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button home_btn;
+        private System.Windows.Forms.Button refresh_btn;
         private System.Windows.Forms.Button button3;
     }
 }
