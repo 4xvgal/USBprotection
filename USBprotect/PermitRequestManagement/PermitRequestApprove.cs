@@ -21,7 +21,6 @@ namespace UsbSecurity
                 var approvedRequest = requests[index];
                 requests.RemoveAt(index);
                 PermitRequestEnt.SaveRequests(requests);
-                PermitRequestEnt.SaveApprovedRequest(approvedRequest);
 
                 USBinfo usbInfo = new USBinfo
                 {
