@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using UsbSecurity;
 using System.Management;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Emit;
 
 namespace UsbSecurity
 {
@@ -11,6 +13,7 @@ namespace UsbSecurity
     public partial class PermitRequestForm : Form
     {
         private readonly string hintText = "요청 사유를 입력하세요"; // 텍스트 상자의 힌트 텍스트
+        string selectedItem;
         private static PermitRequestForm instance; // Form2의 인스턴스
         private readonly PermitRequestAdd _requestAdd; // 허용 요청 추가 클래스
         public USBinfo USBinfo = new USBinfo(); // USB 장치 정보 클래스
@@ -55,11 +58,11 @@ namespace UsbSecurity
         }
 
         // 허용 요청 버튼 클릭 이벤트 핸들러
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  
         {
             try
             {
-                string deviceInfo = label6.Text.Trim();
+                string deviceInfo = selectedItem;
                 if (string.IsNullOrEmpty(deviceInfo))
                 {
                     MessageBox.Show("USB 장치가 없습니다.");
@@ -103,12 +106,13 @@ namespace UsbSecurity
         // USB 장치 정보를 가져와 label에 추가하는 메서드
         private void UpdateUsbDevicesLabel()
         {
-            label6.Text = string.Empty; // 기존 텍스트 초기화
+            
             var usbDevices = GetUsbDevices(); // USB 장치 정보 가져오기
 
             foreach (var device in usbDevices)
             {
-                label6.Text += device + "\n"; // 장치 정보 추가
+                comboBox1.Items.Add(device);
+            
             }
         }
 
@@ -174,6 +178,12 @@ namespace UsbSecurity
         private void button5_Click(object sender, EventArgs e)
         {
             UpdateUsbDevicesLabel();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedItem = comboBox1.SelectedItem.ToString();
+
         }
     }
 }
