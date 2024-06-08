@@ -28,7 +28,7 @@ namespace UsbSecurity
             {
                 FileName = devconPath,
                 Arguments = command,
-                UseShellExecute = true, // 셸 실행 사용
+                UseShellExecute = false, // 셸 실행 사용
                 Verb = "runas", // 관리자 권한 요청
                 CreateNoWindow = true
             };
