@@ -21,7 +21,7 @@ namespace UsbSecurity
             PopulateListBox();
         }
 
-        private void PopulateListBox()
+        private void PopulateListBox()  //리스트 박스 채우는 메서드
         {
             listBox1.Items.Clear();
             var deviceNameCount = new Dictionary<string, int>();
@@ -128,7 +128,7 @@ namespace UsbSecurity
             MainForm.Instance.Show();
         }
 
-        private void refresh_btn_Click(object sender, EventArgs e)
+        private void refresh_btn_Click(object sender, EventArgs e)  //새로고침 버튼
         {
                 PopulateListBox();  // 리스트 박스 다시 채우기
                 label5.Text = ""; // 요청자 초기화

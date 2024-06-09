@@ -39,6 +39,7 @@ namespace UsbSecurity
             DeviceId = deviceId;
         }
 
+        // 요청 목록을 XML 파일에서 불러오는 메서드
         public static List<PermitRequestEnt> LoadRequests()
         {
             try
@@ -59,6 +60,7 @@ namespace UsbSecurity
             }
         }
 
+        // 요청 목록을 XML 파일에 저장하는 메서드
         public static void SaveRequests(List<PermitRequestEnt> requests)
         {
             try
@@ -75,6 +77,7 @@ namespace UsbSecurity
             }
         }
 
+        // 승인된 요청을 XML 파일에 저장하는 메서드
         public static void SaveApprovedRequest(PermitRequestEnt request)
         {
             try
@@ -108,6 +111,7 @@ namespace UsbSecurity
             }
         }
 
+        // 요청을 승인하는 메서드
         public static void ApproveRequest(int index)
         {
             var requests = LoadRequests();
@@ -136,6 +140,8 @@ namespace UsbSecurity
                 throw new ArgumentOutOfRangeException("index", "Index is out of range.");
             }
         }
+
+        // 요청을 삭제하는 메서드
         public static void RemoveRequest(int index)
         {
             var requests = LoadRequests();
@@ -149,8 +155,6 @@ namespace UsbSecurity
                 throw new ArgumentOutOfRangeException("index", "Index is out of range.");
             }
         }
-
-
 
     }
 }
