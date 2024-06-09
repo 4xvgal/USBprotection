@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace UsbSecurity
@@ -121,6 +122,13 @@ namespace UsbSecurity
                 requests.RemoveAt(index);
                 SaveRequests(requests);
 
+                // 블랙리스트에서 제거
+                var blackListDevice = USBinfo.BlackListDevices.FirstOrDefault(d => d.DeviceId == approvedRequest.DeviceId);
+                if (blackListDevice != null)
+                {
+                    USBinfo.BlackListDevices.Remove(blackListDevice);
+                }
+
                 USBinfo usbInfo = new USBinfo
                 {
                     DeviceName = approvedRequest.DeviceName,
@@ -131,7 +139,7 @@ namespace UsbSecurity
                 };
 
                 USBinfo.WhiteListDevices.Add(usbInfo);
-                USBinfo.BlackListDevices.Remove(usbInfo);
+                USBinfo.RemoveBlackListDevice(usbInfo);
                 ManageAllowList manageAllowList = new ManageAllowList();
                 manageAllowList.enableEveryDevice(approvedRequest.DeviceId);
             }
