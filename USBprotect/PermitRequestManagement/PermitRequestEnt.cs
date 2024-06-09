@@ -107,5 +107,50 @@ namespace UsbSecurity
                 throw new Exception("승인된 요청을 저장하는 중 오류 발생: " + ex.Message);
             }
         }
+
+        public static void ApproveRequest(int index)
+        {
+            var requests = LoadRequests();
+            if (index >= 0 && index < requests.Count)
+            {
+                var approvedRequest = requests[index];
+                requests.RemoveAt(index);
+                SaveRequests(requests);
+
+                USBinfo usbInfo = new USBinfo
+                {
+                    DeviceName = approvedRequest.DeviceName,
+                    DeviceId = approvedRequest.DeviceId,
+                    PnpDeviceId = approvedRequest.DeviceId,
+                    Status = "Approved",
+                    IsWhiteListed = true
+                };
+
+                USBinfo.WhiteListDevices.Add(usbInfo);
+                USBinfo.BlackListDevices.Remove(usbInfo);
+                ManageAllowList manageAllowList = new ManageAllowList();
+                manageAllowList.enableEveryDevice(approvedRequest.DeviceId);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
+            }
+        }
+        public static void RemoveRequest(int index)
+        {
+            var requests = LoadRequests();
+            if (index >= 0 && index < requests.Count)
+            {
+                requests.RemoveAt(index);
+                SaveRequests(requests);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
+            }
+        }
+
+
+
     }
 }
