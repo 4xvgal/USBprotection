@@ -6,35 +6,35 @@ namespace UsbSecurity
 {
     public partial class RequestManagementForm : Form
     {
-        private PermitRequestApprove requestApprove; // 요청 허용 클래스 인스턴스
-        private PermitRequestDelete requestDelete; // 요청 삭제 클래스 인스턴스
-        private PermitRequestInquiry requestInquiry; // 요청 조회 클래스 인스턴스
-        private List<PermitRequestEnt> permitRequests; // 허용 요청 리스트
+        private PermitRequestApprove requestApprove;
+        private PermitRequestDelete requestDelete;
+        private PermitRequestInquiry requestInquiry;
+        private List<PermitRequestEnt> permitRequests;
 
         public RequestManagementForm()
         {
             InitializeComponent();
-            requestApprove = new PermitRequestApprove(); // 요청 허용 클래스 초기화
-            requestDelete = new PermitRequestDelete(); // 요청 삭제 클래스 초기화
-            requestInquiry = new PermitRequestInquiry(); // 요청 조회 클래스 초기화
-            permitRequests = requestInquiry.GetRequests(); // 허용 요청 리스트 초기화
-            PopulateListBox(); // 리스트 박스 채우기
+            requestApprove = new PermitRequestApprove();
+            requestDelete = new PermitRequestDelete();
+            requestInquiry = new PermitRequestInquiry();
+            permitRequests = requestInquiry.GetRequests();
+            PopulateListBox();
         }
 
-        private void PopulateListBox()
+        private void PopulateListBox()  //리스트 박스 채우는 메서드
         {
-            listBox1.Items.Clear(); // 리스트 박스에 있는 항목들 지우기
-            var deviceNameCount = new Dictionary<string, int>(); // 디바이스 이름과 갯수를 저장할 딕셔너리
+            listBox1.Items.Clear();
+            var deviceNameCount = new Dictionary<string, int>();
 
-            if (permitRequests.Count == 0) // 허용 요청이 없을 경우
+            if (permitRequests.Count == 0)
             {
                 MessageBox.Show("현재 허용 요청이 존재하지 않습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return; // 메서드 종료
+                return;
             }
 
-            foreach (var request in permitRequests) // 각 허용 요청에 대해 반복
+            foreach (var request in permitRequests)
             {
-                if (!deviceNameCount.ContainsKey(request.DeviceName))   // 디바이스 이름의 갯수 업데이트
+                if (!deviceNameCount.ContainsKey(request.DeviceName))
                 {
                     deviceNameCount[request.DeviceName] = 1;
                 }
@@ -43,27 +43,24 @@ namespace UsbSecurity
                     deviceNameCount[request.DeviceName]++;
                 }
 
-                string displayName = request.DeviceName;       // 디바이스 이름과 갯수를 포함한 표시 이름 생성
-                if (deviceNameCount[request.DeviceName] > 1)   // 디바이스 이름이 중복되는 경우에만 숫자를 표시
+                string displayName = request.DeviceName;
+                if (deviceNameCount[request.DeviceName] > 1)
                 {
                     displayName += " (" + deviceNameCount[request.DeviceName] + ")";
                 }
-                listBox1.Items.Add(displayName); // 표시 이름을 리스트 박스에 추가
+                listBox1.Items.Add(displayName);
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)     // 리스트 박스에서 선택한 인덱스 변경 이벤트 핸들러
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+            int selectedIndex = listBox1.SelectedIndex;
 
-            // 아이템이 선택되었는지 확인
             if (selectedIndex != -1)
             {
-                // 아이템이 선택되면 버튼 활성화
                 approve_btn.Enabled = true;
                 delete_btn.Enabled = true;
 
-                // 선택한 허가 요청의 세부 정보 표시
                 var selectedRequest = permitRequests[selectedIndex];
                 label5.Text = selectedRequest.Requester;
                 label6.Text = selectedRequest.RequestTime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -71,14 +68,14 @@ namespace UsbSecurity
             }
         }
 
-        private void close_btn_Click(object sender, EventArgs e)   // 폼을 닫는 버튼 클릭 이벤트 핸들러
+        private void close_btn_Click(object sender, EventArgs e)
         {
-            this.Close(); // 폼 닫기
+            this.Close();
         }
 
-        private void approve_btn_Click(object sender, EventArgs e)  // 승인 버튼 클릭 이벤트 핸들러
+        private void approve_btn_Click(object sender, EventArgs e)
         {
-            int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+            int selectedIndex = listBox1.SelectedIndex;
 
             if (selectedIndex != -1)
             {
@@ -87,14 +84,15 @@ namespace UsbSecurity
                 {
                     try
                     {
-                        requestApprove.ApproveRequest(selectedIndex); // 선택한 요청 승인
-                        permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
-                        PopulateListBox(); // 리스트 박스 업데이트
-                        MessageBox.Show("요청이 승인되었습니다.");
+                        requestApprove.ApproveRequest(selectedIndex);
+                        PermitRequestEnt.SaveApprovedRequest(permitRequests[selectedIndex]);
+                        permitRequests.RemoveAt(selectedIndex);
+                        PopulateListBox();
+                        MessageBox.Show("요청이 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("요청 승인 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -102,23 +100,23 @@ namespace UsbSecurity
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            int selectedIndex = listBox1.SelectedIndex; // 선택한 아이템의 인덱스 가져오기
+            int selectedIndex = listBox1.SelectedIndex;
 
             if (selectedIndex != -1)
             {
-                var result = MessageBox.Show("선택한 요청을 삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show("삭제하시겠습니까?", "확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                        requestDelete.RemoveRequest(selectedIndex); // 선택한 요청 삭제
-                        permitRequests.RemoveAt(selectedIndex); // 허용 요청 리스트에서 제거
-                        PopulateListBox(); // 리스트 박스 업데이트
-                        MessageBox.Show("요청이 삭제되었습니다.");
+                        requestDelete.RemoveRequest(selectedIndex);
+                        permitRequests.RemoveAt(selectedIndex);
+                        PopulateListBox();
+                        MessageBox.Show("요청이 삭제되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("요청 삭제 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -126,15 +124,16 @@ namespace UsbSecurity
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-                this.Hide(); // 현재 폼 (Form2) 숨기기
-
-                //MainForm.Instance.Show();
+            this.Hide(); // 현재 폼 숨기기
+            MainForm.Instance.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e) // 홈화면 버튼
+        private void refresh_btn_Click(object sender, EventArgs e)  //새로고침 버튼
         {
-            this.Hide(); // 현재 폼 (Form2) 숨기기
-            MainForm.Instance.Show();
+                PopulateListBox();  // 리스트 박스 다시 채우기
+                label5.Text = ""; // 요청자 초기화
+                label6.Text = ""; // 요청 일시 초기화
+                label7.Text = ""; // 요청 사유 초기화
         }
     }
 }
