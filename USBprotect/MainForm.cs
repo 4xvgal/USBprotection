@@ -24,6 +24,7 @@ namespace UsbSecurity
         private ParsingUsbDevice parsingUsbDevice = new ParsingUsbDevice(); // 인스턴스 id 추출 객체
         private static MainForm _instance;
 
+
         private bool isToggled = false;  // 토글 상태를 추적하는 변수
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -106,6 +107,9 @@ namespace UsbSecurity
             button3.FlatAppearance.BorderSize = 0;
             button4.FlatAppearance.BorderSize = 0;
             button5.FlatAppearance.BorderSize = 0;
+
+            USBinfo.LoadWhiteList(); // 화이트리스트 로드   
+            USBinfo.LoadBlackList(); // 블랙리스트 로드    
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -271,6 +275,7 @@ namespace UsbSecurity
 
         private void DeviceInsertedEvent(object sender, EventArrivedEventArgs e)
         {
+           
             parsingUsbDevice.GetUsbDevices(); // USB 장치 목록 추출
             parsingUsbDevice.showUSBinfo(); // USB 장치 정보 출력
             AllowBlockForm allowBlockForm = new AllowBlockForm();

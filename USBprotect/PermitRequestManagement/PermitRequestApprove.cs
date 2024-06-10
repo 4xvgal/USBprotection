@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 
 
@@ -29,17 +32,10 @@ namespace UsbSecurity
                 SaveRequests(); // 변경된 요청 목록 저장
                 SaveApprovedRequest(approvedRequest); // 승인된 요청 저장
 
-                // 승인된 요청을 화이트리스트로 추가
-                USBinfo usbInfo = new USBinfo
-                {
-                    DeviceName = approvedRequest.DeviceName,
-                    DeviceId = approvedRequest.DeviceId,
-                    PnpDeviceId = approvedRequest.DeviceId, // 적절한 PnpDeviceId 설정
-                    Status = "Approved",
-                    IsWhiteListed = true
-                };
+                USBinfo searchdevice = USBinfo.BlackListDevices.FirstOrDefault(device => device.DeviceId == approvedRequest.DeviceId);
+                USBinfo.BlackListDevices.Remove(searchdevice); // 블랙리스트에서 삭제    
+                USBinfo.WhiteListDevices.Add(searchdevice); // 화이트리스트에 추가
 
-                USBinfo.WhiteListDevices.Add(usbInfo); // 화이트리스트에 추가
                 manageAllowList.enableEveryDevice(approvedRequest.DeviceId); // 장치 활성화
             }
             else

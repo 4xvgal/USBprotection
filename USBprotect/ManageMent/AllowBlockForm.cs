@@ -31,6 +31,8 @@ namespace UsbSecurity
         private void AllowBlockForm_Load(object sender, EventArgs e)
         {
             inquaryUSBList.inquaryList();
+            USBinfo.SaveWhiteList();
+            USBinfo.SaveBlackList();
         }
 
 
