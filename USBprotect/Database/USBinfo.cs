@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace UsbSecurity
-{ 
+{
 
-// USB 장치 정보 클래스
+    // USB 장치 정보 클래스
     public class USBinfo
     {
         // 스레드 동기화를 위한 lock 객체
@@ -45,7 +45,7 @@ namespace UsbSecurity
 
 
         // 블랙리스트에 장치 추가하는 메서드
-        public static  void AddBlackListDevice(USBinfo device)
+        public static void AddBlackListDevice(USBinfo device)
         {
             lock (_lock)
             {
@@ -54,7 +54,7 @@ namespace UsbSecurity
         }
 
         // 블랙리스트에서 장치 제거하는 메서드
-        public void RemoveBlackListDevice(USBinfo device)
+        public static void RemoveBlackListDevice(USBinfo device)
         {
             lock (_lock)
             {
@@ -92,7 +92,7 @@ namespace UsbSecurity
                 }
             }
             catch (Exception ex)
-            {   
+            {
                 throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message); // 로딩 실패시 예외 발생
             }
         }
