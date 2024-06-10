@@ -41,7 +41,6 @@ namespace UsbSecurity
             {
                 foreach (var device in USBinfo.BlackListDevices)
                 {
-
                     disableEveryDevice(device.DeviceId); // 블랙리스트에 있는 장치 비활성화
                 }
             }
@@ -110,6 +109,8 @@ namespace UsbSecurity
                 Task.Run(() => {
                     USBinfo.BlackListDevices.Add(device);
                     USBinfo.WhiteListDevices.Remove(device);
+                    USBinfo.SaveWhiteList();
+                    USBinfo.SaveBlackList();
                     MessageBox.Show(deviceId + "가 차단되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 });
             }
@@ -122,7 +123,7 @@ namespace UsbSecurity
         private void StartUsbDeviceWatcher()
         {
             ManagementEventWatcher insertWatcher = new ManagementEventWatcher(
-                new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'"));
+            new WqlEventQuery("SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_PnPEntity' AND TargetInstance.DeviceID LIKE 'USB%'"));
             insertWatcher.EventArrived += (sender, e) => OnUsbDeviceChanged(e.NewEvent["TargetInstance"] as ManagementBaseObject);
             insertWatcher.Start();
 

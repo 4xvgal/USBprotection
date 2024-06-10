@@ -166,6 +166,7 @@ namespace UsbSecurity
         // USB 장치가 추가되거나 제거될 때 호출되는 이벤트 핸들러
         private void UsbDeviceChangeHandler(object sender, EventArrivedEventArgs e)
         {
+            comboBox1.Items.Clear();
             UpdateUsbDevicesLabel(); // USB 장치 정보 업데이트
         }
 
@@ -177,13 +178,13 @@ namespace UsbSecurity
 
         private void button5_Click(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
             UpdateUsbDevicesLabel();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedItem = comboBox1.SelectedItem.ToString();
-
         }
     }
 }
