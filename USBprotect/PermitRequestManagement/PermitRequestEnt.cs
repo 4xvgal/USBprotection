@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace UsbSecurity
 {
@@ -21,6 +25,7 @@ namespace UsbSecurity
 
         // 파일 경로
         public static string FilePath { get; } = "PermitRequests.xml";
+        private static readonly string ApprovedFilePath = "ApprovedRequests.xml";
 
         // 기본 생성자
         public PermitRequestEnt() { }
@@ -34,5 +39,130 @@ namespace UsbSecurity
             RequestTime = requestTime;
             DeviceId = deviceId;
         }
+
+        // 요청 목록을 XML 파일에서 불러오는 메서드
+        public static List<PermitRequestEnt> LoadRequests()
+        {
+            try
+            {
+                if (File.Exists(FilePath))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<PermitRequestEnt>));
+                    using (FileStream stream = new FileStream(FilePath, FileMode.Open))
+                    {
+                        return (List<PermitRequestEnt>)serializer.Deserialize(stream);
+                    }
+                }
+                return new List<PermitRequestEnt>();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message);
+            }
+        }
+
+        // 요청 목록을 XML 파일에 저장하는 메서드
+        public static void SaveRequests(List<PermitRequestEnt> requests)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<PermitRequestEnt>));
+                using (FileStream stream = new FileStream(FilePath, FileMode.Create))
+                {
+                    serializer.Serialize(stream, requests);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 저장하는 중 오류 발생: " + ex.Message);
+            }
+        }
+
+        // 승인된 요청을 XML 파일에 저장하는 메서드
+        public static void SaveApprovedRequest(PermitRequestEnt request)
+        {
+            try
+            {
+                List<PermitRequestEnt> approvedRequests;
+
+                if (File.Exists(ApprovedFilePath))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<PermitRequestEnt>));
+                    using (FileStream stream = new FileStream(ApprovedFilePath, FileMode.Open))
+                    {
+                        approvedRequests = (List<PermitRequestEnt>)serializer.Deserialize(stream);
+                    }
+                }
+                else
+                {
+                    approvedRequests = new List<PermitRequestEnt>();
+                }
+
+                approvedRequests.Add(request);
+
+                XmlSerializer approveSerializer = new XmlSerializer(typeof(List<PermitRequestEnt>));
+                using (FileStream stream = new FileStream(ApprovedFilePath, FileMode.Create))
+                {
+                    approveSerializer.Serialize(stream, approvedRequests);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("승인된 요청을 저장하는 중 오류 발생: " + ex.Message);
+            }
+        }
+
+        // 요청을 승인하는 메서드
+        public static void ApproveRequest(int index)
+        {
+            var requests = LoadRequests();
+            if (index >= 0 && index < requests.Count)
+            {
+                var approvedRequest = requests[index];
+                requests.RemoveAt(index);
+                SaveRequests(requests);
+
+                // 블랙리스트에서 제거
+                var blackListDevice = USBinfo.BlackListDevices.FirstOrDefault(d => d.DeviceId == approvedRequest.DeviceId);
+                if (blackListDevice != null)
+                {
+                    USBinfo.BlackListDevices.Remove(blackListDevice);
+                }
+
+                USBinfo usbInfo = new USBinfo
+                {
+                    DeviceName = approvedRequest.DeviceName,
+                    DeviceId = approvedRequest.DeviceId,
+                    PnpDeviceId = approvedRequest.DeviceId,
+                    Status = "Approved",
+                    IsWhiteListed = true
+                };
+
+                USBinfo.WhiteListDevices.Add(usbInfo);
+                USBinfo.RemoveBlackListDevice(usbInfo);
+                ManageAllowList manageAllowList = new ManageAllowList();
+                manageAllowList.enableEveryDevice(approvedRequest.DeviceId);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
+            }
+        }
+
+        // 요청을 삭제하는 메서드
+        public static void RemoveRequest(int index)
+        {
+            var requests = LoadRequests();
+            if (index >= 0 && index < requests.Count)
+            {
+                requests.RemoveAt(index);
+                SaveRequests(requests);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
+            }
+        }
+
     }
 }

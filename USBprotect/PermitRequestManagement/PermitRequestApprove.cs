@@ -6,23 +6,18 @@ using System.Xml.Serialization;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-
-
 namespace UsbSecurity
 {
     internal class PermitRequestApprove
     {
-        private List<PermitRequestEnt> requests; // 허용 요청을 저장하는 리스트
-        private readonly string approvedFilePath = "ApprovedRequests.xml"; // 승인된 요청 목록 XML 파일 경로
-        private ManageAllowList manageAllowList; // ManageAllowList 인스턴스
+        private List<PermitRequestEnt> requests;
+        private ManageAllowList manageAllowList;
 
-        public PermitRequestApprove()   // 생성자
+        public PermitRequestApprove()
         {
-            requests = new List<PermitRequestEnt>(); // 리스트 초기화
-            LoadRequests(); // 허용 요청 로드
-            manageAllowList = new ManageAllowList(); // ManageAllowList 초기화
+            requests = PermitRequestEnt.LoadRequests();
+            manageAllowList = new ManageAllowList();
         }
-
         public void ApproveRequest(int index)
         {
             if (index >= 0 && index < requests.Count)
@@ -104,6 +99,34 @@ namespace UsbSecurity
                     using (FileStream stream = new FileStream(PermitRequestEnt.FilePath, FileMode.Open)) // 파일 스트림 열기
                     {
                         requests = (List<PermitRequestEnt>)serializer.Deserialize(stream); // XML을 역직렬화하여 요청 리스트에 할당
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message); // 로딩 실패시 예외 발생
+            }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message); // 로딩 실패시 예외 발생
+            }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message); // 로딩 실패시 예외 발생
+            }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("요청을 불러오는 중 오류 발생: " + ex.Message); // 로딩 실패시 예외 발생
+            }
                     }
                 }
             }
