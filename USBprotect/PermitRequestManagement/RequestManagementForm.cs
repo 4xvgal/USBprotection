@@ -9,6 +9,7 @@ namespace UsbSecurity
         private PermitRequestApprove requestApprove;
         private PermitRequestDelete requestDelete;
         private PermitRequestInquiry requestInquiry;
+        private PermitRequestEnt permitrequestent;
         private List<PermitRequestEnt> permitRequests;
 
         public RequestManagementForm()
@@ -85,7 +86,7 @@ namespace UsbSecurity
                     try
                     {
                         requestApprove.ApproveRequest(selectedIndex);
-                        PermitRequestEnt.SaveApprovedRequest(permitRequests[selectedIndex]);
+                        permitrequestent.SaveApprovedRequest(permitRequests[selectedIndex]);
                         permitRequests.RemoveAt(selectedIndex);
                         PopulateListBox();
                         MessageBox.Show("요청이 승인되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);

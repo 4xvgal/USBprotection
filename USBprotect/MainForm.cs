@@ -101,12 +101,14 @@ namespace UsbSecurity
             button3.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button3.Width, button3.Height, 15, 15));
             button4.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button4.Width, button4.Height, 15, 15));
             button5.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button5.Width, button5.Height, 15, 15));
+            button6.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button6.Width, button6.Height, 15, 15));
 
             button1.FlatAppearance.BorderSize = 0;
             button2.FlatAppearance.BorderSize = 0;
             button3.FlatAppearance.BorderSize = 0;
             button4.FlatAppearance.BorderSize = 0;
             button5.FlatAppearance.BorderSize = 0;
+            button6.FlatAppearance.BorderSize = 0;
 
             USBinfo.LoadWhiteList(); // 화이트리스트 로드   
             USBinfo.LoadBlackList(); // 블랙리스트 로드    
