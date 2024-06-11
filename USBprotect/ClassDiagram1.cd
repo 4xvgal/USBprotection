@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UsbSecurity.USBinfo" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAwCEAEBgAABgEAAAAgAAABABAAAAEAAIBAAAAAA=</HashCode>
+      <FileName>Database\USBinfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.MainForm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAACBACKAIBCLAACJFQECAMA5AgAAYHQeAQAAAAg=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.AllowBlockForm" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAKgAABAAEACAAAACSEAoAAIAABAAAQIAAAQ=</HashCode>
+      <FileName>ManageMent\AllowBlockForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.InquaryUSBList" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ManageMent\InquaryUSBList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.ManageAllowList" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAgAAAAAAAgAAAAEEAAAABAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ManageMent\ManageAllowList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.ManageBlackList" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIAAAAAAAACAAAAQGAIABJAAAgAAAAAgAAAAA=</HashCode>
+      <FileName>ManageMent\ManageBlackList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.ParsingUsbDevice" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>ManageMent\ParsingUsbDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestAdd" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAQAAAEAAEAAAEBAAAAA=</HashCode>
+      <FileName>PermitRequest\PermitReqeustAdd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestForm" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGBAAJgBAKAgABAUACCAAAACBMB4AgwEEGAEAQARAAA=</HashCode>
+      <FileName>PermitRequest\PermitRequestForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestApprove" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAA=</HashCode>
+      <FileName>PermitRequestManagement\PermitRequestApprove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestDelete" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAA=</HashCode>
+      <FileName>PermitRequestManagement\PermitRequestDelete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestEnt">
+    <Position X="12.5" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAQAAAAAIAAAAQAAEAAAACAAAAEABIABIAAAA=</HashCode>
+      <FileName>PermitRequestManagement\PermitRequestEnt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.PermitRequestInquiry" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAAACAAAAA=</HashCode>
+      <FileName>PermitRequestManagement\PermitRequestInquiry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.RequestManagementForm" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIBEgICHAABAAABCAQAACAEAowAAACAAAASAgAAE=</HashCode>
+      <FileName>PermitRequestManagement\RequestManagementForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Logger.logform" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAABAQAACAAAACAAA4AAAAEAAQAAAAAAA=</HashCode>
+      <FileName>Logger\Form\logform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.LogDeleter" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Src\LogDelete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.Logger" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Src\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.LogRetentionManager" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAACAAAAAAAAAAAAABAAAACAAAA=</HashCode>
+      <FileName>Logger\Src\LogRetentionManger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.LogSearcher" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Src\LogSearcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.LogViewer" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Src\LogViewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Log.test.LogManagerTests" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAIgCAAAAAAAIAACBAAAIAAAAAACABAAAAQAAAE=</HashCode>
+      <FileName>Logger\Tests\LoggerManagerTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Tests.LogSearcherTests" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACAAAAAAAAAAABABAAAABAAQAAAAAAAAAIAA=</HashCode>
+      <FileName>Logger\Tests\LogSearcherTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Program" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Properties.Resources" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkABAAABABEBAMCREAEAQQQAAAAAgAAAABAEAYA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.SettingExportImport.form.SettingExportImport" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAAAAIAACAAgAAAIACABBADCAAAAAgAAGIBAAAAAAA=</HashCode>
+      <FileName>SettingExportImport\form\SettingExportImport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingExport" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>SettingExportImport\src\SettingExport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingImport" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SettingExportImport\src\SettingImport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UsbSecurity.Tests.SettingXmlTests" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAABAAAAAAACAAAAAAAAkAAAAA=</HashCode>
+      <FileName>SettingExportImport\test\SettingXmlTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.USBmanagement.UsBxmlSerializer" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\USBmanagement\USBxmlSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="USBprotect.USBmanagement.test.UsBxmlSerializerTests" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICABAAACAAAAAAAAAAAAAAAAAABAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>src\USBmanagement\test\UsBxmlSerializerTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="USBprotect.USBmanagement.IUsbManagementSystem" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBgBAAAAAAEAABAAAAAAAAAIAhAAAAAAAAAAACAI=</HashCode>
+      <FileName>src\USBmanagement\IUSBmanagementSystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -28,12 +28,12 @@ namespace UsbSecurity
                 requests.RemoveAt(index); // 승인 후 요청 목록에서 해당 요청을 제거합니다
                 permitrequestent.SaveRequests(requests); // 업데이트된 요청 목록을 저장합니다
 
-                // 해당 디바이스를 블랙리스트에서 제거합니다 (해당하는 경우)
-                var blackListDevice = USBinfo.BlackListDevices.FirstOrDefault(d => d.DeviceId == approvedRequest.DeviceId);
-                if (blackListDevice != null)
-                {
-                    USBinfo.BlackListDevices.Remove(blackListDevice); // 블랙리스트에서 제거
-                }
+                //// 해당 디바이스를 블랙리스트에서 제거합니다 (해당하는 경우)
+                //var blackListDevice = USBinfo.BlackListDevices.FirstOrDefault(d => d.DeviceId == approvedRequest.DeviceId);
+                //if (blackListDevice != null)
+                //{
+                //    USBinfo.BlackListDevices.Remove(blackListDevice); // 블랙리스트에서 제거
+                //}
 
                 USBinfo usbInfo = new USBinfo
                 {
