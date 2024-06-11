@@ -5,10 +5,11 @@ namespace UsbSecurity
     internal class PermitRequestInquiry
     {
         private List<PermitRequestEnt> requests;
+        private PermitRequestEnt permitrequestent = new PermitRequestEnt(); 
 
         public PermitRequestInquiry()
         {
-            requests = PermitRequestEnt.LoadRequests();
+            requests = permitrequestent.LoadRequests();
         }
 
         public List<PermitRequestEnt> GetRequests()

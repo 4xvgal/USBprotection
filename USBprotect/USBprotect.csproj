@@ -252,6 +252,7 @@
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\free-icon-envelope-5151980.png" />
     <Content Include="Resources\free-icon-house-8105220.png" />
+    <None Include="Resources\Print1.png" />
     <Content Include="Resources\rotate.png" />
     <Content Include="Resources\usb-drive.png" />
     <Content Include="Resources\user.png" />

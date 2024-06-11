@@ -6,14 +6,16 @@ namespace UsbSecurity
     internal class PermitRequestDelete
     {
         private List<PermitRequestEnt> requests;
+        private PermitRequestEnt permitRequestEnt;
 
         public PermitRequestDelete()
         {
-            requests = PermitRequestEnt.LoadRequests();
+            permitRequestEnt = new PermitRequestEnt();
+            requests = permitRequestEnt.LoadRequests();
         }
         public void RemoveRequest(int index)
         {
-            PermitRequestEnt.RemoveRequest(index);
+            permitRequestEnt.RemoveRequest(index);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace UsbSecurity
         }
 
         // 요청 목록을 XML 파일에서 불러오는 메서드
-        public static List<PermitRequestEnt> LoadRequests()
+        public List<PermitRequestEnt> LoadRequests()
         {
             try
             {
@@ -62,7 +62,7 @@ namespace UsbSecurity
         }
 
         // 요청 목록을 XML 파일에 저장하는 메서드
-        public static void SaveRequests(List<PermitRequestEnt> requests)
+        public void SaveRequests(List<PermitRequestEnt> requests)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace UsbSecurity
         }
 
         // 승인된 요청을 XML 파일에 저장하는 메서드
-        public static void SaveApprovedRequest(PermitRequestEnt request)
+        public void SaveApprovedRequest(PermitRequestEnt request)
         {
             try
             {
@@ -112,45 +112,9 @@ namespace UsbSecurity
             }
         }
 
-        // 요청을 승인하는 메서드
-        public static void ApproveRequest(int index)
-        {
-            var requests = LoadRequests();
-            if (index >= 0 && index < requests.Count)
-            {
-                var approvedRequest = requests[index];
-                requests.RemoveAt(index);
-                SaveRequests(requests);
-
-                // 블랙리스트에서 제거
-                var blackListDevice = USBinfo.BlackListDevices.FirstOrDefault(d => d.DeviceId == approvedRequest.DeviceId);
-                if (blackListDevice != null)
-                {
-                    USBinfo.BlackListDevices.Remove(blackListDevice);
-                }
-
-                USBinfo usbInfo = new USBinfo
-                {
-                    DeviceName = approvedRequest.DeviceName,
-                    DeviceId = approvedRequest.DeviceId,
-                    PnpDeviceId = approvedRequest.DeviceId,
-                    Status = "Approved",
-                    IsWhiteListed = true
-                };
-
-                USBinfo.WhiteListDevices.Add(usbInfo);
-                USBinfo.RemoveBlackListDevice(usbInfo);
-                ManageAllowList manageAllowList = new ManageAllowList();
-                manageAllowList.enableEveryDevice(approvedRequest.DeviceId);
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("index", "Index is out of range.");
-            }
-        }
 
         // 요청을 삭제하는 메서드
-        public static void RemoveRequest(int index)
+        public void RemoveRequest(int index)
         {
             var requests = LoadRequests();
             if (index >= 0 && index < requests.Count)
